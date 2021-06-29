@@ -30,16 +30,20 @@ const LoginPage = () => {
               <hr />
             </div>
             <div className="login__google">
-              <button>
-                <img src="/loginAssets/google.png" />
-                Sign In with Google
-              </button>
+              <span>
+                <button>
+                  <img src="/loginAssets/google.png" />
+                  Sign In with Google
+                </button>
+              </span>
             </div>
             <div className="login__fb">
-              <button>
-                <img src="/loginAssets/fb.png" />
-                Sign In with FaceBook
-              </button>
+              <span>
+                <button>
+                  <img src="/loginAssets/fb.png" />
+                  Sign In with FaceBook
+                </button>
+              </span>
             </div>
           </div>
         </div>

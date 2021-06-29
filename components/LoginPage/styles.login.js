@@ -39,6 +39,7 @@ export default styled.div`
           border: none;
           z-index: 2;
           padding-left: 1.2rem;
+          border: none;
         }
 
         .login__button {
@@ -75,40 +76,48 @@ export default styled.div`
         }
         .login__google {
           margin-top: 1rem;
+          span {
+            vertical-align: middle;
 
-          button {
-            height: 2.53rem;
-            border-radius: 3.75rem;
-            font-size: 1rem;
-            width: 90%;
-            padding-left: 1.5rem;
-            background-color: white;
-            color: black;
-            img {
-              width: 1.05rem;
-              padding: auto;
-              height: 0.9rem;
-              margin-right: 0.35rem;
+            button {
+              height: 2.52rem;
+              border-radius: 3.75rem;
+              font-size: 1rem;
+              width: 90%;
+              border: none;
+              padding-left: 1.5rem;
+              background-color: white;
+              color: black;
+              img {
+                width: 1.05rem;
+                //padding: auto;
+                height: 0.9rem;
+                margin-right: 0.35rem;
+              }
             }
           }
         }
         .login__fb {
           margin-top: 1rem;
 
-          button {
-            height: 2.53rem;
-            border-radius: 3.75rem;
-            font-size: 1rem;
-            width: 90%;
-            padding-left: 1.5rem;
-            background-color: white;
-            color: black;
-            img {
-              width: 1.05rem;
-              padding: auto;
-              height: 1rem;
+          span {
+            vertical-align: middle;
 
-              margin-right: 0.1rem;
+            button {
+              height: 2.52rem;
+              border-radius: 3.75rem;
+              font-size: 1rem;
+              width: 90%;
+              border: none;
+              padding-left: 1.5rem;
+              background-color: white;
+              color: black;
+              img {
+                width: 1.05rem;
+                //padding: auto;
+                height: 0.9rem;
+                margin-right: 0.35rem;
+              }
             }
           }
         }
@@ -127,12 +136,12 @@ export default styled.div`
   }
   @media screen and (max-width: 425px) {
     .login__content {
-      transform: translateY(-50%);
+      transform: translateY(10%) !important;
       margin: 30% auto !important;
-      padding-left: 5%;
+      padding-left: 0px !important;
       position: absolute !important;
       width: 100% !important;
-      height: 0%;
+      height: 100% !important;
       .login__social {
         span {
           font-weight: 600 !important;
@@ -145,10 +154,10 @@ export default styled.div`
       overflow-y: hidden;
       background-color: rgba(255, 255, 255, 0.3) !important;
       img {
-        display: block;
+        display: none !important;
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: none;
         overflow-y: hidden;
       }
     }
