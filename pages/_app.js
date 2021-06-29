@@ -1,6 +1,6 @@
 import { AuthProvider } from "../components/auth/auth";
 import { Layout } from "../components/layout/layout";
-import "../styles/globals.css";
+import "../styles/globals.scss";
 
 function MyApp({ Component, pageProps }) {
   return (

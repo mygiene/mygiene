@@ -1,5 +1,6 @@
 import { useState } from "react";
-import firebase from "../firebase.config";
+import SignUpPage from "../components/SignUpPage";
+
 import { auth, handleUserProfile, signInWithGoogle } from "../firebase/utils";
 
 const initialState = {
@@ -31,31 +32,32 @@ const Page = () => {
 
   const { displayName, email, password } = form;
   return (
-    <div>
-      <h2>Signup Page</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="displayName"
-          value={displayName}
-          onChange={handleFieldChange}
-        />
-        <input
-          type="email"
-          name="email"
-          value={email}
-          onChange={handleFieldChange}
-        />
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={handleFieldChange}
-        />
-        <button type="submit">SIGN UP</button>
-      </form>
-      <button onClick={signInWithGoogle}>Sign Up with Google</button>
-    </div>
+    // <div>
+    //   <h2>Signup Page</h2>
+    //   <form onSubmit={handleSubmit}>
+    //     <input
+    //       type="text"
+    //       name="displayName"
+    //       value={displayName}
+    //       onChange={handleFieldChange}
+    //     />
+    //     <input
+    //       type="email"
+    //       name="email"
+    //       value={email}
+    //       onChange={handleFieldChange}
+    //     />
+    //     <input
+    //       type="password"
+    //       name="password"
+    //       value={password}
+    //       onChange={handleFieldChange}
+    //     />
+    //     <button type="submit">SIGN UP</button>
+    //   </form>
+    //   <button onClick={signInWithGoogle}>Sign Up with Google</button>
+    // </div>
+    <SignUpPage />
   );
 };
 
