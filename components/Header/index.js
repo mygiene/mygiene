@@ -1,7 +1,8 @@
 import Link from "next/link";
 import HeaderWrapper, { ModalWrapper } from "./styles.header";
 import { FaIcon } from "../BaseComponent/FaIcon";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { StoreContext } from "../../store";
 
 const NavLinks = [
   { name: "Home", link: "/", icon: "" },
@@ -45,6 +46,8 @@ export const Modal = ({ isOpen, activeLink, closeOnClick }) => {
 
 export const Header = ({ activeLink }) => {
   const [isopen, setisopen] = useState(false);
+  const [state] = useContext(StoreContext);
+  const isLoggedIn = state.currentUser;
   function toggle() {
     setisopen((s) => !s);
   }

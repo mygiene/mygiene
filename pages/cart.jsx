@@ -1,5 +1,5 @@
 const Page = () => {
-  return <div>Kit</div>;
+  return <div>Cart Page</div>;
 };
 
 export default Page;

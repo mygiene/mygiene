@@ -7,7 +7,7 @@ const initialState = {
 
 export const StoreContext = createContext(initialState);
 
-function reducer(state, action) {
+function reducer(state = initialState, action) {
   switch (action.type) {
     case userTypes.SET_CURRENT_USER:
       return { ...state, currentUser: action.payload };

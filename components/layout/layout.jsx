@@ -5,11 +5,11 @@ import { Header } from "../Header";
 import { Footer } from "../Footer";
 
 export const Layout = ({ children }) => {
-  const [state] = useContext(StoreContext);
+  const [state, dispatch] = useContext(StoreContext);
   function signout() {
     auth
       .signOut()
-      .then((r) => dispatch({ type: "isLoggedIn", payload: false }))
+      .then((r) => console.log(r))
       .catch((err) => console.log({ err }));
   }
   console.log({ state });
