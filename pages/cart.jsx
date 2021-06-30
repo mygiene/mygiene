@@ -1,5 +1,7 @@
+import StyledWrapper from "../styles/styles.common.js";
+
 const Page = () => {
-  return <div>Cart Page</div>;
+  return <StyledWrapper>Cart Page</StyledWrapper>;
 };
 
 export default Page;

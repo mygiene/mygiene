@@ -1,29 +1,61 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import { signInWithGoogle } from "../../firebase/utils";
 import LoginWrapper from "./styles.login";
-//import LoginBanner from "/loginAssets/login_banner.jpeg";
+
+const initialState = {
+  email: "",
+  password: "",
+};
+
 const LoginPage = () => {
+  const [form, setform] = useState(initialState);
+  function handleFieldChange(event) {
+    const { name, value } = event.target;
+    setform({ ...form, [name]: value });
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+  }
+  useEffect(() => {
+    // toast.success("Bye, see you later 👋🏻");
+  }, []);
+
+  const { email, password } = form;
+
   return (
     <LoginWrapper>
       <login className="login">
         <div className="login__left">
           <div className="login__content">
-            <div className="login__email">
-              <label for="email">Email*</label>
-              <br />
-              <input type="email" name="email" placeholder="Name" />
-            </div>
-            <div className="login__password">
-              <label for="password">Password*</label>
-              <br />
-              <input
-                type="password"
-                name="name"
-                placeholder="Enter your Password"
-              />
-            </div>
-            <div className="login__button">
-              <button>Sign In</button>
-            </div>
+            <form onSubmit={handleSubmit}>
+              <div className="login__email">
+                <label for="email">Email*</label>
+                <br />
+                <input
+                  type="email"
+                  name="email"
+                  value={email}
+                  onChange={handleFieldChange}
+                  placeholder="Name"
+                />
+              </div>
+              <div className="login__password">
+                <label for="password">Password*</label>
+                <br />
+                <input
+                  type="password"
+                  name="name"
+                  value={password}
+                  onChange={handleFieldChange}
+                  placeholder="Enter your Password"
+                />
+              </div>
+              <div className="login__button">
+                <button type="submit">Sign In</button>
+              </div>
+            </form>
             <div className="login__social">
               <hr />
               <span> or Sign In with Google / Facebook</span>
@@ -31,7 +63,7 @@ const LoginPage = () => {
             </div>
             <div className="login__google">
               <span>
-                <button>
+                <button onClick={signInWithGoogle}>
                   <img src="/loginAssets/google.png" />
                   Sign In with Google
                 </button>

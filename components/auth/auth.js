@@ -1,10 +1,12 @@
 import { useContext, useEffect } from "react";
+import { toast } from "react-toastify";
 import { auth, handleUserProfile } from "../../firebase/utils";
 import { StoreContext } from "../../store";
 import { setCurrentUser, userTypes } from "../../store/user/userActions";
 
 export const AuthProvider = ({ children }) => {
-  const [state, dispatch] = useContext(StoreContext);
+  const [, dispatch] = useContext(StoreContext);
+
   useEffect(() => {
     auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
@@ -15,12 +17,12 @@ export const AuthProvider = ({ children }) => {
             id: snapshot.id,
             ...snapshot.data(),
           });
-          console.log();
-          dispatch({ type: userTypes.SET_CURRENT_USER, payload: "payload" });
+          dispatch(currentUsr);
+          toast.success(`Hi ${snapshot.data().displayName}, Welcome Back 🙂`);
         });
-      }
-      // else dispatch(setCurrentUser(userAuth));
+      } else dispatch(setCurrentUser(userAuth));
     });
   }, []);
+
   return <div>{children}</div>;
 };

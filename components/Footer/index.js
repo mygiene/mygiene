@@ -1,9 +1,10 @@
 import React from "react";
-//import "./styles.scss";
+import FooterWrapper from "./styles.footer";
+
 export const Footer = () => {
   return (
-    <footer>
+    <FooterWrapper>
       <h2>Footer</h2>
-    </footer>
+    </FooterWrapper>
   );
 };

@@ -1,5 +1,7 @@
+import StyledWrapper from "../styles/styles.common.js";
+
 const Page = () => {
-  return <div>CONTACT US</div>;
+  return <StyledWrapper>CONTACT US</StyledWrapper>;
 };
 
 export default Page;

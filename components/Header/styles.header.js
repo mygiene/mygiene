@@ -4,10 +4,11 @@ import media from "../../util/media-queries";
 
 export const ModalWrapper = styled.div`
   position: fixed;
-  top: 50px;
+  top: 4.5rem;
   left: 0;
   width: 100%;
-
+  z-index: 9999;
+  /* display: none; */
   .list {
     margin: 0 2rem;
     /* width: 95%; */
@@ -29,31 +30,100 @@ export const ModalWrapper = styled.div`
   }
 `;
 
+export const DropdownWrapper = styled.div`
+  .dropdown-outer {
+    position: fixed;
+    top: 4.5rem;
+    right: 6rem;
+    ul {
+      list-style-type: none;
+      background-color: whitesmoke;
+      padding: 1rem;
+      li {
+        padding: 0.5rem 1rem;
+
+        a {
+          color: #444;
+        }
+      }
+    }
+  }
+  ${media.max.mobileXL} {
+    .dropdown-outer {
+      right: 4rem;
+    }
+  }
+`;
+
 export default styled.div`
-  /* max-width: 1450px; */
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  background-color: whitesmoke;
+  z-index: 10;
   .nav-outer-block {
     overflow: hidden;
-    height: 71px;
-    width: 100%;
     display: flex;
     justify-content: space-between;
-    padding: 1rem 2rem;
-
+    padding: 0rem 2rem;
+    height: 4.5rem;
+    .logo {
+      display: flex;
+      align-items: center;
+      h3 {
+        margin: 0;
+      }
+    }
     .nav-list {
+      display: flex;
+      align-items: center;
       ul {
         text-decoration: none;
+        padding: 0;
+        margin: 0;
+
         li {
           vertical-align: middle;
           display: inline-block;
           padding: 0 1rem;
-          line-height: 2rem;
+          /* line-height: 2rem; */
           img {
             width: 2rem;
           }
-
+          &:hover {
+            cursor: pointer;
+          }
+          .product-counter {
+            position: relative;
+            background-color: black;
+            color: whitesmoke;
+            width: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 1.5rem;
+            /* text-align: center; */
+            float: right;
+            border-radius: 50%;
+            margin-left: -1rem;
+            margin-top: -0.5rem;
+          }
           & > a {
             text-decoration: none;
             color: black;
+
+            .circle {
+              color: #eee;
+              width: 2.5rem;
+              height: 2.5rem;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              background-color: #222;
+              border-radius: 50%;
+              user-select: none;
+            }
           }
           &:nth-child(5) {
             border-left: 1px solid black;
@@ -72,7 +142,6 @@ export default styled.div`
 
   ${media.max.mobileXL} {
     .nav-outer-block {
-      height: 50px;
       .nav-list {
         ul {
           li {

@@ -1,5 +1,7 @@
+import StyledWrapper from "../styles/styles.common.js";
+
 const Page = () => {
-  return <div>MY PROFILE</div>;
+  return <StyledWrapper>MY PROFILE</StyledWrapper>;
 };
 
 export default Page;

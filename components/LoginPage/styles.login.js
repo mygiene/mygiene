@@ -6,9 +6,10 @@ export default styled.div`
     background-color: #e5e5e5;
     width: 100%;
     max-width: 1450px;
-    margin: 0 auto;
+    margin: auto;
+    margin-top: 4.5rem;
     //position: relative;
-    height: 800px;
+    height: calc(100vh - 4.5rem);
     .login__left {
       width: 100%;
       float: left;
