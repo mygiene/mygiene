@@ -6,6 +6,7 @@ export default styled.div`
   padding: 2rem 0;
   text-align: center;
   border-top: 10px solid #ddd;
+  display: block;
+
   border-bottom: 10px solid #ddd;
-  margin-top: 2rem;
 `;
