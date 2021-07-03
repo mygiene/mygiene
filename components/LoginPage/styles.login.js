@@ -1,4 +1,15 @@
 import styled from "styled-components";
+
+export const ForgotPassWrapper = styled.div`
+  /* position: relative; */
+  margin: 40vh auto;
+  form {
+    display: flex;
+    div {
+      margin: auto;
+    }
+  }
+`;
 export default styled.div`
   .login {
     display: grid;
