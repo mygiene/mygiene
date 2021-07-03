@@ -3,7 +3,7 @@ export default styled.div`
   .login {
     display: grid;
     grid-template-columns: 50% 50%;
-    background-color: #e5e5e5;
+    background-color: #d9e1ff;
     width: 100%;
     max-width: 1450px;
     margin: auto;

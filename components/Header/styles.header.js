@@ -8,7 +8,7 @@ export const ModalWrapper = styled.div`
   left: 0;
   width: 100%;
   z-index: 9999;
-  /* display: none; */
+
   .list {
     margin: 0 2rem;
     /* width: 95%; */
