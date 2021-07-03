@@ -33,6 +33,9 @@ export default styled.div`
             width: 150px;
             height: 45px;
             text-align: center;
+            a {
+              color: #000000;
+            }
           }
           button:hover {
             background: #000000;
@@ -47,6 +50,7 @@ export default styled.div`
           z-index: 9;
           margin-top: -230px;
           position: absolute;
+          width: 100%;
 
           img {
             width: 75%;
@@ -148,6 +152,7 @@ export default styled.div`
           width: 500px;
           height: 500px;
           margin-bottom: -30px;
+          border-radius: 10px;
         }
       }
     }

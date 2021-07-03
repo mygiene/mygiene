@@ -96,6 +96,7 @@ export default styled.div`
           }
           &.active a {
             color: ${variables.primary_color} !important;
+            font-weight: 700;
           }
           &:hover {
             cursor: pointer;
