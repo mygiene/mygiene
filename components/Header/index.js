@@ -107,8 +107,8 @@ export const Header = () => {
       fullName = isLoggedIn?.displayName;
 
       let nameArr = fullName.split(" ").filter(Boolean);
-      fName = nameArr[0][0].toUpperCase();
-      lName = nameArr[1][0].toUpperCase();
+      fName = nameArr[0][0].toUpperCase() || "";
+      lName = nameArr?.[1]?.[0]?.toUpperCase?.() || "";
     }
     initials = fName + lName;
     return initials;

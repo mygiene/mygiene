@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import { signInWithGoogle } from "../../firebase/utils";
+import { auth, signInWithGoogle } from "../../firebase/utils";
 import LoginWrapper from "./styles.login";
 import Link from "next/link";
 
@@ -16,8 +16,16 @@ const LoginPage = () => {
     setform({ ...form, [name]: value });
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
+    console.log("working");
+    try {
+      const { email, password } = form;
+      const res = await auth.signInWithEmailAndPassword(email, password);
+      console.log({ res });
+    } catch (error) {
+      toast.error(error.message || "Something went wrong");
+    }
   }
 
   const { email, password } = form;
@@ -35,17 +43,19 @@ const LoginPage = () => {
                 <label for="email">Email*</label>
                 <br />
                 <input
+                  required
                   type="email"
                   name="email"
                   value={email}
                   onChange={handleFieldChange}
-                  placeholder="Name"
+                  placeholder="E-mail"
                 />
               </div>
               <div className="login__password">
                 <label for="password">Password*</label>
                 <br />
                 <input
+                  required
                   type="password"
                   name="password"
                   value={password}

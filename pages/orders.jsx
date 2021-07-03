@@ -8,7 +8,7 @@ const Page = () => {
   const { authState } = useContext(AuthContext);
   const user = authState.user || null;
   if (user) return <StyledWrapper>MY ORDERs</StyledWrapper>;
-  else Router.push("/login");
+  else router.push("/login");
 };
 
 export default Page;

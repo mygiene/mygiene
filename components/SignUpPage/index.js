@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { toast } from "react-toastify";
+import { auth, handleUserProfile } from "../../firebase/utils";
 import SignUpWrapper from "./styles.signup";
 //import LoginBanner from "/loginAssets/login_banner.jpeg";
 
@@ -16,8 +18,24 @@ const SignUpPage = () => {
     setform({ ...form, [name]: value });
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
+    const { displayName, email, password, confirmPassword } = form;
+
+    // validation condition of form
+    if (password !== confirmPassword) {
+      toast.error("Passwords don't match");
+      return;
+    }
+    try {
+      const { user } = await auth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
+      await handleUserProfile(user, { displayName });
+    } catch (error) {
+      toast.error(error.message || "Something went wrong");
+    }
   }
   const { email, password, displayName, confirmPassword } = form;
 
@@ -26,11 +44,12 @@ const SignUpPage = () => {
       <signup className="signup">
         <div className="signup__left">
           <div className="signup__content">
-            <form>
+            <form onSubmit={handleSubmit}>
               <div className="signup__name">
                 <label for="email">Name*</label>
                 <br />
                 <input
+                  required
                   type="text"
                   name="displayName"
                   value={displayName}
@@ -42,6 +61,7 @@ const SignUpPage = () => {
                 <label for="email">E-mail*</label>
                 <br />
                 <input
+                  required
                   type="email"
                   name="email"
                   value={email}
@@ -53,6 +73,7 @@ const SignUpPage = () => {
                 <label for="password">Password</label>
                 <br />
                 <input
+                  required
                   type="password"
                   name="password"
                   value={password}
@@ -64,9 +85,10 @@ const SignUpPage = () => {
                 <label for="password">Confirm Password*</label>
                 <br />
                 <input
+                  required
                   type="password"
-                  name="password"
-                  value={password}
+                  name="confirmPassword"
+                  value={confirmPassword}
                   onChange={handleFieldChange}
                   placeholder="******"
                 />
@@ -87,7 +109,7 @@ const SignUpPage = () => {
               </button>
             </div>
             <div className="signup__fb">
-              <button>
+              <button type="submit">
                 <img src="/loginAssets/fb.png" />
                 Sign Up with FaceBook
               </button>

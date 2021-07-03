@@ -15,6 +15,8 @@ const initialState = {
 
 export const protectedRoutes = ["/profile", "/orders"];
 
+export const safeRoutes = ["/login", "/signup"];
+
 export const AuthContext = createContext(initialState);
 
 export const AuthProvider = ({ children }) => {
@@ -25,7 +27,7 @@ export const AuthProvider = ({ children }) => {
     const unsubscribe = auth.onAuthStateChanged(async (userAuth) => {
       console.log({ userAuth });
       if (userAuth) {
-        if (router.pathname === "/login") router.push("/");
+        if (safeRoutes.includes(router.pathname)) router.push("/");
         // const { uid, displayName, email } = userAuth;
         // setAuthState({ user: { uid, displayName, email }, pending: false });
         const userRef = await handleUserProfile(userAuth);
@@ -63,7 +65,8 @@ export const AuthProvider = ({ children }) => {
         <img src="/loader2.svg" />
       </div>
     );
-  else if (authState.user && router.pathname === "/login") router.push("/");
+  else if (authState.user && safeRoutes.includes(router.pathname))
+    router.push("/");
   else if (!authState.user && protectedRoutes.includes(router.pathname))
     router.push("/login");
   return (
