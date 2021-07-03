@@ -19,6 +19,9 @@ export const ModalWrapper = styled.div`
       text-align: center;
       display: block;
       padding: 1rem;
+      &.active a {
+        color: ${variables.primary_color} !important;
+      }
       a {
         color: black;
         text-decoration: none;
@@ -91,6 +94,9 @@ export default styled.div`
           img {
             width: 2rem;
           }
+          &.active a {
+            color: ${variables.primary_color} !important;
+          }
           &:hover {
             cursor: pointer;
           }
@@ -128,9 +134,7 @@ export default styled.div`
           &:nth-child(5) {
             border-left: 1px solid black;
           }
-          & .active {
-            color: ${variables.primary_color};
-          }
+
           &:nth-child(7) {
             display: none;
             padding-right: 0;

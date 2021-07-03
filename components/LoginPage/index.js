@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { signInWithGoogle } from "../../firebase/utils";
 import LoginWrapper from "./styles.login";
+import Link from "next/link";
 
 const initialState = {
   email: "",
@@ -18,9 +19,6 @@ const LoginPage = () => {
   function handleSubmit(e) {
     e.preventDefault();
   }
-  useEffect(() => {
-    // toast.success("Bye, see you later 👋🏻");
-  }, []);
 
   const { email, password } = form;
 
@@ -29,6 +27,9 @@ const LoginPage = () => {
       <login className="login">
         <div className="login__left">
           <div className="login__content">
+            <div className="signup-btn">
+              <Link href="/signup">Signup</Link>
+            </div>
             <form onSubmit={handleSubmit}>
               <div className="login__email">
                 <label for="email">Email*</label>
@@ -46,7 +47,7 @@ const LoginPage = () => {
                 <br />
                 <input
                   type="password"
-                  name="name"
+                  name="password"
                   value={password}
                   onChange={handleFieldChange}
                   placeholder="Enter your Password"

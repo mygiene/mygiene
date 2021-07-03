@@ -1,12 +1,11 @@
 import { AuthProvider } from "../components/auth/auth";
 import { Layout } from "../components/layout/layout";
-import Store from "../store";
+import Store, { StoreContext } from "../store";
 import "../styles/globals.scss";
 import dynamic from "next/dynamic";
 import "react-toastify/dist/ReactToastify.css";
-import { IsCSR } from "../util/common";
-import { auth, handleUserProfile } from "../firebase/utils";
-import router from "next/router";
+import { useContext, useEffect, useState } from "react";
+import { auth } from "../firebase/utils";
 
 const ToastContainer = dynamic(
   () => import("react-toastify").then((x) => x.ToastContainer),
@@ -15,8 +14,8 @@ const ToastContainer = dynamic(
   }
 );
 
-function MyApp({ Component, pageProps }) {
-  console.log({ pageProps });
+function MyApp({ Component, pageProps, loggedIn }) {
+  console.log({ loggedIn });
   return (
     <>
       <Store>
@@ -41,36 +40,17 @@ function MyApp({ Component, pageProps }) {
   );
 }
 
-const protectedRoutes = ["/profile", "/orders"];
-const publicRoutes = ["/login", "/signup"];
-
-MyApp.getInitialProps = async ({ ctx, Component }) => {
-  const pathname = (ctx.req?.url || "").trim();
-  let pageProps = {};
-
-  // if (IsCSR) {
-  auth.onAuthStateChanged(async (userAuth) => {
+MyApp.getInitialProps = async (ctx) => {
+  let loggedIn = false;
+  const { pathname } = ctx;
+  auth.onAuthStateChanged((userAuth) => {
+    console.log({ userAuth });
     if (userAuth) {
-      const userRef = await handleUserProfile(userAuth);
-      userRef.onSnapshot((snapshot) => {
-        if (publicRoutes.includes(pathname)) {
-          router.push("/");
-        } else {
-        }
-      });
+      loggedIn = true;
     } else {
-      if (protectedRoutes.includes(pathname)) {
-        router.push("/login");
-      }
+      loggedIn = false;
     }
   });
-  // }
-  if (Component.getInitialProps) {
-    pageProps = await Component.getInitialProps(ctx);
-  }
-  return {
-    pageProps,
-  };
+  return { loggedIn };
 };
-
 export default MyApp;

@@ -1,7 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import SignUpWrapper from "./styles.signup";
 //import LoginBanner from "/loginAssets/login_banner.jpeg";
+
+const initialState = {
+  displayName: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+};
+
 const SignUpPage = () => {
+  const [form, setform] = useState(initialState);
+  function handleFieldChange(event) {
+    const { name, value } = event.target;
+    setform({ ...form, [name]: value });
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+  }
+  const { email, password, displayName, confirmPassword } = form;
+
   return (
     <SignUpWrapper>
       <signup className="signup">
@@ -10,29 +29,45 @@ const SignUpPage = () => {
             <div className="signup__name">
               <label for="email">Name*</label>
               <br />
-              <input type="text" name="name" placeholder="Name" />
+              <input
+                type="text"
+                name="displayName"
+                value={displayName}
+                onChange={handleFieldChange}
+                placeholder="Jane Doe"
+              />{" "}
             </div>
             <div className="signup__email">
-              <label for="email">Name*</label>
+              <label for="email">E-mail*</label>
               <br />
-              <input type="email" name="email" placeholder="Name" />
+              <input
+                type="email"
+                name="email"
+                value={email}
+                onChange={handleFieldChange}
+                placeholder="abc@xyz.com"
+              />{" "}
             </div>
             <div className="signup__password">
-              <label for="password">Password*</label>
+              <label for="password">Password</label>
               <br />
               <input
                 type="password"
                 name="password"
-                placeholder="Enter your Password"
+                value={password}
+                onChange={handleFieldChange}
+                placeholder="******"
               />
             </div>
             <div className="signup__password">
-              <label for="password">Password*</label>
+              <label for="password">Confirm Password*</label>
               <br />
               <input
                 type="password"
                 name="password"
-                placeholder="confirm your Password"
+                value={password}
+                onChange={handleFieldChange}
+                placeholder="******"
               />
             </div>
             <div className="signup__button">

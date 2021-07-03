@@ -4,10 +4,11 @@ import { FaIcon } from "../BaseComponent/FaIcon";
 import { useState, useContext } from "react";
 import { StoreContext } from "../../store";
 import { auth } from "../../firebase/utils";
-import Router from "next/router";
+import Router, { useRouter } from "next/router";
 import { setCurrentUser } from "../../store/user/userActions";
 import useWindowSize from "../../util/windowSize";
 import { toast } from "react-toastify";
+import { AuthContext, protectedRoutes } from "../auth/auth";
 
 const NavLinks = [
   { name: "Home", link: "/", icon: "" },
@@ -24,12 +25,13 @@ const NavLinks = [
 
 export const Dropdown = ({ show, closeOnClick, isLoggedIn }) => {
   const [, dispatch] = useContext(StoreContext);
+  const router = useRouter();
   function logMeOut() {
-    auth.signOut().then((r) => {
+    auth.signOut().then(() => {
       closeOnClick();
       dispatch(setCurrentUser(null));
-      Router.push("/");
-      toast.success("Bye, see you later 👋🏻");
+      if (protectedRoutes.includes(router.pathname)) Router.push("/");
+      toast.success("See you soon 👋🏻");
     });
   }
   if (isLoggedIn && show)
@@ -89,12 +91,12 @@ export const Modal = ({ isOpen, activeLink, closeOnClick }) => {
   return <></>;
 };
 
-export const Header = ({ activeLink }) => {
+export const Header = () => {
   const [isopen, setisopen] = useState(false);
   const [show, setshow] = useState(false);
-  const [state] = useContext(StoreContext);
-  const isLoggedIn = state.currentUser;
-  console.log({ isLoggedIn });
+  const activeLink = useRouter().pathname;
+  const { authState } = useContext(AuthContext);
+  const isLoggedIn = authState.user;
   function toggle() {
     setisopen((s) => !s);
   }
@@ -103,7 +105,6 @@ export const Header = ({ activeLink }) => {
     let fullName, fName, lName, initials;
     if (isLoggedIn) {
       fullName = isLoggedIn?.displayName;
-      console.log(fullName);
 
       let nameArr = fullName.split(" ").filter(Boolean);
       fName = nameArr[0][0].toUpperCase();
@@ -120,6 +121,9 @@ export const Header = ({ activeLink }) => {
         </div>
         <div className="nav-list">
           <ul>
+            {/* <li>
+              <Link href="/profile">profile</Link>
+            </li> */}
             {NavLinks.map((m, i) => {
               if (m.name)
                 return (
@@ -131,12 +135,12 @@ export const Header = ({ activeLink }) => {
                 return (
                   <li>
                     <Link href={m.link}>
-                      <>
+                      <a>
                         {m.link === "/cart" && (
                           <div className="product-counter">1</div>
                         )}
                         <img src={m.icon} />
-                      </>
+                      </a>
                     </Link>
                   </li>
                 );
