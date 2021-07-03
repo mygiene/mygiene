@@ -26,53 +26,55 @@ const SignUpPage = () => {
       <signup className="signup">
         <div className="signup__left">
           <div className="signup__content">
-            <div className="signup__name">
-              <label for="email">Name*</label>
-              <br />
-              <input
-                type="text"
-                name="displayName"
-                value={displayName}
-                onChange={handleFieldChange}
-                placeholder="Jane Doe"
-              />{" "}
-            </div>
-            <div className="signup__email">
-              <label for="email">E-mail*</label>
-              <br />
-              <input
-                type="email"
-                name="email"
-                value={email}
-                onChange={handleFieldChange}
-                placeholder="abc@xyz.com"
-              />{" "}
-            </div>
-            <div className="signup__password">
-              <label for="password">Password</label>
-              <br />
-              <input
-                type="password"
-                name="password"
-                value={password}
-                onChange={handleFieldChange}
-                placeholder="******"
-              />
-            </div>
-            <div className="signup__password">
-              <label for="password">Confirm Password*</label>
-              <br />
-              <input
-                type="password"
-                name="password"
-                value={password}
-                onChange={handleFieldChange}
-                placeholder="******"
-              />
-            </div>
-            <div className="signup__button">
-              <button>Sign Up</button>
-            </div>
+            <form>
+              <div className="signup__name">
+                <label for="email">Name*</label>
+                <br />
+                <input
+                  type="text"
+                  name="displayName"
+                  value={displayName}
+                  onChange={handleFieldChange}
+                  placeholder="Jane Doe"
+                />{" "}
+              </div>
+              <div className="signup__email">
+                <label for="email">E-mail*</label>
+                <br />
+                <input
+                  type="email"
+                  name="email"
+                  value={email}
+                  onChange={handleFieldChange}
+                  placeholder="abc@xyz.com"
+                />{" "}
+              </div>
+              <div className="signup__password">
+                <label for="password">Password</label>
+                <br />
+                <input
+                  type="password"
+                  name="password"
+                  value={password}
+                  onChange={handleFieldChange}
+                  placeholder="******"
+                />
+              </div>
+              <div className="signup__password">
+                <label for="password">Confirm Password*</label>
+                <br />
+                <input
+                  type="password"
+                  name="password"
+                  value={password}
+                  onChange={handleFieldChange}
+                  placeholder="******"
+                />
+              </div>
+              <div className="signup__button">
+                <button>Sign Up</button>
+              </div>
+            </form>
             <div className="signup__social">
               <hr />
               <span> or Sign Up with Google / Facebook</span>
