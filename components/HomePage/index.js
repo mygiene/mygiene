@@ -14,6 +14,27 @@ const kitList = [
   { id: 10, label: "Soap Case" },
 ];
 
+const valuesList = [
+  {
+    id: 1,
+    title: "ECO FRIENDLY",
+    desc: "Our products are 80 per cent recyclable.",
+    img: "/homeAssets/eco-friendly.png",
+  },
+  {
+    id: 2,
+    title: "SUSTAINABLE",
+    desc: "At Mygiene, almost all of the products featured in our kit are recyclable and sustainably produced.",
+    img: "/homeAssets/sustainable.png",
+  },
+  {
+    id: 3,
+    title: "HIGH QUALITY",
+    desc: "Our fully stocked kit is a must-have, carefully designed by our passionate team.",
+    img: "/homeAssets/high-quality.png",
+  },
+];
+
 const HomePage = () => {
   return (
     <StyleWrapper>
@@ -56,6 +77,20 @@ const HomePage = () => {
               ))}
             </div>
             {/* <button>Buy Now</button> */}
+          </div>
+        </div>
+        <div className="values-section">
+          <h1>Our core values</h1>
+          <div className="values-list">
+            {valuesList.map((m) => (
+              <div className="values-list-item">
+                <div className="banner-outer">
+                  <img src={m.img} alt="" />
+                </div>
+                <h3>{m.title}</h3>
+                <p>{m.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
