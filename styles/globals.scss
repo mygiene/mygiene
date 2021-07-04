@@ -1,4 +1,4 @@
-html,body, ul, li{
+html,body, ul, li, i{
   padding: 0;
   margin:0;
   font-family: 'Open Sans', sans-serif;
@@ -6,6 +6,9 @@ html,body, ul, li{
 }
 body{
   line-height:1;
+}
+button{
+  cursor: pointer;
 }
 a{
   text-decoration: none;
