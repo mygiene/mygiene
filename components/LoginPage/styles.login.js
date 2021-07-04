@@ -37,7 +37,13 @@ export default styled.div`
         position: relative;
         width: 80%;
         height: 0%;
-
+        .login__password {
+          a {
+            float: right;
+            margin: 0.5rem 2.5rem 1rem 0rem;
+            color: black;
+          }
+        }
         label {
           font-size: 1.2rem;
           font-weight: 400;
@@ -64,6 +70,7 @@ export default styled.div`
             padding-left: 1.5rem;
             background-color: black;
             color: white;
+            border: none;
           }
         }
         .login__social {
@@ -131,6 +138,17 @@ export default styled.div`
                 margin-right: 0.35rem;
               }
             }
+          }
+        }
+        .signup-btn {
+          margin-top: 1.5rem;
+          align-items: center;
+          text-align: center;
+          a {
+            margin-left: 0.4rem;
+            text-decoration: underline;
+            color: black;
+            font-weight: 600;
           }
         }
       }

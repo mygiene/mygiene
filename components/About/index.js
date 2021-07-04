@@ -1,5 +1,6 @@
 import React from "react";
 import AboutWrapper from "./styles.about";
+import Link from "next/link";
 const aboutData = [
   {
     heading: "We are on the mission",
@@ -37,8 +38,12 @@ const About = () => {
                 Australia
               </span>
               <div className="banner-buttons">
-                <button>Buy Kit</button>
-                <button>Read More</button>
+                <button>
+                  <Link href="/kit">Buy Kit</Link>
+                </button>
+                <button>
+                  <Link href="#about">Read More</Link>
+                </button>
               </div>
             </div>
             <div className="banner-image">
@@ -67,6 +72,7 @@ const About = () => {
                   </div>
                 </div>
                 <div
+                  id="about"
                   class="col col-image"
                   style={{
                     backgroundImage: 'url("/aboutAssets/about-1.jpg")',

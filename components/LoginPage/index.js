@@ -42,9 +42,6 @@ const LoginPage = () => {
         <login className="login">
           <div className="login__left">
             <div className="login__content">
-              <div className="signup-btn">
-                <Link href="/signup">Signup</Link>
-              </div>
               <form onSubmit={handleSubmit}>
                 <div className="login__email">
                   <label for="email">Email*</label>
@@ -70,14 +67,15 @@ const LoginPage = () => {
                     onChange={handleFieldChange}
                     placeholder="Enter your Password"
                   />
+                  <Link href="/recovery" className="forgot-password">
+                    Forgot Password ?
+                  </Link>
                 </div>
                 <div className="login__button">
                   <button type="submit">Sign In</button>
                 </div>
               </form>
-              <Link href="/recovery" className="forgot-password">
-                Forgot Password
-              </Link>
+
               <div className="login__social">
                 <hr />
                 <span> or Sign In with Google / Facebook</span>
@@ -98,6 +96,10 @@ const LoginPage = () => {
                     Sign In with FaceBook
                   </button>
                 </span>
+              </div>
+              <div className="signup-btn">
+                <span>Not on mygiene yet ?</span>
+                <Link href="/signup">Signup</Link>
               </div>
             </div>
           </div>
