@@ -47,6 +47,7 @@ export default styled.div`
         label {
           font-size: 1.2rem;
           font-weight: 400;
+          line-height: 2rem;
         }
         input {
           height: 2.53rem;

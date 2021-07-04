@@ -29,6 +29,7 @@ export default styled.div`
         label {
           font-size: 1.2rem;
           font-weight: 400;
+          line-height: 2rem;
         }
         input {
           height: 2.53rem;
@@ -51,6 +52,7 @@ export default styled.div`
             padding-left: 1.5rem;
             background-color: black;
             color: white;
+            border: none;
           }
         }
         .signup__social {
