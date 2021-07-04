@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { auth, signInWithGoogle } from "../../firebase/utils";
 import LoginWrapper, { ForgotPassWrapper } from "./styles.login";
@@ -10,7 +10,12 @@ const initialState = {
 };
 
 const LoginPage = () => {
+  const inputRef = useRef();
   const [form, setform] = useState(initialState);
+
+  useEffect(() => {
+    inputRef.current && inputRef.current.focus();
+  }, []);
 
   function handleFieldChange(event) {
     const { name, value } = event.target;
@@ -46,6 +51,7 @@ const LoginPage = () => {
                   <br />
                   <input
                     required
+                    ref={inputRef}
                     type="email"
                     name="email"
                     value={email}

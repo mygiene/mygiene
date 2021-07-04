@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import { ForgotPassWrapper } from "../components/LoginPage/styles.login";
 import { auth } from "../firebase/utils";
 
 const recovery = () => {
+  const inputRef = useRef();
   const [recoveryEmail, setRecoveryEmail] = useState("");
+
+  useEffect(() => {
+    inputRef.current && inputRef.current.focus();
+  }, []);
+
   async function handleSubmit(e) {
     e.preventDefault();
     try {
@@ -28,6 +34,7 @@ const recovery = () => {
         >
           <h2>Recover Password</h2>
           <input
+            ref={inputRef}
             type="email"
             name="recoveryEmail"
             value={recoveryEmail}

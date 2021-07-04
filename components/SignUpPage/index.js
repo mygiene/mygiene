@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { toast } from "react-toastify";
 import { auth, handleUserProfile } from "../../firebase/utils";
 import SignUpWrapper from "./styles.signup";
@@ -12,7 +12,13 @@ const initialState = {
 };
 
 const SignUpPage = () => {
+  const inputRef = useRef();
   const [form, setform] = useState(initialState);
+
+  useEffect(() => {
+    inputRef.current && inputRef.current.focus();
+  }, []);
+
   function handleFieldChange(event) {
     const { name, value } = event.target;
     setform({ ...form, [name]: value });
@@ -37,6 +43,7 @@ const SignUpPage = () => {
       toast.error(error.message || "Something went wrong");
     }
   }
+
   const { email, password, displayName, confirmPassword } = form;
 
   return (
@@ -50,6 +57,7 @@ const SignUpPage = () => {
                 <br />
                 <input
                   required
+                  ref={inputRef}
                   type="text"
                   name="displayName"
                   value={displayName}
