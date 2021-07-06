@@ -7,7 +7,13 @@ import StyledWrapper from "../styles/styles.common.js";
 const Page = () => {
   const { authState } = useContext(AuthContext);
   const user = authState.user || null;
-  if (user) return <StyledWrapper>MY ORDERs</StyledWrapper>;
+  if (user)
+    return (
+      <>
+        <MetaHead title="Orders" />
+        <StyledWrapper>MY ORDERs</StyledWrapper>
+      </>
+    );
   else router.push("/login");
 };
 

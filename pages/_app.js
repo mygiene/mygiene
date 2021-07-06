@@ -1,11 +1,17 @@
 import { AuthProvider } from "../components/auth/auth";
 import { Layout } from "../components/layout/layout";
 import Store, { StoreContext } from "../store";
-import "../styles/globals.scss";
 import dynamic from "next/dynamic";
-import "react-toastify/dist/ReactToastify.css";
 import { useContext, useEffect, useState } from "react";
 import { auth } from "../firebase/utils";
+
+// global css
+import "../styles/globals.scss";
+
+// external dependency css imports
+import "react-toastify/dist/ReactToastify.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const ToastContainer = dynamic(
   () => import("react-toastify").then((x) => x.ToastContainer),

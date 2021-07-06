@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import { ForgotPassWrapper } from "../components/LoginPage/styles.login";
+import { MetaHead } from "../components/Meta-Head";
 import { auth } from "../firebase/utils";
 
 const recovery = () => {
@@ -26,25 +27,28 @@ const recovery = () => {
     }
   }
   return (
-    <ForgotPassWrapper>
-      <form onSubmit={handleSubmit}>
-        <div
-          className=""
-          style={open ? { display: "block" } : { display: "none" }}
-        >
-          <h2>Recover Password</h2>
-          <input
-            ref={inputRef}
-            type="email"
-            name="recoveryEmail"
-            value={recoveryEmail}
-            onChange={(e) => setRecoveryEmail(e.target.value)}
-            placeholder="Registered Email Id"
-          />
-          <button type="submit">Submit</button>
-        </div>
-      </form>
-    </ForgotPassWrapper>
+    <>
+      <MetaHead title="Recover Password" />
+      <ForgotPassWrapper>
+        <form onSubmit={handleSubmit}>
+          <div
+            className=""
+            style={open ? { display: "block" } : { display: "none" }}
+          >
+            <h2>Recover Password</h2>
+            <input
+              ref={inputRef}
+              type="email"
+              name="recoveryEmail"
+              value={recoveryEmail}
+              onChange={(e) => setRecoveryEmail(e.target.value)}
+              placeholder="Registered Email Id"
+            />
+            <button type="submit">Submit</button>
+          </div>
+        </form>
+      </ForgotPassWrapper>
+    </>
   );
 };
 

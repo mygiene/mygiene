@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useRef } from "react";
+import Slider from "react-slick";
 import StyleWrapper from "../../styles/styles.home";
 import { FaIcon } from "../BaseComponent/FaIcon";
+import Carousel from "react-elastic-carousel";
 const kitList = [
   { id: 1, label: "Razor" },
   { id: 2, label: "Razor Case" },
@@ -35,7 +37,17 @@ const valuesList = [
   },
 ];
 
+const settings = {
+  dots: true,
+  itemsToShow: 1,
+  itemsToScroll: 1,
+  showArrows: false,
+  pauseOnHover: true,
+  // fade: true,
+};
+
 const HomePage = () => {
+  const carouselRef = useRef();
   return (
     <StyleWrapper>
       <div className="home">
@@ -80,7 +92,7 @@ const HomePage = () => {
           </div>
         </div>
         <div className="values-section">
-          <h1>Our core values</h1>
+          <h1>Our Core Values</h1>
           <div className="values-list">
             {valuesList.map((m) => (
               <div className="values-list-item">
@@ -91,6 +103,59 @@ const HomePage = () => {
                 <p>{m.desc}</p>
               </div>
             ))}
+          </div>
+        </div>
+        <div className="testimonials-outer">
+          <h2>
+            <p>What they say</p>
+            <hr />
+          </h2>
+          <div className="testimonials">
+            <div className="testimonial-images">
+              <div className="testimonial-img">
+                <img src="/homeAssets/testimonial-1.png" alt="" />
+              </div>
+              <div className="testimonial-img">
+                <img src="/homeAssets/testimonial-1.png" alt="" />
+              </div>
+            </div>
+            <div className="testimonial-slider">
+              <Carousel
+                ref={(ref) => (carouselRef.current = ref)}
+                {...settings}
+              >
+                {[1, 2, 3, 4].map((m) => (
+                  <div className="slide-outer">
+                    <div className="star-images">
+                      {[1, 2, 3, 4].map(() => (
+                        <>
+                          <img src="/homeAssets/star.png" alt="" />
+                        </>
+                      ))}
+                    </div>
+                    <div className="content">
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Praesentium quis, suscipit rem veritatis molestias dolor
+                      minus ratione maiores rerum. Voluptate, illo dignissimos
+                      laboriosam praesentium delectus tempora assumenda
+                      voluptatibus voluptatem ullam!
+                    </div>
+                    <div className="author">
+                      <img src="/homeAssets/boy-avatar.svg" alt="" />
+                      John Doe
+                    </div>
+                  </div>
+                ))}
+              </Carousel>
+              <div className="action-btns">
+                <button onClick={() => carouselRef.current.slidePrev()}>
+                  <img src="/homeAssets/left-arrow.png" alt="" /> Previous
+                </button>
+                <button onClick={() => carouselRef.current.slideNext()}>
+                  Next
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
