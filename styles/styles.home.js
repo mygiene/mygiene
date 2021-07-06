@@ -49,6 +49,7 @@ export default styled.div`
         width: 50%;
         h1 {
           font-size: 4rem;
+          font-weight: 700;
         }
         p {
           font-size: 1.5rem;
