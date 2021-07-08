@@ -7,10 +7,14 @@ const Banner = (props) => {
         <div className="banner__image">
           <img src={props.img} />
         </div>
-        {/* <div className="overlay"></div> */}
         <div className="title">
           <h3>{props.title}</h3>
         </div>
+        {props.quote && (
+          <div className="quote">
+            <p>{props.quote}</p>
+          </div>
+        )}
       </div>
     </BannerWrapper>
   );

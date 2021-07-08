@@ -41,7 +41,6 @@ export default styled.div`
       z-index: 2;
       position: absolute;
       top: 9rem;
-
       width: 100%;
       text-align: center;
       h3 {
@@ -49,6 +48,20 @@ export default styled.div`
         font-weight: 700;
         font-size: 3rem;
         line-height: 54px;
+      }
+    }
+    .quote {
+      z-index: 2;
+      position: absolute;
+      bottom: 4rem;
+      left: 50%;
+      width: 80%;
+      transform: translateX(-50%);
+      text-align: center;
+      p {
+        color: #dedede;
+        font-weight: 500;
+        font-size: 1.2rem;
       }
     }
   }
