@@ -36,17 +36,17 @@ const Page = () => {
             <div className="highlight">GET IN TOUCH TODAY</div>
             <div className="social-icons">
               <div>
-                <a href="">
+                <a href="mailto: hello@mygiene.com.au">
                   <FaIcon className="fa-envelope" />
                 </a>
               </div>
               <div>
-                <a href="">
+                <a href="https://www.instagram.com/mygiene_aus/?hl=en">
                   <FaIcon className="fa-instagram" />
                 </a>
               </div>
               <div>
-                <a href="">
+                <a href="https://www.facebook.com/Mygiene-101946625040573">
                   <FaIcon className="fa-facebook" />
                 </a>
               </div>
