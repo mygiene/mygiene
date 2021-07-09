@@ -20,7 +20,7 @@ const NavLinks = [
     link: "",
     icon: "/headerAssets/profile-icon.png",
   },
-  { name: "", link: "/cart", icon: "headerAssets/add-to-basket.png" },
+  { name: "", link: "/cart", icon: "/headerAssets/add-to-basket.png" },
 ];
 
 export const Dropdown = ({ show, closeOnClick, isLoggedIn }) => {
