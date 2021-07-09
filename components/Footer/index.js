@@ -1,7 +1,9 @@
 import React from "react";
 import FooterWrapper from "./styles.footer";
 import { useRouter } from "next/router";
+import Link from "next/link";
 const RemoveFooter = ["/login", "/signup"];
+
 export const Footer = () => {
   if (RemoveFooter.includes(useRouter().pathname)) {
     return <></>;
@@ -20,10 +22,10 @@ export const Footer = () => {
             <h3>Company</h3>
             <ul>
               <li>
-                <a href="/about">About</a>
+                <Link href="/about-us">About</Link>
               </li>
               <li>
-                <a href="/contact">Contact</a>
+                <Link href="/contact-us">Contact</Link>
               </li>
             </ul>
           </div>
@@ -31,13 +33,13 @@ export const Footer = () => {
             <h3>Support</h3>
             <ul>
               <li>
-                <a href="/terms">Terms of Service</a>
+                <Link href="/terms">Terms of Service</Link>
               </li>
               <li>
-                <a href="/refund">Returns & Refund</a>
+                <Link href="/refund">Returns & Refund</Link>
               </li>
               <li>
-                <a href="/privacy">Privacy Policy</a>
+                <Link href="/privacy">Privacy Policy</Link>
               </li>
             </ul>
           </div>
