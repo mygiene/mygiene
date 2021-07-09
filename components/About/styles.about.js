@@ -43,7 +43,9 @@ export default styled.div`
             box-sizing: border-box;
             border-radius: 80px;
 
-            color: white;
+            a {
+              color: white;
+            }
           }
         }
         .banner-image {
