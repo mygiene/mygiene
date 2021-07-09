@@ -117,7 +117,7 @@ export const Header = () => {
     <HeaderWrapper>
       <div className="nav-outer-block">
         <div className="logo">
-          <h3>LOGO</h3>
+          <h2>mygiene</h2>
         </div>
         <div className="nav-list">
           <ul>

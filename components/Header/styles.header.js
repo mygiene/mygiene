@@ -74,7 +74,9 @@ export default styled.div`
     .logo {
       display: flex;
       align-items: center;
-      h3 {
+      h2 {
+        font-family: quam_black;
+        font-size: 2.5rem;
         margin: 0;
       }
     }

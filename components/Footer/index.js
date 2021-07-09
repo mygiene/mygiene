@@ -1,7 +1,10 @@
 import React from "react";
 import FooterWrapper from "./styles.footer";
-
+import { useRouter } from "next/router";
 export const Footer = () => {
+  if (useRouter().pathname === "/login" || "/signup") {
+    return null;
+  }
   return (
     <FooterWrapper>
       <div className="footer">
