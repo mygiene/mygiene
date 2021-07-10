@@ -77,22 +77,19 @@ export default styled.div`
       }
       .login__social {
         margin-top: 1.5rem;
-        display: grid;
+        display: flex;
         align-items: center;
-        width: 100%;
-        grid-template-columns: 0.8fr 1.3fr 0.8fr;
-
-        //transform: translateY(-50%);
+        justify-content: center;
         hr {
           border: 1px solid black;
-          width: 100%;
+          width: 50%;
         }
         span {
           text-align: center;
           justify-content: center;
           font-size: 0.75rem;
           line-height: 1rem;
-          padding-left: 5px;
+          width: 100%;
         }
       }
       .login__google {
@@ -143,9 +140,8 @@ export default styled.div`
         }
       }
       .signup-btn {
-        margin-top: 1.5rem;
-        align-items: center;
-        text-align: center;
+        margin-top: 1rem;
+        padding-left: 1rem;
         a {
           margin-left: 0.4rem;
           text-decoration: underline;
@@ -167,7 +163,69 @@ export default styled.div`
       overflow-y: hidden;
     }
   }
+  @media only screen and (max-width: 919px) and (min-width: 768px) {
+    .login__social {
+      margin-top: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
+      //transform: translateY(-50%);
+      hr {
+        border: 1px solid black;
+        width: 35% !important;
+      }
+      span {
+        text-align: center;
+        justify-content: center;
+        font-size: 0.75rem;
+        line-height: 1rem;
+        width: 100%;
+      }
+    }
+  }
+  @media only screen and (max-width: 767px) and (min-width: 640px) {
+    .login__social {
+      margin-top: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      //transform: translateY(-50%);
+      hr {
+        border: 1px solid black;
+        width: 20% !important;
+      }
+      span {
+        text-align: center;
+        justify-content: center;
+        font-size: 0.75rem;
+        line-height: 1rem;
+        width: 100%;
+      }
+    }
+  }
+  @media only screen and (max-width: 639px) and (min-width: 426px) {
+    .login__social {
+      margin-top: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      //transform: translateY(-50%);
+      hr {
+        border: 1px solid black;
+        width: 5% !important;
+      }
+      span {
+        text-align: center;
+        justify-content: center;
+        font-size: 0.65rem !important;
+        line-height: 1rem;
+        width: 100%;
+      }
+    }
+  }
   @media screen and (max-width: 425px) {
     .login__content {
       width: 100%;

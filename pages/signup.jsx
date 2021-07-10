@@ -4,7 +4,7 @@ import SignUpPage from "../components/SignUpPage";
 const Page = () => {
   return (
     <>
-      <MetaHead title="Home" />
+      <MetaHead title="Sign Up" />
       <SignUpPage />
     </>
   );

@@ -3,28 +3,26 @@ export default styled.div`
   .signup {
     display: grid;
     grid-template-columns: 50% 50%;
-    background-color: #e5e5e5;
+    background-color: #d9e1ff;
     width: 100%;
     max-width: 1450px;
-    margin: 0 auto;
+    margin: auto;
+    margin-top: 4.5rem;
     //position: relative;
-    height: 800px;
+    height: calc(100vh - 4.5rem);
     .signup__left {
-      width: 100%;
+      width: 80%;
       float: left;
-      height: 100%;
-
+      height: calc(100vh - 4.5rem);
+      margin: auto;
       justify-content: center;
       align-items: center;
-      //display: block;
-      //position: fixed;
+      display: flex;
+      align-items: center;
       .signup__content {
-        transform: translateY(-50%);
-        margin: 15% auto;
-        padding-left: 5%;
         position: relative;
-        width: 80%;
-        height: 0%;
+        width: 100%;
+        max-width: 450px;
 
         label {
           font-size: 1.2rem;
@@ -36,20 +34,31 @@ export default styled.div`
           margin-bottom: 0.5rem;
           border-radius: 3.75rem;
           font-size: 1rem;
-          width: 90%;
+          width: 100%;
           border: none;
           z-index: 2;
-          padding-left: 1.2rem;
+          padding-left: 1rem;
+          box-sizing: border-box;
         }
-
+        .signup-terms {
+          margin-top: 0.5rem;
+          align-items: center;
+          padding-left: 1rem;
+          a {
+            margin-left: 0.4rem;
+            text-decoration: underline;
+            color: black;
+            font-weight: 600;
+          }
+        }
         .signup__button {
           margin-top: 1rem;
           button {
             height: 2.53rem;
             border-radius: 3.75rem;
             font-size: 1rem;
-            width: 90%;
-            padding-left: 1.5rem;
+            width: 100%;
+
             background-color: black;
             color: white;
             border: none;
@@ -57,22 +66,21 @@ export default styled.div`
         }
         .signup__social {
           margin-top: 1.5rem;
-          display: grid;
+          display: flex;
           align-items: center;
-          width: 90%;
-          grid-template-columns: 0.8fr 1.3fr 0.8fr;
+          justify-content: center;
 
           //transform: translateY(-50%);
           hr {
             border: 1px solid black;
-            width: 100%;
+            width: 50%;
           }
           span {
             text-align: center;
             justify-content: center;
             font-size: 0.75rem;
             line-height: 1rem;
-            padding-left: 5px;
+            width: 100%;
           }
         }
         .signup__google {
@@ -82,15 +90,18 @@ export default styled.div`
             height: 2.53rem;
             border-radius: 3.75rem;
             font-size: 1rem;
-            width: 90%;
-            padding-left: 1.5rem;
+            width: 100%;
+            border: none;
             background-color: white;
             color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            grid-gap: 0.5rem;
             img {
               width: 1.05rem;
               padding: auto;
               height: 0.9rem;
-              margin-right: 0.35rem;
             }
           }
         }
@@ -101,18 +112,31 @@ export default styled.div`
             height: 2.53rem;
             border-radius: 3.75rem;
             font-size: 1rem;
-            width: 90%;
+            width: 100%;
             padding-left: 1.5rem;
             background-color: white;
             color: black;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            grid-gap: 0.3rem;
             img {
               width: 1.05rem;
               padding: auto;
               height: 1rem;
-
-              margin-right: 0.1rem;
             }
           }
+        }
+      }
+      .login-btn {
+        margin-top: 1rem;
+        padding-left: 1rem;
+        a {
+          margin-left: 0.4rem;
+          text-decoration: underline;
+          color: black;
+          font-weight: 600;
         }
       }
     }
@@ -129,46 +153,81 @@ export default styled.div`
       }
     }
   }
-  @media screen and (min-width: 768px) and (max-width: 1200px) {
-    .signup__content {
-      transform: translateY(-50%);
-      margin: 30% auto !important;
-      padding-left: 5%;
-      position: relative;
-      width: 80%;
-      height: 0%;
-    }
-  }
-  @media screen and (min-width: 768px) and (max-width: 1024px) {
+
+  @media only screen and (max-width: 919px) and (min-width: 768px) {
     .signup__social {
       margin-top: 1.5rem;
-      display: grid;
+      display: flex;
       align-items: center;
-      width: 90%;
-      grid-template-columns: 0.8fr 1.3fr 0.8fr;
+      justify-content: center;
 
       //transform: translateY(-50%);
       hr {
         border: 1px solid black;
-        width: 100%;
+        width: 35% !important;
       }
       span {
         text-align: center;
         justify-content: center;
-        font-size: 0.6rem !important;
+        font-size: 0.75rem;
         line-height: 1rem;
-        padding-left: 0px !important;
+        width: 100%;
+      }
+    }
+  }
+  @media only screen and (max-width: 767px) and (min-width: 640px) {
+    .signup__social {
+      margin-top: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      //transform: translateY(-50%);
+      hr {
+        border: 1px solid black;
+        width: 20% !important;
+      }
+      span {
+        text-align: center;
+        justify-content: center;
+        font-size: 0.75rem;
+        line-height: 1rem;
+        width: 100%;
+      }
+    }
+  }
+  @media only screen and (max-width: 639px) and (min-width: 426px) {
+    .signup__social {
+      margin-top: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      //transform: translateY(-50%);
+      hr {
+        border: 1px solid black;
+        width: 5% !important;
+      }
+      span {
+        text-align: center;
+        justify-content: center;
+        font-size: 0.65rem !important;
+        line-height: 1rem;
+        width: 100%;
       }
     }
   }
   @media screen and (max-width: 425px) {
     .signup__content {
-      transform: translateY(-50%);
-      margin: 25% auto !important;
-      padding-left: 5%;
+      width: 100%;
+      max-width: 300px !important;
+
       position: absolute !important;
-      width: 100% !important;
-      height: 0%;
+
+      left: 50%;
+
+      top: 50%;
+      transform: translate(-50%, -50%);
       .signup__social {
         span {
           font-weight: 600 !important;
@@ -179,9 +238,9 @@ export default styled.div`
       width: 100%;
       float: right;
       overflow-y: hidden;
-      background-color: rgba(255, 255, 255, 0.3) !important;
+      background-color: #d9e1ff;
       img {
-        display: block;
+        display: none !important;
         width: 100%;
         height: 100%;
         object-fit: cover;

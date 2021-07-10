@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 import { toast } from "react-toastify";
 import { auth, handleUserProfile } from "../../firebase/utils";
 import SignUpWrapper from "./styles.signup";
+import Link from "next/link";
+import { FaIcon } from "../BaseComponent/FaIcon";
 //import LoginBanner from "/loginAssets/login_banner.jpeg";
 
 const initialState = {
@@ -101,6 +103,12 @@ const SignUpPage = () => {
                   placeholder="******"
                 />
               </div>
+              <div className="signup-terms">
+                <span>
+                  <FaIcon className="fa-check-square-o" />
+                </span>
+                <Link href="/login">I agree the terms and conditions</Link>
+              </div>
               <div className="signup__button">
                 <button>Sign Up</button>
               </div>
@@ -113,14 +121,18 @@ const SignUpPage = () => {
             <div className="signup__google">
               <button>
                 <img src="/loginAssets/google.png" />
-                Sign Up with Google
+                <span>Sign Up with Google</span>
               </button>
             </div>
             <div className="signup__fb">
               <button type="submit">
                 <img src="/loginAssets/fb.png" />
-                Sign Up with FaceBook
+                <span>Sign Up with FaceBook</span>
               </button>
+            </div>
+            <div className="login-btn">
+              <span>Already have an account ?</span>
+              <Link href="/login">Login</Link>
             </div>
           </div>
         </div>
