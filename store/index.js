@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useEffect, useReducer, useState } from "react";
 import { userTypes } from "./user/userActions";
 
 const initialState = {};
@@ -18,9 +18,19 @@ function reducer(state = initialState, action) {
 
 const Store = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [cartItems, updateCartItems] = useState([]);
+
+  useEffect(() => {
+    const oldCart = JSON.parse(localStorage.getItem("cart"));
+    setCartItems(oldCart);
+  }, []);
+
+  function setCartItems(cart) {
+    updateCartItems(cart);
+  }
 
   return (
-    <StoreContext.Provider value={[state, dispatch]}>
+    <StoreContext.Provider value={[state, dispatch, cartItems, setCartItems]}>
       {children}
     </StoreContext.Provider>
   );

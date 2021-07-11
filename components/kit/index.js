@@ -1,17 +1,24 @@
-import { useEffect, useState } from "react";
-import { IsCSR } from "../../util/common";
+import { useContext, useEffect, useState } from "react";
+import { firestore } from "../../firebase/utils";
+import { StoreContext } from "../../store";
+import { AuthContext } from "../auth/auth";
 import StyledWrapper from "./style.kit";
+
 const allProd = [
   { pId: "product1", pName: "kit 1" },
   { pId: "product2", pName: "kit 2" },
 ];
 
 export const Kit = () => {
-  // const cartList = JSON.parse(localStorage.getItem("cart"));
-  // console.log({ cartList });
+  const {
+    authState: { user },
+  } = useContext(AuthContext);
+
+  const [, , , setCartItems] = useContext(StoreContext);
 
   const [cart, setcart] = useState([]);
   const [products, setproducts] = useState(allProd);
+  console.log({ cart });
 
   useEffect(() => {
     const storedData = JSON.parse(localStorage.getItem("cart"));
@@ -21,6 +28,14 @@ export const Kit = () => {
   }, []);
 
   useEffect(() => {
+    if (user) {
+      firestore
+        .doc(`users/${user.id}`)
+        .update({ cartItems: cart })
+        .then((res) => console.log("updated cart from kit page"))
+        .catch((err) => console.log(err.message));
+    }
+    setCartItems(cart);
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
@@ -49,7 +64,6 @@ export const Kit = () => {
       setcart(updatedCart);
     }
   }
-  console.log({ cart });
 
   return (
     <StyledWrapper>

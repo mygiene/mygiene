@@ -7,7 +7,8 @@ import {
   useState,
 } from "react";
 import { toast } from "react-toastify";
-import { auth, handleUserProfile } from "../../firebase/utils";
+import { auth, firestore, handleUserProfile } from "../../firebase/utils";
+import { StoreContext } from "../../store";
 const initialState = {
   user: null,
   pending: true,
@@ -22,10 +23,11 @@ export const AuthContext = createContext(initialState);
 export const AuthProvider = ({ children }) => {
   const [authState, setAuthState] = useState(initialState);
   const router = useRouter();
+  const [, , cartItems, setCartItems] = useContext(StoreContext);
+  console.log({ cartItems });
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (userAuth) => {
-      console.log({ userAuth });
       if (userAuth) {
         if (safeRoutes.includes(router.pathname)) router.push("/");
         // const { uid, displayName, email } = userAuth;
@@ -37,12 +39,8 @@ export const AuthProvider = ({ children }) => {
             ...snapshot.data(),
           };
           setAuthState({ user: currentUsr, pending: false });
-
-          toast.success(`Hi ${snapshot.data().displayName}, Welcome Back 🙂`);
         });
       } else {
-        // debugger;
-        console.log(router.pathname);
         if (protectedRoutes.includes(router.pathname))
           window.location = "http://localhost:3010/login";
 
@@ -51,6 +49,19 @@ export const AuthProvider = ({ children }) => {
     });
     return () => unsubscribe();
   }, [typeof window !== undefined]);
+
+  useEffect(() => {
+    const { user } = authState;
+    if (user) {
+      firestore
+        .doc(`users/${user.id}`)
+        .update({ cartItems: cartItems })
+        .then(() => {
+          console.log("cart items added successfully");
+        })
+        .catch((err) => console.log(err.message));
+    }
+  }, [cartItems, authState]);
 
   if (authState.pending)
     return (
