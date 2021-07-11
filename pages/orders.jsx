@@ -1,8 +1,6 @@
-import router from "next/router";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../components/auth/auth.js";
-import { StoreContext } from "../store/index.js";
-import StyledWrapper from "../styles/styles.common.js";
+import { MetaHead } from "../components/Meta-Head.jsx";
 
 const Page = () => {
   const { authState } = useContext(AuthContext);
@@ -11,10 +9,12 @@ const Page = () => {
     return (
       <>
         <MetaHead title="Orders" />
-        <StyledWrapper>MY ORDERs</StyledWrapper>
+        MY ORDERs
       </>
     );
-  else router.push("/login");
+  else {
+    window.location = "http://localhost:3010/login";
+  }
 };
 
 export default Page;
