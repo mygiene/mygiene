@@ -38,6 +38,7 @@ export const CartItem = (props) => {
                   id={`express-delivery-${props.pId}`}
                   type="checkbox"
                   name="expressDelivery"
+                  autoComplete="off"
                   checked={expressDelivery}
                   onChange={() => setExpressDelivery((s) => !s)}
                 />

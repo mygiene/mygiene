@@ -1,12 +1,137 @@
 import styled from "styled-components";
 
 export const ForgotPassWrapper = styled.div`
-  /* position: relative; */
-  margin: 40vh auto;
+  /* margin: 40vh auto;
+  
   form {
     display: flex;
     div {
       margin: auto;
+    }
+  */
+  height: 100vh;
+  background: linear-gradient(302deg, pink, #e6ecf3, pink);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .recovery {
+    display: flex;
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 7rem 0rem 2.5rem 0rem;
+
+    .top-lock {
+      width: 80%;
+      margin: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      border-radius: 13px;
+      background-color: white;
+      box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+        rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+        rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+      .lock-icon-outer {
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        margin-top: 2rem;
+        flex-direction: row;
+        width: 90%;
+
+        hr {
+          width: 6rem;
+          transform: rotate(90deg);
+          border: 2px solid grey;
+          height: 0;
+          display: block;
+        }
+        i {
+          font-size: 8rem;
+          color: darkslategray;
+        }
+        .label-text {
+          display: flex;
+          justify-content: center;
+          flex-direction: column;
+          align-items: flex-start;
+          h3 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+          }
+          h4 {
+            font-size: 2rem;
+            margin-top: 0rem;
+          }
+        }
+      }
+      hr {
+        border: 2px solid grey;
+        width: 90%;
+        display: none;
+      }
+      .email-outer {
+        width: 90%;
+        margin-top: 2rem;
+        label {
+          font-size: 1.5rem;
+          font-weight: 400;
+          line-height: 2rem;
+          margin-bottom: 1rem;
+        }
+        input {
+          height: 3.53rem;
+          margin: 1rem 0rem;
+          border-radius: 1.75rem;
+          font-size: 1.3rem;
+          width: 100%;
+
+          z-index: 2;
+          /* padding-left: 1.2rem; */
+          padding-left: 1rem;
+
+          box-sizing: border-box;
+        }
+        .send_button {
+          margin: 1rem 0rem 4rem 0rem;
+
+          width: 100%;
+          button {
+            height: 3.53rem;
+            border-radius: 1.75rem;
+            font-size: 1.3rem;
+            width: 100%;
+
+            background-color: black;
+            color: white;
+            border: none;
+          }
+        }
+      }
+    }
+  }
+  @media only screen and (max-width: 767px) {
+    .recovery .top-lock .lock-icon-outer {
+      flex-direction: column;
+      hr {
+        display: none !important;
+      }
+      .label-text {
+        align-items: center !important;
+        justify-content: center !important;
+        h3 {
+          font-size: 2.5rem !important;
+        }
+        h4 {
+          font-size: 1.32rem !important;
+        }
+      }
+    }
+    .recovery .top-lock .email-outer {
+      margin-top: 1.5rem !important;
     }
   }
 `;

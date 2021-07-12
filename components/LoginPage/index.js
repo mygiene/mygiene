@@ -52,6 +52,7 @@ const LoginPage = () => {
                     type="email"
                     name="email"
                     value={email}
+                    autoComplete="off"
                     onChange={handleFieldChange}
                     placeholder="E-mail"
                   />
@@ -64,6 +65,7 @@ const LoginPage = () => {
                     type="password"
                     name="password"
                     value={password}
+                    autoComplete="off"
                     onChange={handleFieldChange}
                     placeholder="Enter your Password"
                   />

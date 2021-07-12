@@ -62,6 +62,7 @@ const SignUpPage = () => {
                   ref={inputRef}
                   type="text"
                   name="displayName"
+                  autoComplete="off"
                   value={displayName}
                   onChange={handleFieldChange}
                   placeholder="Jane Doe"
@@ -75,6 +76,7 @@ const SignUpPage = () => {
                   type="email"
                   name="email"
                   value={email}
+                  autoComplete="off"
                   onChange={handleFieldChange}
                   placeholder="abc@xyz.com"
                 />{" "}
@@ -87,6 +89,7 @@ const SignUpPage = () => {
                   type="password"
                   name="password"
                   value={password}
+                  autoComplete="off"
                   onChange={handleFieldChange}
                   placeholder="******"
                 />
@@ -99,6 +102,7 @@ const SignUpPage = () => {
                   type="password"
                   name="confirmPassword"
                   value={confirmPassword}
+                  autoComplete="off"
                   onChange={handleFieldChange}
                   placeholder="******"
                 />

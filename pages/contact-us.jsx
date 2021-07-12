@@ -62,6 +62,7 @@ const Page = () => {
                     value={name}
                     onChange={handleFieldChange}
                     placeholder="Full Name"
+                    autoComplete="off"
                   />
                 </div>
                 <div className="input-fields">
@@ -69,6 +70,7 @@ const Page = () => {
                     type="email"
                     name="email"
                     value={email}
+                    autoComplete="off"
                     onChange={handleFieldChange}
                     placeholder="E-mail"
                   />
@@ -79,6 +81,7 @@ const Page = () => {
                   type="text"
                   name="subject"
                   value={subject}
+                  autoComplete="off"
                   onChange={handleFieldChange}
                   placeholder="Subject"
                 />
