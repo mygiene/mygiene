@@ -3,6 +3,8 @@ import Banner from "../components/BaseComponent/Banner";
 import { FaIcon } from "../components/BaseComponent/FaIcon";
 import { MetaHead } from "../components/Meta-Head.jsx";
 import StyledWrapper from "../styles/styles.contact";
+import emailjs from "emailjs-com";
+import { toast } from "react-toastify";
 
 const contactQuote =
   "Please fill up the form below to get in touch and one of our friendly team members will get back to you asap";
@@ -12,6 +14,35 @@ const initialState = { name: "", email: "", subject: "", message: "" };
 const Page = () => {
   const [form, setform] = useState(initialState);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const { name, email, message, subject } = form;
+
+    let templateParams = {
+      from_name: name,
+      to_name: "mygiene",
+      subject_html: subject,
+      message_html: message,
+      reply_to: email,
+    };
+    console.log(form);
+    emailjs
+      .send(
+        "service_9xqton3",
+        "template_u8f3khr",
+        templateParams,
+        "user_Opy8NZFO39PC74O0yvTdC"
+      )
+      .then(
+        () => {
+          toast("Mail sent successfully.");
+          setform(initialState);
+        },
+        (error) => {
+          toast.error(error.text);
+        }
+      );
+  };
   function handleFieldChange(event) {
     const { name, value } = event.target;
     setform({ ...form, [name]: value });
@@ -53,7 +84,7 @@ const Page = () => {
             </div>
           </div>
           <div className="contact-form">
-            <form>
+            <form onSubmit={handleSubmit}>
               <div className="name-email">
                 <div className="input-fields">
                   <input
@@ -90,6 +121,7 @@ const Page = () => {
                 <textarea
                   placeholder="How can we help you?"
                   value={message}
+                  name="message"
                   onChange={handleFieldChange}
                 ></textarea>
               </div>
