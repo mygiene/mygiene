@@ -1,12 +1,11 @@
-// import { useEffect, useState } from "react";
-// import { IsCSR } from "../../util/common";
 import Link from "next/link";
 import { FaIcon } from "../BaseComponent/FaIcon";
 import StyledWrapper from "./style.kit";
-// const allProd = [
-//   { pId: "product1", pName: "kit 1" },
-//   { pId: "product2", pName: "kit 2" },
-// ];
+import { useContext, useEffect, useState } from "react";
+import { firestore } from "../../firebase/utils";
+import { StoreContext } from "../../store";
+import { AuthContext } from "../auth/auth";
+
 const kitItems = [
   {
     title: "Razor",
@@ -57,11 +56,6 @@ const kitItems = [
       "Travel cases are a must for any jet setter. Our leak-free case ensures your soap stays fresh and clean.",
   },
 ];
-import { useContext, useEffect, useState } from "react";
-import { firestore } from "../../firebase/utils";
-import { StoreContext } from "../../store";
-import { AuthContext } from "../auth/auth";
-import StyledWrapper from "./style.kit";
 
 const allProd = [
   { pId: "product1", pName: "kit 1" },

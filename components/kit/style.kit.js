@@ -4,16 +4,16 @@ export default styled.div`
   margin-top: 4.5rem;
 
   .kit {
-    margin: auto;
-    width: 90%;
-    /* position: relative; */
+    max-width: 1450px;
+    position: relative;
     margin-top: 8rem;
     margin-bottom: 2rem;
 
     .kit__top {
       display: flex;
+      margin: auto;
       grid-gap: 5%;
-
+      width: 90%;
       .kit__top-left {
         width: 100%;
         .kit__top-cover {
@@ -28,6 +28,7 @@ export default styled.div`
       }
       .kit__top-right {
         width: 90%;
+        margin: auto;
         h3 {
           font-weight: 700;
           font-size: 1.65rem;
@@ -233,6 +234,9 @@ export default styled.div`
             font-size: 1.05rem;
             font-weight: 500;
             text-transform: capitalize;
+            i {
+              display: none;
+            }
           }
 
           img {
@@ -269,12 +273,12 @@ export default styled.div`
       }
     }
   }
-  @media only screen and (max-width: 425px) {
+  @media only screen and (max-width: 767px) {
     .kit {
+      display: grid;
       .kit__top {
         display: block !important;
         .kit__top-right {
-          width: 100% !important;
           margin-top: 3rem !important;
           h3 {
             font-size: 2rem !important;
@@ -286,7 +290,7 @@ export default styled.div`
           .description {
             details {
               p {
-                width: 100% !important;
+                width: 90% !important;
                 font-size: 1.25rem !important;
               }
             }
@@ -301,13 +305,40 @@ export default styled.div`
         }
       }
       .kit__tiles {
-        display: grid;
+        display: block;
+        margin: auto;
+        grid-gap: 5%;
+        width: 90%;
+        margin-top: 2rem !important;
         .kit__tiles-items {
-          width: 90%;
-          grid-template-columns: 50% 50%;
+          width: 90% !important;
+          display: flex !important;
+          flex-direction: column !important;
+          flex-wrap: wrap;
+
           .grid-item {
+            /* flex: 1 1 50% !important; */
+            /* flex: 50%; */
+            width: 50% !important;
+            box-sizing: border-box;
             span {
               font-size: 1.5rem;
+              display: flex;
+              right: 0;
+              width: 100%;
+              i {
+                transform: rotate(45deg);
+                position: absolute;
+                right: 25px;
+                top: 0px;
+                display: block;
+                font-size: 2rem;
+              }
+            }
+          }
+          .grid-item:hover {
+            .text-overlay {
+              display: none !important;
             }
           }
         }
