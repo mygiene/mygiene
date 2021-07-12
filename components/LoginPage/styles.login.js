@@ -59,11 +59,11 @@ export const ForgotPassWrapper = styled.div`
           flex-direction: column;
           align-items: flex-start;
           h3 {
-            font-size: 3rem;
+            font-size: 2.6rem;
             margin-bottom: 1rem;
           }
           h4 {
-            font-size: 2rem;
+            font-size: 1.9rem;
             margin-top: 0rem;
           }
         }
@@ -88,7 +88,7 @@ export const ForgotPassWrapper = styled.div`
           border-radius: 1.75rem;
           font-size: 1.3rem;
           width: 100%;
-
+          border: none;
           z-index: 2;
           /* padding-left: 1.2rem; */
           padding-left: 1rem;
@@ -123,10 +123,10 @@ export const ForgotPassWrapper = styled.div`
         align-items: center !important;
         justify-content: center !important;
         h3 {
-          font-size: 2.5rem !important;
+          font-size: 2.3rem !important;
         }
         h4 {
-          font-size: 1.32rem !important;
+          font-size: 1.2rem !important;
         }
       }
     }
