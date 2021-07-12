@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import { firestore } from "../../firebase/utils";
 import { StoreContext } from "../../store";
 import { AuthContext } from "../auth/auth";
+import KitModalView from "./KitModalView";
 
 const kitItems = [
   {
@@ -119,23 +120,6 @@ export const Kit = () => {
 
   return (
     <StyledWrapper>
-      {/* Kit page
-      <br /> <br />
-      {products.map((p) => {
-        return (
-          <div
-            style={{
-              border: "1px solid black",
-              margin: "2rem",
-              padding: "2rem",
-            }}
-          >
-            Product Name: {p.pName}
-            <button onClick={() => add(p)}>+</button>
-            <button onClick={() => remove(p)}>-</button>
-          </div>
-        );
-      })} */}
       <div className="kit">
         <div className="kit__top">
           <div className="kit__top-left">
@@ -207,7 +191,12 @@ export const Kit = () => {
             {kitItems.map((m) => (
               <div class="grid-item">
                 <span>
-                  {m.title} <FaIcon className="fa fa-arrow-down" />
+                  {m.title}{" "}
+                  <KitModalView
+                    title={m.title}
+                    image={m.image}
+                    content={m.content}
+                  />
                 </span>
 
                 <img src={m.image} />
@@ -222,3 +211,23 @@ export const Kit = () => {
     </StyledWrapper>
   );
 };
+
+{
+  /* Kit page
+      <br /> <br />
+      {products.map((p) => {
+        return (
+          <div
+            style={{
+              border: "1px solid black",
+              margin: "2rem",
+              padding: "2rem",
+            }}
+          >
+            Product Name: {p.pName}
+            <button onClick={() => add(p)}>+</button>
+            <button onClick={() => remove(p)}>-</button>
+          </div>
+        );
+      })} */
+}
