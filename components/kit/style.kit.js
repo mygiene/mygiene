@@ -1,10 +1,12 @@
 import styled from "styled-components";
+import media from "../../util/media-queries";
 
 export default styled.div`
   margin-top: 4.5rem;
 
   .kit {
     max-width: 1450px;
+    margin: auto;
     position: relative;
     margin-top: 8rem;
     margin-bottom: 2rem;
@@ -275,7 +277,6 @@ export default styled.div`
   }
   @media only screen and (max-width: 767px) {
     .kit {
-      display: grid;
       .kit__top {
         display: block !important;
         .kit__top-right {
@@ -305,21 +306,16 @@ export default styled.div`
         }
       }
       .kit__tiles {
-        display: block;
         margin: auto;
-        grid-gap: 5%;
         width: 90%;
         margin-top: 2rem !important;
         .kit__tiles-items {
           width: 90% !important;
-          display: flex !important;
-          flex-direction: column !important;
+          grid-template-columns: 50% 50%;
           flex-wrap: wrap;
 
           .grid-item {
-            /* flex: 1 1 50% !important; */
-            /* flex: 50%; */
-            width: 50% !important;
+            width: 100% !important;
             box-sizing: border-box;
             span {
               font-size: 1.5rem;
@@ -341,6 +337,24 @@ export default styled.div`
               display: none !important;
             }
           }
+        }
+      }
+    }
+  }
+  ${media.max.tablet} {
+    .kit {
+      .kit__tiles {
+        .kit__tiles-items {
+          grid-template-columns: 33.33% 33.33% 33.33%;
+        }
+      }
+    }
+  }
+  ${media.max.mobileXL} {
+    .kit {
+      .kit__tiles {
+        .kit__tiles-items {
+          grid-template-columns: 1fr;
         }
       }
     }
