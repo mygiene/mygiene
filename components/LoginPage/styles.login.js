@@ -45,7 +45,7 @@ export const ForgotPassWrapper = styled.div`
         hr {
           width: 6rem;
           transform: rotate(90deg);
-          border: 2px solid grey;
+          border: 1px solid grey;
           height: 0;
           display: block;
         }
@@ -69,7 +69,7 @@ export const ForgotPassWrapper = styled.div`
         }
       }
       hr {
-        border: 2px solid grey;
+        border: 1px solid grey;
         width: 90%;
         display: none;
       }
@@ -132,6 +132,9 @@ export const ForgotPassWrapper = styled.div`
     }
     .recovery .top-lock .email-outer {
       margin-top: 1.5rem !important;
+    }
+    .recovery .top-lock hr {
+      display: block !important;
     }
   }
 `;
