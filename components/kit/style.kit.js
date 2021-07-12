@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import media from "../../util/media-queries";
 
+export const ModalWrapper = styled.div``;
+
 export default styled.div`
   margin-top: 4.5rem;
 
