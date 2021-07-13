@@ -86,11 +86,7 @@ export const Footer = () => {
           <h3>Stay up to date</h3>
           <div className="input-field">
             <input placeholder="Your email address" autoComplete="off" />
-            <img
-              src="/footerAssets/sent.png"
-              style={{ width: "20px", height: "20px" }}
-              alt="sent"
-            />
+            <i class="fa fa-paper-plane" aria-hidden="true"></i>
           </div>
         </div>
       </div>

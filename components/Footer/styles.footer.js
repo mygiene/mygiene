@@ -26,6 +26,7 @@ export default styled.div`
     .footer__logo {
       display: flex;
       justify-content: flex-start;
+      flex-direction: column;
       grid-gap: 1rem;
       margin-left: 1rem;
       h2 {
@@ -113,14 +114,12 @@ export default styled.div`
           border: none;
           outline: none;
         }
-        img {
-          width: 25px;
-          height: 20px;
-          padding-top: 0.5rem;
+        i {
+          padding-top: 0.3rem;
+          margin-right: 1rem;
 
-          margin-right: 0.5rem;
-          margin-left: 0%.5rem;
-          transform: translateY(5px);
+          transform: rotate(9deg);
+          font-size: 2rem;
         }
       }
     }
