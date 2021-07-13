@@ -42,12 +42,17 @@ const About = () => {
                   <Link href="/kit">Buy Kit</Link>
                 </button>
                 <button>
-                  <Link href="#about">Read More</Link>
+                  <Link href="#about">
+                    <a href="#about">Read More</a>
+                  </Link>
                 </button>
               </div>
             </div>
             <div className="banner-image">
-              <img src="/aboutAssets/banner_new.jpg" />
+              <img
+                src="/aboutAssets/banner_new.jpg"
+                alt="mygiene - Men's Grooming Kit"
+              />
             </div>
           </div>
           <div className="about__content">

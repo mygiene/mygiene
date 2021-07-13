@@ -78,6 +78,7 @@ export default styled.div`
         font-family: quam_black;
         font-size: 2.5rem;
         margin: 0;
+        color: black;
       }
     }
     .nav-list {

@@ -5,7 +5,7 @@ const Banner = (props) => {
     <BannerWrapper>
       <div className="banner">
         <div className="banner__image">
-          <img src={props.img} />
+          <img src={props.img} alt={props.title} />
         </div>
         <div className="title">
           <h3>{props.title}</h3>

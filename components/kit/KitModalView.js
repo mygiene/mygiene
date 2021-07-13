@@ -40,7 +40,7 @@ const KitModalView = (props) => {
         >
           <button onClick={() => setopen(false)}>X</button>
           <h2>{props.title}</h2>
-          <img src={props.image} />
+          <img src={props.image} alt={props.title} />
           <span>{props.content}</span>
         </div>
       </ModalWrapper>

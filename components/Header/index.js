@@ -79,7 +79,7 @@ export const Modal = ({ isOpen, activeLink, closeOnClick }) => {
                 <li>
                   <Link href={m.link}>
                     <a onClick={closeOnClick}>
-                      <img src={m.icon} />
+                      <img src={m.icon} alt="header-link" />
                     </a>
                   </Link>
                 </li>
@@ -117,7 +117,11 @@ export const Header = () => {
     <HeaderWrapper>
       <div className="nav-outer-block">
         <div className="logo">
-          <h2>mygiene</h2>
+          <Link href="/">
+            <a href="/">
+              <h2>mygiene</h2>
+            </a>
+          </Link>
         </div>
         <div className="nav-list">
           <ul>
@@ -139,7 +143,7 @@ export const Header = () => {
                         {m.link === "/cart" && (
                           <div className="product-counter">1</div>
                         )}
-                        <img src={m.icon} />
+                        <img src={m.icon} alt="cart-counter" />
                       </a>
                     </Link>
                   </li>
@@ -155,7 +159,7 @@ export const Header = () => {
                       </a>
                     ) : (
                       <Link href="/login">
-                        <img src={m.icon} />
+                        <img src={m.icon} alt="login" />
                       </Link>
                     )}
                   </li>

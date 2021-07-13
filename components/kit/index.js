@@ -124,7 +124,7 @@ export const Kit = () => {
         <div className="kit__top">
           <div className="kit__top-left">
             <div className="kit__top-cover">
-              <img src="/kitAssets/cover.png" />
+              <img src="/kitAssets/cover.png" alt="kit-image" />
             </div>
           </div>
           <div className="kit__top-right">
@@ -149,17 +149,17 @@ export const Kit = () => {
               <div className="value-1">
                 <span>ECO-FRIENDLY</span>
                 <br />
-                <img src="/homeAssets/eco-friendly.png" />
+                <img src="/homeAssets/eco-friendly.png" alt="eco-friendly" />
               </div>
               <div className="value-2">
                 <span>SUSTAINABLE</span>
                 <br />
-                <img src="/homeAssets/sustainable.png" />
+                <img src="/homeAssets/sustainable.png" alt="suistainable" />
               </div>
               <div className="value-3">
                 <span>HIGH QUALITY</span>
                 <br />
-                <img src="/homeAssets/high-quality.png" />
+                <img src="/homeAssets/high-quality.png" alt="high-quality" />
               </div>
             </div>
             <div className="description">
@@ -190,7 +190,7 @@ export const Kit = () => {
           <div className="kit__tiles-items">
             {kitItems.map((m) => (
               <div class="grid-item">
-                <span>
+                <span className="item-title">
                   {m.title}{" "}
                   <KitModalView
                     title={m.title}
@@ -199,7 +199,7 @@ export const Kit = () => {
                   />
                 </span>
 
-                <img src={m.image} />
+                <img src={m.image} alt={m.title} />
                 <div className="text-overlay">
                   <span>{m.content}</span>
                 </div>
