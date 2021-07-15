@@ -12,6 +12,7 @@ import "../styles/globals.scss";
 import "react-toastify/dist/ReactToastify.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "react-responsive-modal/styles.css";
 
 const ToastContainer = dynamic(
   () => import("react-toastify").then((x) => x.ToastContainer),

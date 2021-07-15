@@ -1,12 +1,12 @@
 import Link from "next/link";
-import { FaIcon } from "../BaseComponent/FaIcon";
-import StyledWrapper from "./style.kit";
 import { useContext, useEffect, useState } from "react";
 import { firestore } from "../../firebase/utils";
 import { StoreContext } from "../../store";
 import { AuthContext } from "../auth/auth";
+import { FaIcon } from "../BaseComponent/FaIcon";
 import KitModalView from "./KitModalView";
-
+import StyledWrapper from "./style.kit";
+import { Modal } from "react-responsive-modal";
 const kitItems = [
   {
     title: "Razor",
@@ -66,7 +66,9 @@ export const Kit = () => {
   const {
     authState: { user },
   } = useContext(AuthContext);
+  // const [open, setOpen] = useState(false);
 
+  // const onOpenModal = () => setOpen(true);
   const [, , , setCartItems] = useContext(StoreContext);
 
   const [cart, setcart] = useState([]);
