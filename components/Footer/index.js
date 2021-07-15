@@ -2,7 +2,7 @@ import React from "react";
 import FooterWrapper from "./styles.footer";
 import { useRouter } from "next/router";
 import Link from "next/link";
-const RemoveFooter = ["/login", "/signup", "/recovery"];
+const RemoveFooter = ["/login", "/signup", "/recovery", "/404"];
 
 export const Footer = () => {
   if (RemoveFooter.includes(useRouter().pathname)) {

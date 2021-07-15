@@ -9,7 +9,7 @@ import { setCurrentUser } from "../../store/user/userActions";
 import useWindowSize from "../../util/windowSize";
 import { toast } from "react-toastify";
 import { AuthContext, protectedRoutes } from "../auth/auth";
-
+const RemoveHeader = ["/404"];
 const NavLinks = [
   { name: "Home", link: "/", icon: "" },
   { name: "About Us", link: "/about-us", icon: "" },
@@ -112,6 +112,9 @@ export const Header = () => {
     }
     initials = fName + lName;
     return initials;
+  }
+  if (RemoveHeader.includes(useRouter().pathname)) {
+    return <></>;
   }
   return (
     <HeaderWrapper>
