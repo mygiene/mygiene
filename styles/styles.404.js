@@ -7,6 +7,7 @@ export default styled.div`
     display: flex;
     width: 100%;
     grid-gap: 0%;
+    margin-top: 4.5rem;
 
     .left {
       background-color: ${variables.primary_color};
@@ -88,7 +89,7 @@ export default styled.div`
     .main {
       flex-direction: column !important;
       .left {
-        height: 40vh !important;
+        height: calc(40vh - 2.25rem) !important;
         width: 100% !important;
         /* .left-image {
           img {
@@ -98,7 +99,7 @@ export default styled.div`
       }
       .right {
         width: 100% !important;
-        height: 60vh !important;
+        height: calc(60vh - 2.25rem) !important;
         .right-image {
           img {
             width: 11rem !important;
