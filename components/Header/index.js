@@ -28,12 +28,15 @@ export const Dropdown = ({ show, closeOnClick, isLoggedIn }) => {
   const [, dispatch] = useContext(StoreContext);
   const router = useRouter();
   function logMeOut() {
-    auth.signOut().then(() => {
-      closeOnClick();
-      dispatch(setCurrentUser(null));
-      if (protectedRoutes.includes(router.pathname)) Router.push("/");
-      toast.success("See you soon 👋🏻");
-    });
+    auth
+      .signOut()
+      .then(() => {
+        closeOnClick();
+        dispatch(setCurrentUser(null));
+        if (protectedRoutes.includes(router.pathname)) Router.push("/");
+        toast.success("See you soon 👋🏻");
+      })
+      .catch((err) => console.log("Error"));
   }
   if (isLoggedIn && show)
     return (

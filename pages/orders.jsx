@@ -2,6 +2,8 @@ import { useContext } from "react";
 import { AuthContext } from "../components/auth/auth.js";
 import { MetaHead } from "../components/Meta-Head.jsx";
 
+const URL = process.env.NEXT_PUBLIC_URL;
+
 const Page = () => {
   const { authState } = useContext(AuthContext);
   const user = authState.user || null;
@@ -13,7 +15,7 @@ const Page = () => {
       </>
     );
   else {
-    window.location = "http://localhost:3010/login";
+    window.location = `${URL}/login`;
   }
 };
 

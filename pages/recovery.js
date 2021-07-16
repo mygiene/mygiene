@@ -5,6 +5,8 @@ import { ForgotPassWrapper } from "../components/LoginPage/styles.login";
 import { MetaHead } from "../components/Meta-Head";
 import { auth } from "../firebase/utils";
 
+const URL = process.env.NEXT_PUBLIC_URL;
+
 const Recovery = () => {
   const inputRef = useRef();
   const [recoveryEmail, setRecoveryEmail] = useState("");
@@ -16,7 +18,7 @@ const Recovery = () => {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      const config = { url: "http://localhost:3010/login" };
+      const config = { url: `${URL}/login` };
       const res = await auth
         .sendPasswordResetEmail(recoveryEmail, config)
         .then(() => {

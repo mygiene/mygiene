@@ -21,6 +21,8 @@ export const safeRoutes = ["/login", "/signup"];
 
 export const AuthContext = createContext(initialState);
 
+const URL = process.env.NEXT_PUBLIC_URL;
+
 export const AuthProvider = ({ children }) => {
   const [authState, setAuthState] = useState(initialState);
   const router = useRouter();
@@ -43,7 +45,7 @@ export const AuthProvider = ({ children }) => {
         });
       } else {
         if (protectedRoutes.includes(router.pathname))
-          window.location = "http://localhost:3010/login";
+          window.location = `${URL}/login`;
 
         setAuthState({ user: userAuth, pending: false });
       }
