@@ -80,7 +80,7 @@ export const Modal = ({ isOpen, activeLink, closeOnClick }) => {
                 <li>
                   <Link href={m.link}>
                     <a onClick={closeOnClick}>
-                      <img src={m.icon} alt="header-link" layout="fill" />
+                      <img src={m.icon} alt="header-link" />
                     </a>
                   </Link>
                 </li>
@@ -147,7 +147,7 @@ export const Header = () => {
                         {m.link === "/cart" && (
                           <div className="product-counter">1</div>
                         )}
-                        <img src={m.icon} alt="cart-counter" layout="fill" />
+                        <img src={m.icon} alt="cart-counter" />
                       </a>
                     </Link>
                   </li>
@@ -163,7 +163,7 @@ export const Header = () => {
                       </a>
                     ) : (
                       <Link href="/login">
-                        <img src={m.icon} alt="login" layout="fill" />
+                        <img src={m.icon} alt="login" />
                       </Link>
                     )}
                   </li>
