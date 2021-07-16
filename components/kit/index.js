@@ -176,7 +176,7 @@ export const Kit = () => {
             </div>
             <div className="shipping">
               <Link href="/refund">
-                <a href="/refund" target="blank">
+                <a target="blank">
                   <span>Shipping & Returns</span>
 
                   <FaIcon className="fa fa-external-link" />
@@ -191,7 +191,7 @@ export const Kit = () => {
           </div>
           <div className="kit__tiles-items">
             {kitItems.map((m) => (
-              <div class="grid-item">
+              <div key={m.title} class="grid-item">
                 <span className="item-title">
                   {m.title}{" "}
                   <KitModalView
