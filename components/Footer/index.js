@@ -1,12 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import FooterWrapper from "./styles.footer";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import axios from "axios";
 const RemoveFooter = ["/login", "/signup", "/recovery", "/404"];
 
 export const Footer = () => {
   if (RemoveFooter.includes(useRouter().pathname)) {
     return <></>;
+  }
+  const [email, setemail] = useState();
+  const [error, seterror] = useState();
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    axios
+      .post("/api/newsletter", { email })
+      .then((res) => {
+        console.log("success", res);
+      })
+      .catch((err) => {
+        console.log("error", err);
+      });
   }
 
   return (
@@ -83,11 +98,24 @@ export const Footer = () => {
           </div>
         </div>
         <div className="footer__content-third">
-          <h3>Stay up to date</h3>
-          <div className="input-field">
-            <input placeholder="Your email address" autoComplete="off" />
-            <i class="fa fa-paper-plane" aria-hidden="true"></i>
-          </div>
+          <form onSubmit={handleSubmit}>
+            <h3>Stay up to date</h3>
+            <div className="input-field">
+              <input
+                type="email"
+                required
+                name="email"
+                value={email}
+                onChange={(e) => setemail(e.target.value)}
+                placeholder="Your email address"
+                autoComplete="off"
+              />
+              <button type="submit">
+                <i class="fa fa-paper-plane" aria-hidden="true"></i>
+              </button>
+            </div>
+            <p>{error && error}</p>
+          </form>
         </div>
       </div>
       <div

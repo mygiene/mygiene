@@ -88,6 +88,7 @@ const Page = () => {
               <div className="name-email">
                 <div className="input-fields">
                   <input
+                    required
                     type="text"
                     name="name"
                     value={name}
@@ -98,6 +99,7 @@ const Page = () => {
                 </div>
                 <div className="input-fields">
                   <input
+                    required
                     type="email"
                     name="email"
                     value={email}
@@ -109,6 +111,7 @@ const Page = () => {
               </div>
               <div className="subject-field">
                 <input
+                  required
                   type="text"
                   name="subject"
                   value={subject}
@@ -119,6 +122,7 @@ const Page = () => {
               </div>
               <div className="textarea-field">
                 <textarea
+                  required
                   placeholder="How can we help you?"
                   value={message}
                   name="message"
