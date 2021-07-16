@@ -90,11 +90,11 @@ const TermsAndConditions = () => {
                 We are not liable for any harm or damages related to the
                 purchase or use of goods, services, resources, content, or any
                 other transactions made in connection with any third-party
-                websites. Please review carefully the third-party's policies and
-                practices and make sure you understand them before you engage in
-                any transaction. Complaints, claims, concerns, or questions
-                regarding third-party products should be directed to the
-                third-party.
+                websites. Please review carefully the third-party&apos;s
+                policies and practices and make sure you understand them before
+                you engage in any transaction. Complaints, claims, concerns, or
+                questions regarding third-party products should be directed to
+                the third-party.
                 <br />
                 <br />
                 For more detail, please review our Returns Policy.
@@ -123,21 +123,21 @@ const TermsAndConditions = () => {
                 without notice to you. You expressly agree that your use of, or
                 inability to use, the service is at your sole risk. The service
                 and all products and services delivered to you through the
-                service are (except as expressly stated by us) provided 'as is'
-                and 'as available' for your use, without any representation,
-                warranties or conditions of any kind, either express or implied,
-                including all implied warranties or conditions of
-                merchantability, merchantable quality, fitness for a particular
-                purpose, durability, title, and non-infringement. In no case
-                shall Mygiene, our directors, officers, employees, affiliates,
-                agents, contractors, interns, suppliers, service providers or
-                licensors be liable for any injury, loss, claim, or any direct,
-                indirect, incidental, punitive, special, or consequential
-                damages of any kind. Because some states or jurisdictions do not
-                allow the exclusion or the limitation of liability for
-                consequential or incidental damages, in such states or
-                jurisdictions, our liability shall be limited to the maximum
-                extent permitted by law.
+                service are (except as expressly stated by us) provided &apos;as
+                is&apos; and &apos;as available&apos; for your use, without any
+                representation, warranties or conditions of any kind, either
+                express or implied, including all implied warranties or
+                conditions of merchantability, merchantable quality, fitness for
+                a particular purpose, durability, title, and non-infringement.
+                In no case shall Mygiene, our directors, officers, employees,
+                affiliates, agents, contractors, interns, suppliers, service
+                providers or licensors be liable for any injury, loss, claim, or
+                any direct, indirect, incidental, punitive, special, or
+                consequential damages of any kind. Because some states or
+                jurisdictions do not allow the exclusion or the limitation of
+                liability for consequential or incidental damages, in such
+                states or jurisdictions, our liability shall be limited to the
+                maximum extent permitted by law.
               </p>
             </details>
             <details>
