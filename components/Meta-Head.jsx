@@ -5,7 +5,7 @@ export function MetaHead({ title }) {
   return (
     <>
       <Head>
-        <title>{head} mygiene Men's Grooming Store</title>
+        <title>{head} mygiene Men&apos;s Grooming Store</title>
       </Head>
     </>
   );

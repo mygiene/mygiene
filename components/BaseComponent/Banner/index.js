@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 import BannerWrapper from "./style.banner";
 const Banner = (props) => {
@@ -5,7 +6,7 @@ const Banner = (props) => {
     <BannerWrapper>
       <div className="banner">
         <div className="banner__image">
-          <img src={props.img} alt={props.title} />
+          <Image src={props.img} alt={props.title} />
         </div>
         <div className="title">
           <h3>{props.title}</h3>
