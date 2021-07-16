@@ -53,6 +53,7 @@ const About = () => {
               <Image
                 src="/aboutAssets/banner_new.jpg"
                 alt="mygiene - Men's Grooming Kit"
+                layout="fill"
               />
             </div>
           </div>

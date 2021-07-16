@@ -5,7 +5,7 @@ import { ForgotPassWrapper } from "../components/LoginPage/styles.login";
 import { MetaHead } from "../components/Meta-Head";
 import { auth } from "../firebase/utils";
 
-const recovery = () => {
+const Recovery = () => {
   const inputRef = useRef();
   const [recoveryEmail, setRecoveryEmail] = useState("");
 
@@ -88,4 +88,4 @@ const recovery = () => {
   );
 };
 
-export default recovery;
+export default Recovery;
