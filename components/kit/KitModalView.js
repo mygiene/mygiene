@@ -1,49 +1,37 @@
 import React, { useEffect, useState } from "react";
 import { FaIcon } from "../BaseComponent/FaIcon";
-import { ModalWrapper } from "./style.kit";
-
+import ModalWrapper from "./style.Modal";
+import { Modal } from "react-responsive-modal";
 const KitModalView = (props) => {
-  const [open, setopen] = useState(false);
+  const [open, setOpen] = useState(false);
 
-  // useEffect(() => {
-  //   console.log(window);
-  //   if (window !== undefined) {
-  //     const modal = document.querySelector("#modal");
-  //     // window.onclick = function (event) {
-  //     //   console.log({ event });
-  //     //   if (event.target == modal) {
-  //     //     setopen(false);
-  //     //   }
-  //     // };
-  //     const clickListner = window.addEventListener("click", (event) => {
-  //       console.log({ event });
-  //       if (event.target !== modal) {
-  //         setopen(false);
-  //       }
-  //     });
-  //     return () => {
-  //       // clickListner;
-  //     };
-  //   }
-  // }, []);
+  const onOpenModal = () => setOpen(true);
+  const onCloseModal = () => setOpen(false);
 
-  function toggle() {
-    setopen((s) => !s);
-  }
   return (
     <>
-      <FaIcon onClick={toggle} className="fa fa-arrow-down" />
-      <ModalWrapper>
-        <div
-          id="modal"
-          // style={open ? { display: "block" } : { display: "none" }}
-        >
-          <button onClick={() => setopen(false)}>X</button>
-          <h2>{props.title}</h2>
-          <img src={props.image} />
-          <span>{props.content}</span>
-        </div>
-      </ModalWrapper>
+      <FaIcon onClick={onOpenModal} className="fa fa-arrow-down" />
+
+      <Modal
+        open={open}
+        center
+        onClose={onCloseModal}
+        styles={{ modal: { background: "#f8e1e1" } }}
+      >
+        <ModalWrapper>
+          <div className="item">
+            <h3>{props.title}</h3>
+            <div className="item__content">
+              <div className="item__content-image">
+                <img src={props.image} />
+              </div>
+              <div className="item__content-text">
+                <span>{props.content}</span>
+              </div>
+            </div>
+          </div>
+        </ModalWrapper>
+      </Modal>
     </>
   );
 };

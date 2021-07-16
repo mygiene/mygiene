@@ -129,7 +129,7 @@ const Page = () => {
             </form>
           </div>
           <div className="contact-bg">
-            <img src="/contactAssets/form-illustration.png" alt="" />
+            <img src="/contactAssets/form-illustration.png" alt="contact" />
           </div>
         </div>
       </StyledWrapper>

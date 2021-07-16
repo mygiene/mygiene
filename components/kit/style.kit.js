@@ -1,20 +1,27 @@
 import styled from "styled-components";
 import media from "../../util/media-queries";
 
-export const ModalWrapper = styled.div`
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 9;
-  div {
-    background-color: grey;
-    display: flex;
-    flex-direction: column;
-    padding: 2rem;
-  }
-`;
+// export const ModalWrapper = styled.div`
+//   /* display: none;
+//   position: fixed;
+//   top: 50%;
+//   left: 50%;
+//   transform: translate(-50%, -50%);
+//   z-index: 9;
+//   div {
+//     background-color: grey;
+//     display: flex;
+//     flex-direction: column;
+//     padding: 2rem;
+//     background-color: gray;
+//     width: 80%;
+//     height: 500px;
+//   } */
+//   .react-responsive-modal-modal {
+//     width: 80% !important;
+//     height: 60%;
+//   }
+// `;
 
 export default styled.div`
   margin-top: 4.5rem;
@@ -92,7 +99,6 @@ export default styled.div`
             align-items: center;
             color: darkgray;
             font-weight: 700;
-            font-size: 1.3rem;
           }
         }
         .cart-button {
@@ -192,6 +198,9 @@ export default styled.div`
     }
     .kit__tiles {
       margin-top: 2rem;
+      width: 90%;
+      margin: auto;
+
       .kit__tiles-title {
         width: 174px;
         height: 45px;
@@ -215,6 +224,7 @@ export default styled.div`
         grid-template-columns: 25% 25% 25% 25%;
         .grid-item {
           background: #fff9f9;
+
           border-radius: 8px;
           padding: 20px;
           font-size: 30px;
@@ -233,18 +243,18 @@ export default styled.div`
             justify-content: center;
             align-items: center;
             margin: auto;
+            border-radius: 8px;
             span {
               color: white;
               height: 100%;
-              line-height: 1.45rem;
-              left: 0;
-              top: 0;
-              width: 90%;
+              line-height: 1.3rem;
+
               /* padding: 5%; */
-              margin: 7%;
+
+              font-size: 1rem;
             }
           }
-          span {
+          .item-title {
             top: 1rem;
             left: 1rem;
             position: absolute;
@@ -277,20 +287,20 @@ export default styled.div`
             span {
               color: white;
               height: 100%;
-              line-height: 1.45rem;
-              left: 0;
-              top: 0;
-              width: 90%;
+              line-height: 1.3rem;
+              display: flex;
+              width: 95%;
+              margin: auto;
 
-              /* padding: 5%; */
-              margin: 7%;
+              justify-content: center;
+              align-items: center;
             }
           }
         }
       }
     }
   }
-  @media only screen and (max-width: 767px) {
+  @media only screen and (max-width: 768px) {
     .kit {
       .kit__top {
         display: block !important;
@@ -332,7 +342,7 @@ export default styled.div`
           .grid-item {
             width: 100% !important;
             box-sizing: border-box;
-            span {
+            .item-title {
               font-size: 1.5rem;
               display: flex;
               right: 0;
@@ -356,11 +366,46 @@ export default styled.div`
       }
     }
   }
-  ${media.max.tablet} {
+  @media only screen and (max-width: 1024px) and (min-width: 769px) {
+    .kit .kit__tiles .kit__tiles-items {
+      width: 88% !important;
+      grid-gap: 2rem !important;
+
+      .grid-item {
+        height: 180px !important;
+
+        .text-overlay {
+          span {
+            line-height: 1.3rem !important;
+            font-size: 1rem !important;
+          }
+        }
+      }
+    }
+  }
+  @media only screen and (max-width: 768px) and (min-width: 640px) {
     .kit {
       .kit__tiles {
         .kit__tiles-items {
           grid-template-columns: 33.33% 33.33% 33.33%;
+          grid-gap: 2rem !important;
+          .grid-item {
+            span {
+              top: 0.8rem !important;
+              left: 0.5rem !important;
+              font-size: 1.2rem !important;
+              font-weight: 600 !important;
+            }
+            i {
+              transform: rotate(135deg) !important;
+              position: absolute;
+              right: 15px !important;
+              top: 150px !important;
+
+              font-size: 1.8rem !important;
+              color: black !important;
+            }
+          }
         }
       }
     }
@@ -370,6 +415,51 @@ export default styled.div`
       .kit__tiles {
         .kit__tiles-items {
           grid-template-columns: 1fr;
+          .grid-item {
+            height: 225px !important;
+            span {
+              top: 1rem !important;
+              left: 0.5rem !important;
+              font-size: 1.8rem !important;
+              font-weight: 600 !important;
+            }
+            i {
+              transform: rotate(135deg) !important;
+              position: absolute;
+              right: 15px !important;
+              top: 170px !important;
+
+              font-size: 2rem !important;
+              color: black !important;
+            }
+          }
+        }
+      }
+    }
+  }
+  @media only screen and (max-width: 639px) and (min-width: 426px) {
+    .kit {
+      .kit__tiles {
+        .kit__tiles-items {
+          grid-template-columns: 50% 50%;
+          .grid-item {
+            height: 225px !important;
+            span {
+              top: 1rem !important;
+              left: 0.5rem !important;
+              font-size: 1.4rem !important;
+              font-weight: 600 !important;
+            }
+            i {
+              transform: rotate(135deg) !important;
+              position: absolute;
+              right: 15px !important;
+              top: 170px !important;
+
+              font-size: 2rem !important;
+              color: black !important;
+            }
+          }
         }
       }
     }

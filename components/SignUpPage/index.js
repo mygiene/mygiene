@@ -124,13 +124,13 @@ const SignUpPage = () => {
             </div>
             <div className="signup__google">
               <button>
-                <img src="/loginAssets/google.png" />
+                <img src="/loginAssets/google.png" alt="google-icon" />
                 <span>Sign Up with Google</span>
               </button>
             </div>
             <div className="signup__fb">
               <button type="submit">
-                <img src="/loginAssets/fb.png" />
+                <img src="/loginAssets/fb.png" alt="facebook-icon" />
                 <span>Sign Up with FaceBook</span>
               </button>
             </div>
@@ -141,7 +141,7 @@ const SignUpPage = () => {
           </div>
         </div>
         <div className="signup__right">
-          <img src="/loginAssets/login_banner.jpeg" />
+          <img src="/loginAssets/login_banner.jpeg" alt="banner-image" />
         </div>
       </signup>
     </SignUpWrapper>

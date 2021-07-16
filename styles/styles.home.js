@@ -61,9 +61,13 @@ export default styled.div`
           background-color: black;
           width: 150px;
           height: 50px;
-          color: whitesmoke;
+
           margin-top: 3rem;
           border-radius: 5px;
+          a {
+            color: whitesmoke;
+            font-size: 1.2rem;
+          }
         }
       }
     }

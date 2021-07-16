@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import StyleWrapper from "../../styles/styles.home";
 import { FaIcon } from "../BaseComponent/FaIcon";
 import Carousel from "react-elastic-carousel";
+import Link from "next/link";
 const kitList = [
   { id: 1, label: "Razor" },
   { id: 2, label: "Razor Case" },
@@ -55,7 +56,10 @@ const HomePage = () => {
           <div className="banner-section">
             <div className="background"></div>
             <div className="banner-image">
-              <img src="/homeAssets/home-banner.jpg" />
+              <img
+                src="/homeAssets/home-banner.jpg"
+                alt="mygiene - Men's Grooming Kit"
+              />
             </div>
           </div>
           <div className="intro-section">
@@ -64,12 +68,14 @@ const HomePage = () => {
               Mygiene delivers a complete, one-stop toiletries package at the
               click of a button.
             </p>
-            <button>Buy Now</button>
+            <button>
+              <Link href="/kit">Buy Now</Link>
+            </button>
           </div>
         </div>
         <div className="kit-section">
           <div className="banner-outer">
-            <img src="/homeAssets/home-kit.jpg" />
+            <img src="/homeAssets/home-kit.jpg" alt="kit" />
           </div>
           <div className="kit-content">
             <h1>ALL IN ONE GROOMING KIT</h1>
@@ -97,7 +103,7 @@ const HomePage = () => {
             {valuesList.map((m) => (
               <div className="values-list-item">
                 <div className="banner-outer">
-                  <img src={m.img} alt="" />
+                  <img src={m.img} alt="kit-items" />
                 </div>
                 <h3>{m.title}</h3>
                 <p>{m.desc}</p>
@@ -113,10 +119,10 @@ const HomePage = () => {
           <div className="testimonials">
             <div className="testimonial-images">
               <div className="testimonial-img">
-                <img src="/homeAssets/testimonial-1.png" alt="" />
+                <img src="/homeAssets/testimonial-1.png" alt="testimonia" />
               </div>
               <div className="testimonial-img">
-                <img src="/homeAssets/testimonial-1.png" alt="" />
+                <img src="/homeAssets/testimonial-1.png" alt="testimonia" />
               </div>
             </div>
             <div className="testimonial-slider">
@@ -129,7 +135,7 @@ const HomePage = () => {
                     <div className="star-images">
                       {[1, 2, 3, 4].map(() => (
                         <>
-                          <img src="/homeAssets/star.png" alt="" />
+                          <img src="/homeAssets/star.png" alt="testimonia" />
                         </>
                       ))}
                     </div>
@@ -141,7 +147,7 @@ const HomePage = () => {
                       voluptatibus voluptatem ullam!
                     </div>
                     <div className="author">
-                      <img src="/homeAssets/boy-avatar.svg" alt="" />
+                      <img src="/homeAssets/boy-avatar.svg" alt="user-image" />
                       John Doe
                     </div>
                   </div>
@@ -149,7 +155,8 @@ const HomePage = () => {
               </Carousel>
               <div className="action-btns">
                 <button onClick={() => carouselRef.current.slidePrev()}>
-                  <img src="/homeAssets/left-arrow.png" alt="" /> Previous
+                  <img src="/homeAssets/left-arrow.png" alt="left-arrow" />{" "}
+                  Previous
                 </button>
                 <button onClick={() => carouselRef.current.slideNext()}>
                   Next

@@ -86,7 +86,7 @@ const LoginPage = () => {
               <div className="login__google">
                 <span>
                   <button onClick={signInWithGoogle}>
-                    <img src="/loginAssets/google.png" />
+                    <img src="/loginAssets/google.png" alt="google-icon" />
                     Sign In with Google
                   </button>
                 </span>
@@ -94,7 +94,7 @@ const LoginPage = () => {
               <div className="login__fb">
                 <span>
                   <button>
-                    <img src="/loginAssets/fb.png" />
+                    <img src="/loginAssets/fb.png" alt="facebook-icon" />
                     Sign In with FaceBook
                   </button>
                 </span>
@@ -106,7 +106,7 @@ const LoginPage = () => {
             </div>
           </div>
           <div className="login__right">
-            <img src="/loginAssets/login_banner.jpeg" />
+            <img src="/loginAssets/login_banner.jpeg" alt="banner-image" />
           </div>
         </login>
       </LoginWrapper>
