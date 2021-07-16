@@ -177,11 +177,10 @@ export const Kit = () => {
             </div>
             <div className="shipping">
               <Link href="/refund">
-                {/* <a target="blank"> */}
-                <span>Shipping & Returns</span>
-
-                <FaIcon className="fa fa-external-link" />
-                {/* </a> */}
+                <a target="blank">
+                  <span>Shipping & Returns</span>
+                  <FaIcon className="fa fa-external-link" />
+                </a>
               </Link>
             </div>
           </div>
