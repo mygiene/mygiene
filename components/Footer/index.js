@@ -5,7 +5,7 @@ import Link from "next/link";
 import axios from "axios";
 import { toast } from "react-toastify";
 const RemoveFooter = ["/login", "/signup", "/recovery", "/404"];
-
+import Image from "next/image";
 export const Footer = () => {
   if (RemoveFooter.includes(useRouter().pathname)) {
     return <></>;
@@ -50,7 +50,7 @@ export const Footer = () => {
                 href="https://www.instagram.com/mygiene_aus/?hl=en"
                 target="blank"
               >
-                <img
+                <Image
                   src="/footerAssets/insta.png"
                   alt="https://www.instagram.com/mygiene_aus/?hl=en"
                 />
@@ -61,7 +61,7 @@ export const Footer = () => {
                 href="https://www.facebook.com/Mygiene-101946625040573"
                 target="blank"
               >
-                <img
+                <Image
                   src="/footerAssets/fb.png"
                   alt="https://www.facebook.com/Mygiene-101946625040573"
                 />
@@ -117,7 +117,7 @@ export const Footer = () => {
                 value={email}
                 onChange={(e) => setemail(e.target.value)}
                 placeholder="Your email address"
-                // autoComplete="off"
+                autoComplete="off"
               />
               <button type="submit">
                 <i class="fa fa-paper-plane" aria-hidden="true"></i>

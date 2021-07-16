@@ -2,11 +2,12 @@ import React from "react";
 import Banner from "../BaseComponent/Banner";
 import Navigation from "../BaseComponent/Navigation";
 import PrivacyWrapper from "./style.privacy";
+import Image from "next/image";
 const PrivacyPolicy = () => {
   return (
     <>
       <PrivacyWrapper>
-        <Banner img="/banner_1.jpg" title="Privacy Policy" />
+        <Banner Image="/banner_1.jpg" title="Privacy Policy" />
         <div className="container">
           <Navigation />
           <div className="content__right">

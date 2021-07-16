@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../components/auth/auth.js";
 import { MetaHead } from "../components/Meta-Head.jsx";
+import ProfilePage from "../components/ProfilePage/index.js";
 
 const Page = () => {
   const { authState } = useContext(AuthContext);
@@ -9,7 +10,7 @@ const Page = () => {
     return (
       <>
         <MetaHead title="Profile" />
-        MY PROFILE
+        <ProfilePage />
       </>
     );
   else {
