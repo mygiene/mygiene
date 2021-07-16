@@ -53,6 +53,7 @@ export const Footer = () => {
                 <Image
                   src="/footerAssets/insta.png"
                   alt="https://www.instagram.com/mygiene_aus/?hl=en"
+                  layout="fixed"
                 />
               </a>
             </div>
@@ -64,6 +65,7 @@ export const Footer = () => {
                 <Image
                   src="/footerAssets/fb.png"
                   alt="https://www.facebook.com/Mygiene-101946625040573"
+                  layout="fixed"
                 />
               </a>
             </div>
