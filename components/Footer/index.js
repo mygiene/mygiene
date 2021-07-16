@@ -3,25 +3,32 @@ import FooterWrapper from "./styles.footer";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import axios from "axios";
+import { toast } from "react-toastify";
 const RemoveFooter = ["/login", "/signup", "/recovery", "/404"];
 
 export const Footer = () => {
   if (RemoveFooter.includes(useRouter().pathname)) {
     return <></>;
   }
-  const [email, setemail] = useState();
+  const [email, setemail] = useState("");
   const [error, seterror] = useState();
+  const [loading, setloading] = useState(false);
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    axios
-      .post("/api/newsletter", { email })
-      .then((res) => {
-        console.log("success", res);
-      })
-      .catch((err) => {
-        console.log("error", err);
-      });
+    setloading(true);
+    try {
+      const response = await axios.post("/api/newsletter", { email });
+      seterror(null);
+      setemail("");
+      setloading(false);
+      toast.info(
+        "Thank you for reaching out to us, you have subscribed to our news letter."
+      );
+    } catch (e) {
+      setloading(false);
+      seterror(e.response.data.error);
+    }
   }
 
   return (
@@ -102,19 +109,19 @@ export const Footer = () => {
             <h3>Stay up to date</h3>
             <div className="input-field">
               <input
-                type="email"
                 required
+                type="email"
                 name="email"
                 value={email}
                 onChange={(e) => setemail(e.target.value)}
                 placeholder="Your email address"
-                autoComplete="off"
+                // autoComplete="off"
               />
               <button type="submit">
                 <i class="fa fa-paper-plane" aria-hidden="true"></i>
               </button>
             </div>
-            <p>{error && error}</p>
+            <p>{!loading && !!error && error}</p>
           </form>
         </div>
       </div>
