@@ -46,7 +46,7 @@ export const CartItem = (props) => {
                   onChange={() => setExpressDelivery((s) => !s)}
                 />
               </span>
-              <label htmlFor{`express-delivery-${props.pId}`}>
+              <label htmlFor={`express-delivery-${props.pId}`}>
                 Express Delivery
               </label>
               <span className="service-price">$10.00 USD</span>
