@@ -7,6 +7,8 @@ import { FaIcon } from "../BaseComponent/FaIcon";
 import KitModalView from "./KitModalView";
 import StyledWrapper from "./style.kit";
 import { Modal } from "react-responsive-modal";
+import Image from "next/image";
+
 const kitItems = [
   {
     title: "Razor",
@@ -126,7 +128,7 @@ export const Kit = () => {
         <div className="kit__top">
           <div className="kit__top-left">
             <div className="kit__top-cover">
-              <img src="/kitAssets/cover.png" alt="kit-image" />
+              <Image src="/kitAssets/cover.png" alt="kit-image" />
             </div>
           </div>
           <div className="kit__top-right">
@@ -151,17 +153,17 @@ export const Kit = () => {
               <div className="value-1">
                 <span>ECO-FRIENDLY</span>
                 <br />
-                <img src="/homeAssets/eco-friendly.png" alt="eco-friendly" />
+                <Image src="/homeAssets/eco-friendly.png" alt="eco-friendly" />
               </div>
               <div className="value-2">
                 <span>SUSTAINABLE</span>
                 <br />
-                <img src="/homeAssets/sustainable.png" alt="suistainable" />
+                <Image src="/homeAssets/sustainable.png" alt="suistainable" />
               </div>
               <div className="value-3">
                 <span>HIGH QUALITY</span>
                 <br />
-                <img src="/homeAssets/high-quality.png" alt="high-quality" />
+                <Image src="/homeAssets/high-quality.png" alt="high-quality" />
               </div>
             </div>
             <div className="description">
@@ -176,11 +178,11 @@ export const Kit = () => {
             </div>
             <div className="shipping">
               <Link href="/refund">
-                <a target="blank">
-                  <span>Shipping & Returns</span>
+                {/* <a target="blank"> */}
+                <span>Shipping & Returns</span>
 
-                  <FaIcon className="fa fa-external-link" />
-                </a>
+                <FaIcon className="fa fa-external-link" />
+                {/* </a> */}
               </Link>
             </div>
           </div>
@@ -201,7 +203,7 @@ export const Kit = () => {
                   />
                 </span>
 
-                <img src={m.image} alt={m.title} />
+                <Image src={m.image} alt={m.title} />
                 <div className="text-overlay">
                   <span>{m.content}</span>
                 </div>
