@@ -74,7 +74,7 @@ export const AuthProvider = ({ children }) => {
           transform: "translate(-50%,-50%)",
         }}
       >
-        <Image src="/loader2.svg" alt="loading" />
+        <Image src="/loader2.svg" alt="loading" layout="fill" />
       </div>
     );
   else if (authState.user && safeRoutes.includes(router.pathname))
