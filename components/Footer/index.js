@@ -27,7 +27,9 @@ export const Footer = () => {
       );
     } catch (e) {
       setloading(false);
-      seterror(e.response.data.error);
+      if (e.response.data.error.title === "Member Exists") {
+        seterror("You have already subscribed to our New Letter.");
+      } else seterror("Oops, something went wrong! Try again later. ");
     }
   }
 
@@ -121,7 +123,9 @@ export const Footer = () => {
                 <i class="fa fa-paper-plane" aria-hidden="true"></i>
               </button>
             </div>
-            <p>{!loading && !!error && error}</p>
+            <p style={{ color: "rgb(255,100,0)" }}>
+              {!loading && !!error && error}
+            </p>
           </form>
         </div>
       </div>

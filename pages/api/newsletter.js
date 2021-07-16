@@ -7,7 +7,6 @@ function getRequestParams(email) {
   const MAIL_LIST_ID = process.env.MAIL_LIST_ID;
 
   const DATACENTER = MAIL_API_KEY.split("-")[1];
-  console.log({ DATACENTER });
 
   const url = `https://${DATACENTER}.api.mailchimp.com/3.0/lists/${MAIL_LIST_ID}/members`;
 
@@ -22,7 +21,6 @@ function getRequestParams(email) {
     "Content-Type": "application/json",
     Authorization: `Basic ${base64ApiKey}`,
   };
-  console.log({ url, data, headers });
 
   return {
     url,
@@ -41,12 +39,10 @@ export default async function handler(req, res) {
   try {
     const { url, data, headers } = getRequestParams(email);
     const response = await axios.post(url, data, { headers });
-
-    // success
     return res.status(200).json({ error: "null" });
   } catch (err) {
-    return res
-      .status(400)
-      .json({ error: "Oops, something went wrong! Try again." });
+    console.log(err.response.data);
+
+    return res.status(400).json({ error: err.response.data });
   }
 }

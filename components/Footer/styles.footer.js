@@ -89,37 +89,43 @@ export default styled.div`
     }
     .footer__content-third {
       margin-left: -25%;
-      h3 {
-        font-size: 1.3rem;
-        font-weight: 500;
-      }
-      div {
-        border: 1px solid black;
-        border-radius: 13px;
-        width: 100%;
-        height: 3rem;
-        display: flex;
-        margin-top: 0.9rem;
-        input {
-          border: none;
-          font-size: 1.2rem;
-          background-color: whitesmoke;
-
-          height: 1.5rem;
-          margin-left: 1rem;
-          margin-top: 0.7rem;
-          outline: none;
+      form {
+        h3 {
+          font-size: 1.3rem;
+          font-weight: 500;
         }
-        input:hover {
-          border: none;
-          outline: none;
-        }
-        i {
-          padding-top: 0.3rem;
-          margin-right: 1rem;
+        div {
+          border: 1px solid black;
+          border-radius: 13px;
+          width: 100%;
+          height: 3rem;
+          display: flex;
+          margin-top: 0.9rem;
+          input {
+            border: none;
+            font-size: 1.2rem;
+            background-color: whitesmoke;
 
-          transform: rotate(9deg);
-          font-size: 2rem;
+            height: 1.5rem;
+            margin-left: 1rem;
+            margin-top: 0.7rem;
+            outline: none;
+          }
+          input:hover {
+            border: none;
+            outline: none;
+          }
+          i {
+            padding-top: 0.3rem;
+            margin-right: 1rem;
+
+            transform: rotate(9deg);
+            font-size: 2rem;
+          }
+        }
+        button {
+          background-color: transparent;
+          border: none;
         }
       }
     }
