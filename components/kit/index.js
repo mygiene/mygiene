@@ -191,7 +191,7 @@ export const Kit = () => {
           </div>
           <div className="kit__tiles-items">
             {kitItems.map((m) => (
-              <div key={m.title} class="grid-item">
+              <div key={m.title} className="grid-item">
                 <span className="item-title">
                   {m.title}{" "}
                   <KitModalView

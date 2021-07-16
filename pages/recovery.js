@@ -62,7 +62,7 @@ const recovery = () => {
             <hr />
             <form className="email-outer" onSubmit={handleSubmit}>
               <div>
-                <label for="email">
+                <label htmlFor"email">
                   We will send a link to recover your password on
                 </label>
                 <br />

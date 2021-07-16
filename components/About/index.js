@@ -58,9 +58,9 @@ const About = () => {
           </div>
           <div className="about__content">
             <section>
-              <div class="grid-flex">
-                <div class="col col-text">
-                  <div class="Aligner-item" id="content-1">
+              <div className="grid-flex">
+                <div className="col col-text">
+                  <div className="Aligner-item" id="content-1">
                     <ul>
                       <li>
                         <hr />
@@ -79,16 +79,16 @@ const About = () => {
                 </div>
                 <div
                   id="about"
-                  class="col col-image"
+                  className="col col-image"
                   style={{
                     backgroundImage: 'url("/aboutAssets/about-1.jpg")',
                   }}
                 ></div>
               </div>
 
-              <div class="grid-flex">
-                <div class="col col-text col-left">
-                  <div class="Aligner-item" id="content-2">
+              <div className="grid-flex">
+                <div className="col col-text col-left">
+                  <div className="Aligner-item" id="content-2">
                     <ul>
                       <li>
                         <hr />
@@ -106,7 +106,7 @@ const About = () => {
                   </div>
                 </div>
                 <div
-                  class="col col-image"
+                  className="col col-image"
                   style={{
                     backgroundImage: 'url("/aboutAssets/about-2.jpg")',
                   }}
@@ -115,9 +115,9 @@ const About = () => {
                 </div>
               </div>
 
-              <div class="grid-flex">
-                <div class="col col-text">
-                  <div class="Aligner-item" id="content-3">
+              <div className="grid-flex">
+                <div className="col col-text">
+                  <div className="Aligner-item" id="content-3">
                     <ul>
                       <li>
                         <hr />
@@ -135,7 +135,7 @@ const About = () => {
                   </div>
                 </div>
                 <div
-                  class="col col-image"
+                  className="col col-image"
                   style={{
                     backgroundImage: 'url("/aboutAssets/about-3.jpg")',
                   }}

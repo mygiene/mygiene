@@ -120,7 +120,7 @@ export const Footer = () => {
                 autoComplete="off"
               />
               <button type="submit">
-                <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                <i className="fa fa-paper-plane" aria-hidden="true"></i>
               </button>
             </div>
             <p style={{ color: "rgb(255,100,0)" }}>

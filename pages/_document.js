@@ -2,7 +2,7 @@ import Document, { Html, Head, Main, NextScript } from "next/document";
 import { Children } from "react";
 import { ServerStyleSheet } from "styled-components";
 
-export default class MyDocument extends Document {
+export default className MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
