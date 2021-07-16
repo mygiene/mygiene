@@ -179,7 +179,6 @@ export const Kit = () => {
               <Link href="/refund">
                 <a target="blank">
                   <span>Shipping & Returns</span>
-
                   <FaIcon className="fa fa-external-link" />
                 </a>
               </Link>
