@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FaIcon } from "../BaseComponent/FaIcon";
 import ModalWrapper from "./style.Modal";
 import { Modal } from "react-responsive-modal";
-import Image from "next/image";
+
 const KitModalView = (props) => {
   const [open, setOpen] = useState(false);
 
@@ -24,7 +24,7 @@ const KitModalView = (props) => {
             <h3>{props.title}</h3>
             <div className="item__content">
               <div className="item__content-image">
-                <Image src={props.image} />
+                <img src={props.image} />
               </div>
               <div className="item__content-text">
                 <span>{props.content}</span>

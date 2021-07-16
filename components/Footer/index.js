@@ -5,7 +5,7 @@ import Link from "next/link";
 import axios from "axios";
 import { toast } from "react-toastify";
 const RemoveFooter = ["/login", "/signup", "/recovery", "/404"];
-import Image from "next/image";
+
 export const Footer = () => {
   if (RemoveFooter.includes(useRouter().pathname)) {
     return <></>;
@@ -50,7 +50,7 @@ export const Footer = () => {
                 href="https://www.instagram.com/mygiene_aus/?hl=en"
                 target="blank"
               >
-                <Image
+                <img
                   src="/footerAssets/insta.png"
                   alt="https://www.instagram.com/mygiene_aus/?hl=en"
                   layout="fixed"
@@ -62,7 +62,7 @@ export const Footer = () => {
                 href="https://www.facebook.com/Mygiene-101946625040573"
                 target="blank"
               >
-                <Image
+                <img
                   src="/footerAssets/fb.png"
                   alt="https://www.facebook.com/Mygiene-101946625040573"
                   layout="fixed"

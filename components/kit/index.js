@@ -7,7 +7,6 @@ import { FaIcon } from "../BaseComponent/FaIcon";
 import KitModalView from "./KitModalView";
 import StyledWrapper from "./style.kit";
 import { Modal } from "react-responsive-modal";
-import Image from "next/image";
 
 const kitItems = [
   {
@@ -128,7 +127,7 @@ export const Kit = () => {
         <div className="kit__top">
           <div className="kit__top-left">
             <div className="kit__top-cover">
-              <Image src="/kitAssets/cover.png" alt="kit-image" />
+              <img src="/kitAssets/cover.png" alt="kit-image" />
             </div>
           </div>
           <div className="kit__top-right">
@@ -153,17 +152,17 @@ export const Kit = () => {
               <div className="value-1">
                 <span>ECO-FRIENDLY</span>
                 <br />
-                <Image src="/homeAssets/eco-friendly.png" alt="eco-friendly" />
+                <img src="/homeAssets/eco-friendly.png" alt="eco-friendly" />
               </div>
               <div className="value-2">
                 <span>SUSTAINABLE</span>
                 <br />
-                <Image src="/homeAssets/sustainable.png" alt="suistainable" />
+                <img src="/homeAssets/sustainable.png" alt="suistainable" />
               </div>
               <div className="value-3">
                 <span>HIGH QUALITY</span>
                 <br />
-                <Image src="/homeAssets/high-quality.png" alt="high-quality" />
+                <img src="/homeAssets/high-quality.png" alt="high-quality" />
               </div>
             </div>
             <div className="description">
@@ -203,7 +202,7 @@ export const Kit = () => {
                   />
                 </span>
 
-                <Image src={m.image} alt={m.title} />
+                <img src={m.image} alt={m.title} />
                 <div className="text-overlay">
                   <span>{m.content}</span>
                 </div>

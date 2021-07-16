@@ -3,7 +3,6 @@ import Banner from "../BaseComponent/Banner";
 import TermsWrapper from "./style.terms";
 import Link from "next/link";
 import Navigation from "../BaseComponent/Navigation";
-import Image from "next/image";
 
 const TermsAndConditions = () => {
   return (

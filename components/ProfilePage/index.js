@@ -1,7 +1,7 @@
 import React from "react";
 import Navigation from "../BaseComponent/Navigation";
 import ProfileWrapper from "./style.profile";
-import Image from "next/image";
+
 const ProfilePage = () => {
   return (
     <>

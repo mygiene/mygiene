@@ -1,7 +1,7 @@
 import React from "react";
 import AboutWrapper from "./styles.about";
 import Link from "next/link";
-import Image from "next/image";
+
 const aboutData = [
   {
     heading: "We are on the mission",
@@ -50,7 +50,7 @@ const About = () => {
               </div>
             </div>
             <div className="banner-image">
-              <Image
+              <img
                 src="/aboutAssets/banner_new.jpg"
                 alt="mygiene - Men's Grooming Kit"
               />

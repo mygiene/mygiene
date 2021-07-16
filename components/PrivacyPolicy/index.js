@@ -2,7 +2,7 @@ import React from "react";
 import Banner from "../BaseComponent/Banner";
 import Navigation from "../BaseComponent/Navigation";
 import PrivacyWrapper from "./style.privacy";
-import Image from "next/image";
+
 const PrivacyPolicy = () => {
   return (
     <>

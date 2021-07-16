@@ -1,6 +1,6 @@
 import React from "react";
 import PageNotFoundWrapper from "../styles/styles.404";
-import Image from "next/image";
+
 import Link from "next/link";
 const Custom404 = () => {
   return (
@@ -8,15 +8,12 @@ const Custom404 = () => {
       <div className="main">
         <div className="left">
           <div className="left-image">
-            <Image
-              alt="404"
-              src="https://preview.ibb.co/d2fA19/404_error.png"
-            />
+            <img alt="404" src="https://preview.ibb.co/d2fA19/404_error.png" />
           </div>
         </div>
         <div className="right">
           <div className="right-image">
-            <Image alt="icon" src="https://image.ibb.co/hNh18p/404_worry.png" />
+            <img alt="icon" src="https://image.ibb.co/hNh18p/404_worry.png" />
           </div>
           <div className="right-content">
             <span>

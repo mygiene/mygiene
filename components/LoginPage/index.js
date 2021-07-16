@@ -3,7 +3,6 @@ import { toast, ToastContainer } from "react-toastify";
 import { auth, signInWithGoogle } from "../../firebase/utils";
 import LoginWrapper, { ForgotPassWrapper } from "./styles.login";
 import Link from "next/link";
-import Image from "next/image";
 
 const initialState = {
   email: "",
@@ -87,7 +86,7 @@ const LoginPage = () => {
               <div className="login__google">
                 <span>
                   <button onClick={signInWithGoogle}>
-                    <Image src="/loginAssets/google.png" alt="google-icon" />
+                    <img src="/loginAssets/google.png" alt="google-icon" />
                     Sign In with Google
                   </button>
                 </span>
@@ -95,7 +94,7 @@ const LoginPage = () => {
               <div className="login__fb">
                 <span>
                   <button>
-                    <Image src="/loginAssets/fb.png" alt="facebook-icon" />
+                    <img src="/loginAssets/fb.png" alt="facebook-icon" />
                     Sign In with FaceBook
                   </button>
                 </span>
@@ -107,7 +106,7 @@ const LoginPage = () => {
             </div>
           </div>
           <div className="login__right">
-            <Image src="/loginAssets/login_banner.jpeg" alt="banner-image" />
+            <img src="/loginAssets/login_banner.jpeg" alt="banner-image" />
           </div>
         </login>
       </LoginWrapper>

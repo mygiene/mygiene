@@ -9,7 +9,7 @@ import { setCurrentUser } from "../../store/user/userActions";
 import useWindowSize from "../../util/windowSize";
 import { toast } from "react-toastify";
 import { AuthContext, protectedRoutes } from "../auth/auth";
-import Image from "next/image";
+
 // const RemoveHeader = [""];
 const NavLinks = [
   { name: "Home", link: "/", icon: "" },

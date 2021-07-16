@@ -1,17 +1,14 @@
 import { useState } from "react";
 import { FaIcon } from "../BaseComponent/FaIcon";
 import { ItemWrapper } from "./styles.cart";
-import Image from "next/image";
+
 export const CartItem = (props) => {
   const [expressDelivery, setExpressDelivery] = useState(false);
   return (
     <ItemWrapper>
       <div className="item-wrapper">
         <div className="item-img">
-          <Image
-            src="/cartAssets/kit-without-background.png"
-            alt="item image"
-          />
+          <img src="/cartAssets/kit-without-background.png" alt="item image" />
         </div>
         <div className="item-content">
           <div className="item-name-quantity">

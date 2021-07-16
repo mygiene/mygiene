@@ -4,7 +4,7 @@ import { auth, handleUserProfile } from "../../firebase/utils";
 import SignUpWrapper from "./styles.signup";
 import Link from "next/link";
 import { FaIcon } from "../BaseComponent/FaIcon";
-import Image from "next/image";
+
 //import LoginBanner from "/loginAssets/login_banner.jpeg";
 
 const initialState = {
@@ -125,13 +125,13 @@ const SignUpPage = () => {
             </div>
             <div className="signup__google">
               <button>
-                <Image src="/loginAssets/google.png" alt="google-icon" />
+                <img src="/loginAssets/google.png" alt="google-icon" />
                 <span>Sign Up with Google</span>
               </button>
             </div>
             <div className="signup__fb">
               <button type="submit">
-                <Image src="/loginAssets/fb.png" alt="facebook-icon" />
+                <img src="/loginAssets/fb.png" alt="facebook-icon" />
                 <span>Sign Up with FaceBook</span>
               </button>
             </div>
@@ -142,7 +142,7 @@ const SignUpPage = () => {
           </div>
         </div>
         <div className="signup__right">
-          <Image src="/loginAssets/login_banner.jpeg" alt="banner-image" />
+          <img src="/loginAssets/login_banner.jpeg" alt="banner-image" />
         </div>
       </signup>
     </SignUpWrapper>
