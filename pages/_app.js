@@ -21,8 +21,7 @@ const ToastContainer = dynamic(
   }
 );
 
-function MyApp({ Component, pageProps, loggedIn }) {
-  console.log({ loggedIn });
+function MyApp({ Component, pageProps }) {
   return (
     <>
       <Store>
@@ -47,17 +46,4 @@ function MyApp({ Component, pageProps, loggedIn }) {
   );
 }
 
-MyApp.getInitialProps = async (ctx) => {
-  let loggedIn = false;
-  const { pathname } = ctx;
-  auth.onAuthStateChanged((userAuth) => {
-    console.log({ userAuth });
-    if (userAuth) {
-      loggedIn = true;
-    } else {
-      loggedIn = false;
-    }
-  });
-  return { loggedIn };
-};
 export default MyApp;
