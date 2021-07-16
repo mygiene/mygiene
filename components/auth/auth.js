@@ -9,6 +9,7 @@ import {
 import { toast } from "react-toastify";
 import { auth, firestore, handleUserProfile } from "../../firebase/utils";
 import { StoreContext } from "../../store";
+import Image from "next/image";
 const initialState = {
   user: null,
   pending: true,
@@ -73,7 +74,7 @@ export const AuthProvider = ({ children }) => {
           transform: "translate(-50%,-50%)",
         }}
       >
-        <img src="/loader2.svg" alt="loading" />
+        <Image src="/loader2.svg" alt="loading" />
       </div>
     );
   else if (authState.user && safeRoutes.includes(router.pathname))

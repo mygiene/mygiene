@@ -3,12 +3,13 @@ import Banner from "../BaseComponent/Banner";
 import TermsWrapper from "./style.terms";
 import Link from "next/link";
 import Navigation from "../BaseComponent/Navigation";
+import Image from "next/image";
 
 const TermsAndConditions = () => {
   return (
     <>
       <TermsWrapper>
-        <Banner img="/banner_1.jpg" title="Terms & Conditions" />
+        <Banner Image="/banner_1.jpg" title="Terms & Conditions" />
 
         <div className="container">
           <Navigation />

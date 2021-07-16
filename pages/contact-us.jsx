@@ -5,6 +5,7 @@ import { MetaHead } from "../components/Meta-Head.jsx";
 import StyledWrapper from "../styles/styles.contact";
 import emailjs from "emailjs-com";
 import { toast } from "react-toastify";
+import Image from "next/image";
 
 const contactQuote =
   "Please fill up the form below to get in touch and one of our friendly team members will get back to you asap";
@@ -54,7 +55,7 @@ const Page = () => {
       <MetaHead title="Contact Us" />
       <StyledWrapper>
         <Banner
-          img="/contactAssets/contact-banner.jpg"
+          Image="/contactAssets/contact-banner.jpg"
           title="Contact Us"
           quote={contactQuote}
         />
@@ -133,7 +134,7 @@ const Page = () => {
             </form>
           </div>
           <div className="contact-bg">
-            <img src="/contactAssets/form-illustration.png" alt="contact" />
+            <Image src="/contactAssets/form-illustration.png" alt="contact" />
           </div>
         </div>
       </StyledWrapper>

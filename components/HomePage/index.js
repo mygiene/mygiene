@@ -4,6 +4,7 @@ import StyleWrapper from "../../styles/styles.home";
 import { FaIcon } from "../BaseComponent/FaIcon";
 import Carousel from "react-elastic-carousel";
 import Link from "next/link";
+import Image from "next/image";
 const kitList = [
   { id: 1, label: "Razor" },
   { id: 2, label: "Razor Case" },
@@ -22,19 +23,19 @@ const valuesList = [
     id: 1,
     title: "ECO FRIENDLY",
     desc: "Our products are 80 per cent recyclable.",
-    img: "/homeAssets/eco-friendly.png",
+    Image: "/homeAssets/eco-friendly.png",
   },
   {
     id: 2,
     title: "SUSTAINABLE",
     desc: "At Mygiene, almost all of the products featured in our kit are recyclable and sustainably produced.",
-    img: "/homeAssets/sustainable.png",
+    Image: "/homeAssets/sustainable.png",
   },
   {
     id: 3,
     title: "HIGH QUALITY",
     desc: "Our fully stocked kit is a must-have, carefully designed by our passionate team.",
-    img: "/homeAssets/high-quality.png",
+    Image: "/homeAssets/high-quality.png",
   },
 ];
 
@@ -56,7 +57,7 @@ const HomePage = () => {
           <div className="banner-section">
             <div className="background"></div>
             <div className="banner-image">
-              <img
+              <Image
                 src="/homeAssets/home-banner.jpg"
                 alt="mygiene - Men's Grooming Kit"
               />
@@ -75,7 +76,7 @@ const HomePage = () => {
         </div>
         <div className="kit-section">
           <div className="banner-outer">
-            <img src="/homeAssets/home-kit.jpg" alt="kit" />
+            <Image src="/homeAssets/home-kit.jpg" alt="kit" />
           </div>
           <div className="kit-content">
             <h1>ALL IN ONE GROOMING KIT</h1>
@@ -103,7 +104,7 @@ const HomePage = () => {
             {valuesList.map((m) => (
               <div className="values-list-item">
                 <div className="banner-outer">
-                  <img src={m.img} alt="kit-items" />
+                  <Image src={m.Image} alt="kit-items" />
                 </div>
                 <h3>{m.title}</h3>
                 <p>{m.desc}</p>
@@ -118,11 +119,11 @@ const HomePage = () => {
           </h2>
           <div className="testimonials">
             <div className="testimonial-images">
-              <div className="testimonial-img">
-                <img src="/homeAssets/testimonial-1.png" alt="testimonia" />
+              <div className="testimonial-Image">
+                <Image src="/homeAssets/testimonial-1.png" alt="testimonia" />
               </div>
-              <div className="testimonial-img">
-                <img src="/homeAssets/testimonial-1.png" alt="testimonia" />
+              <div className="testimonial-Image">
+                <Image src="/homeAssets/testimonial-1.png" alt="testimonia" />
               </div>
             </div>
             <div className="testimonial-slider">
@@ -135,7 +136,7 @@ const HomePage = () => {
                     <div className="star-images">
                       {[1, 2, 3, 4].map(() => (
                         <>
-                          <img src="/homeAssets/star.png" alt="testimonia" />
+                          <Image src="/homeAssets/star.png" alt="testimonia" />
                         </>
                       ))}
                     </div>
@@ -147,7 +148,10 @@ const HomePage = () => {
                       voluptatibus voluptatem ullam!
                     </div>
                     <div className="author">
-                      <img src="/homeAssets/boy-avatar.svg" alt="user-image" />
+                      <Image
+                        src="/homeAssets/boy-avatar.svg"
+                        alt="user-image"
+                      />
                       John Doe
                     </div>
                   </div>
@@ -155,7 +159,7 @@ const HomePage = () => {
               </Carousel>
               <div className="action-btns">
                 <button onClick={() => carouselRef.current.slidePrev()}>
-                  <img src="/homeAssets/left-arrow.png" alt="left-arrow" />{" "}
+                  <Image src="/homeAssets/left-arrow.png" alt="left-arrow" />{" "}
                   Previous
                 </button>
                 <button onClick={() => carouselRef.current.slideNext()}>

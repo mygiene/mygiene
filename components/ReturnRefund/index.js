@@ -2,11 +2,12 @@ import React from "react";
 import Banner from "../BaseComponent/Banner";
 import Navigation from "../BaseComponent/Navigation";
 import RefundWrapper from "./style.refund";
+import Image from "next/image";
 export const ReturnRefund = () => {
   return (
     <>
       <RefundWrapper>
-        <Banner img="/banner_1.jpg" title="Returns & Refund" />
+        <Banner Image="/banner_1.jpg" title="Returns & Refund" />
 
         <div className="container">
           <Navigation />
