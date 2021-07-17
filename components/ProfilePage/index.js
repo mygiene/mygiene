@@ -14,12 +14,7 @@ const ProfilePage = () => {
             <div className="right-side">
               <h3>Profile Details</h3>
               <hr />
-              <div>
-                hello
-                <span contentEditable="true" id="text">
-                  hey
-                </span>
-              </div>
+              <div>right side</div>
             </div>
           </div>
         </div>

@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../components/auth/auth.js";
 import { MetaHead } from "../components/Meta-Head.jsx";
+import OrdersPage from "../components/OrdersPage/index.js";
 
 const URL = process.env.NEXT_PUBLIC_URL;
 
@@ -11,7 +12,7 @@ const Page = () => {
     return (
       <>
         <MetaHead title="Orders" />
-        MY ORDERs
+        <OrdersPage />
       </>
     );
   else {
