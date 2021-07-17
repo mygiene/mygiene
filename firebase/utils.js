@@ -5,7 +5,10 @@ import { firebaseConfig } from "./config";
 
 // Initialize Firebase
 
-if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+if (windows !== undefined && !firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+  firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
+}
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
