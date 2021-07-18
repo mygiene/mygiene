@@ -1,19 +1,33 @@
 import React from "react";
+import { FaIcon } from "../BaseComponent/FaIcon";
 import Navigation from "../BaseComponent/Navigation";
+import UserNavigation from "../BaseComponent/UserNavigation";
 import OrderWapper from "./style.order";
 const OrdersPage = () => {
   return (
     <OrderWapper>
       <div className="container">
-        <div className="top-section">top section</div>
+        <div className="top-section">
+          <div>
+            <h3>Account</h3>
+            <span>Name</span>
+          </div>
+          <hr />
+        </div>
         <div className="orders-view">
-          <Navigation />
+          <UserNavigation />
 
           <div className="right-side">
             <div className="order-item">
               <div className="order-status">
-                <div className="first-step">1</div>
-                <div className="current-step">2</div>
+                <div className="first-step">
+                  <span>Order Placed</span>
+                  <span>on Sat,21 January 2021</span>
+                </div>
+                <div className="current-step">
+                  <span>Order Placed</span>
+                  <span>on Sat,21 January 2021</span>
+                </div>
               </div>
               <div className="order__card">
                 <div className="order__card-image">
@@ -24,14 +38,9 @@ const OrdersPage = () => {
                   <span>$150.00 USD</span>
                   <span>Quantity : 1</span>
                 </div>
-                <div class="app">
-                  <div class="cloud">
-                    <div class="arrow">
-                      <div class="tip"></div>
-                    </div>
-                  </div>
-                  <div class="tray"> </div>
-                </div>
+                <button className="download-icon">
+                  <FaIcon className="fa fa-download" />
+                </button>
               </div>
             </div>
           </div>
