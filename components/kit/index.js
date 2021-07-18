@@ -58,11 +58,6 @@ const kitItems = [
       "Travel cases are a must for any jet setter. Our leak-free case ensures your soap stays fresh and clean.",
   },
 ];
-
-const allProd = [
-  { pId: "product1", pName: "kit 1" },
-  { pId: "product2", pName: "kit 2" },
-];
 export const Kit = () => {
   const {
     authState: { user },
@@ -70,32 +65,55 @@ export const Kit = () => {
   // const [open, setOpen] = useState(false);
 
   // const onOpenModal = () => setOpen(true);
-  const [, , , setCartItems] = useContext(StoreContext);
+  const [, , cartItems, setCartItems] = useContext(StoreContext);
 
-  const [cart, setcart] = useState([]);
-  const [products, setproducts] = useState(allProd);
-  console.log({ cart });
+  const [cart, setcart] = useState(null);
+  const [product, setproduct] = useState();
+  const [quantity, setquantity] = useState(user?.cartItems?.qt || 1);
 
-  // useEffect(() => {
-  //   const storedData = JSON.parse(localStorage.getItem("cart"));
-  //   if (storedData) {
-  //     setcart(storedData);
-  //   }
-  // }, []);
+  useEffect(async () => {
+    if (user) {
+      setCartItems(user.cartItems);
+      setcart(user.cartItems);
+    } else {
+      const storedData = JSON.parse(localStorage.getItem("cart"));
+      if (storedData) {
+        setcart(storedData);
+      }
+    }
+    const productRef = await firestore.doc("products/grooming_kit").get();
+    const { id } = productRef;
+    setproduct({ ...productRef.data(), pId: id });
+  }, []);
 
   useEffect(() => {
-    if (user) {
+    if (user && cart) {
       firestore
         .doc(`users/${user.id}`)
         .update({ cartItems: cart })
-        .then((res) => console.log("updated cart from kit page"))
+        .then((res) => {
+          setCartItems(cart);
+          localStorage.setItem("cart", null);
+        })
         .catch((err) => console.log(err.message));
+    } else if (!user) {
+      setCartItems(cart);
+      localStorage.setItem("cart", JSON.stringify(cart));
     }
-    setCartItems(cart);
-    localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
-  function add(product) {
+  function increase() {
+    setquantity((q) => q + 1);
+  }
+  function decrease() {
+    if (quantity > 1) setquantity((q) => q - 1);
+  }
+
+  function addToCart() {
+    setcart({ pId: product.pId, qt: quantity });
+  }
+
+  function add() {
     const prod = cart.find((p) => p.pId === product.pId);
     if (!prod) {
       setcart((oldCart) => [...oldCart, { ...product, qt: 1 }]);
@@ -106,7 +124,7 @@ export const Kit = () => {
       setcart(updatedCart);
     }
   }
-  function remove(product) {
+  function remove() {
     const prod = cart.find((p) => p.pId === product.pId);
     if (!prod) {
       //skip and do nothing
@@ -123,93 +141,97 @@ export const Kit = () => {
 
   return (
     <StyledWrapper>
-      <div className="kit">
-        <div className="kit__top">
-          <div className="kit__top-left">
-            <div className="kit__top-cover">
-              <img src="/kitAssets/cover.png" alt="kit-image" />
-            </div>
-          </div>
-          <div className="kit__top-right">
-            <h3>MYGIENE GROOMING KIT</h3>
-            <h2 className="kit-price">USD $59.99</h2>
-            <h2 className="kit-quantity">Quantity</h2>
-            <div className="quantity-buttons">
-              <button>
-                <FaIcon className="fa fa-minus button-icon" />
-              </button>
-              <span>1</span>
-              <button>
-                <FaIcon className="fa fa-plus button-icon" />
-              </button>
-            </div>
-            <div className="cart-button">
-              <button>
-                <span>Add to Cart</span>
-              </button>
-            </div>
-            <div className="values">
-              <div className="value-1">
-                <span>ECO-FRIENDLY</span>
-                <br />
-                <img src="/homeAssets/eco-friendly.png" alt="eco-friendly" />
-              </div>
-              <div className="value-2">
-                <span>SUSTAINABLE</span>
-                <br />
-                <img src="/homeAssets/sustainable.png" alt="suistainable" />
-              </div>
-              <div className="value-3">
-                <span>HIGH QUALITY</span>
-                <br />
-                <img src="/homeAssets/high-quality.png" alt="high-quality" />
+      {product && (
+        <div className="kit">
+          <div className="kit__top">
+            <div className="kit__top-left">
+              <div className="kit__top-cover">
+                <img src="/kitAssets/cover.png" alt="kit-image" />
               </div>
             </div>
-            <div className="description">
-              <details open>
-                <summary>Product Description</summary>
-                <p>
-                  Mygiene delivers a complete, one-stop toiletries package at
-                  the click of a button. You get more time to kick back, relax,
-                  and enjoy your holiday.
-                </p>
-              </details>
-            </div>
-            <div className="shipping">
-              <Link href="/refund">
-                <a target="blank">
-                  <span>Shipping & Returns</span>
-                  <FaIcon className="fa fa-external-link" />
-                </a>
-              </Link>
-            </div>
-          </div>
-        </div>
-        <div className="kit__tiles">
-          <div className="kit__tiles-title">
-            <span>Kit Items</span>
-          </div>
-          <div className="kit__tiles-items">
-            {kitItems.map((m) => (
-              <div key={m.title} className="grid-item">
-                <span className="item-title">
-                  {m.title}{" "}
-                  <KitModalView
-                    title={m.title}
-                    image={m.image}
-                    content={m.content}
-                  />
-                </span>
-
-                <img src={m.image} alt={m.title} />
-                <div className="text-overlay">
-                  <span>{m.content}</span>
+            <div className="kit__top-right">
+              <h3>{product.name}</h3>
+              <h2 className="kit-price">USD ${product.price}</h2>
+              <h2 className="kit-quantity">Quantity</h2>
+              <div className="quantity-buttons">
+                <button onClick={decrease}>
+                  <FaIcon className="fa fa-minus button-icon" />
+                </button>
+                <span>{quantity}</span>
+                <button onClick={increase}>
+                  <FaIcon className="fa fa-plus button-icon" />
+                </button>
+              </div>
+              <div className="cart-button">
+                <button onClick={addToCart}>
+                  <span>
+                    {cartItems
+                      ? cartItems.qt > 0
+                        ? "Update Cart"
+                        : "Add to Cart"
+                      : "Add to Cart"}
+                  </span>
+                </button>
+              </div>
+              <div className="values">
+                <div className="value-1">
+                  <span>ECO-FRIENDLY</span>
+                  <br />
+                  <img src="/homeAssets/eco-friendly.png" alt="eco-friendly" />
+                </div>
+                <div className="value-2">
+                  <span>SUSTAINABLE</span>
+                  <br />
+                  <img src="/homeAssets/sustainable.png" alt="suistainable" />
+                </div>
+                <div className="value-3">
+                  <span>HIGH QUALITY</span>
+                  <br />
+                  <img src="/homeAssets/high-quality.png" alt="high-quality" />
                 </div>
               </div>
-            ))}
+              <div className="description">
+                <details open>
+                  <summary>Product Description</summary>
+                  <p>{product.description}</p>
+                </details>
+              </div>
+              <div className="shipping">
+                <Link href="/refund">
+                  <a target="blank">
+                    <span>Shipping & Returns</span>
+                    <FaIcon className="fa fa-external-link" />
+                  </a>
+                </Link>
+              </div>
+            </div>
+          </div>
+          <div className="kit__tiles">
+            <div className="kit__tiles-title">
+              <span>Kit Items</span>
+            </div>
+            <div className="kit__tiles-items">
+              {kitItems.map((m) => (
+                <div key={m.title} className="grid-item">
+                  <span className="item-title">
+                    {m.title}{" "}
+                    <KitModalView
+                      title={m.title}
+                      image={m.image}
+                      content={m.content}
+                    />
+                  </span>
+
+                  <img src={m.image} alt={m.title} />
+                  <div className="text-overlay">
+                    <span>{m.content}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </StyledWrapper>
   );
 };

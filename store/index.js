@@ -18,7 +18,7 @@ function reducer(state = initialState, action) {
 
 const Store = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const [cartItems, updateCartItems] = useState([]);
+  const [cartItems, updateCartItems] = useState(null);
 
   useEffect(() => {
     const oldCart = JSON.parse(localStorage.getItem("cart"));

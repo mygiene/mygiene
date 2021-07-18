@@ -5,14 +5,12 @@ import StyledWrapper from "./styles.cart";
 
 export const Cart = () => {
   const [, , cartItems] = useContext(StoreContext);
+  console.log("cartPage", cartItems);
   return (
     <StyledWrapper>
       <h2>YOUR CART ITEMS</h2>
 
-      {cartItems.length > 0 &&
-        cartItems.map((prod) => {
-          return <CartItem key={prod.pId} {...prod} />;
-        })}
+      {cartItems && <CartItem key={cartItems.pId} {...cartItems} />}
     </StyledWrapper>
   );
 };

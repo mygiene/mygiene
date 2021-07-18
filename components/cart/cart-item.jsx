@@ -1,9 +1,31 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { firestore } from "../../firebase/utils";
+import { StoreContext } from "../../store";
+import { AuthContext } from "../auth/auth";
 import { FaIcon } from "../BaseComponent/FaIcon";
 import { ItemWrapper } from "./styles.cart";
 
 export const CartItem = (props) => {
+  const {
+    authState: { user },
+  } = useContext(AuthContext);
+  const [, , , setCartItems] = useContext(StoreContext);
   const [expressDelivery, setExpressDelivery] = useState(false);
+
+  async function emptyCart() {
+    if (user) {
+      try {
+        await firestore.doc(`users/${user.id}`).update({
+          cartItems: null,
+        });
+        setCartItems(null);
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      localStorage.setItem("cart", null);
+    }
+  }
   return (
     <ItemWrapper>
       <div className="item-wrapper">
@@ -25,7 +47,7 @@ export const CartItem = (props) => {
             <div className="item-price">
               $ 150.00
               <span className="remove-btn">
-                <button>Remove</button>
+                <button onClick={emptyCart}>Remove</button>
               </span>
             </div>
           </div>

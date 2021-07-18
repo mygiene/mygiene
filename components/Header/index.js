@@ -25,6 +25,7 @@ const NavLinks = [
 ];
 
 export const Dropdown = ({ show, closeOnClick, isLoggedIn }) => {
+  const [, , , setCartItems] = useContext(StoreContext);
   const [, dispatch] = useContext(StoreContext);
   const router = useRouter();
   function logMeOut() {
@@ -32,6 +33,12 @@ export const Dropdown = ({ show, closeOnClick, isLoggedIn }) => {
       .signOut()
       .then(() => {
         closeOnClick();
+
+        // set cart to empty
+        localStorage.setItem("cart", null);
+        setCartItems(null);
+
+        // set user to null
         dispatch(setCurrentUser(null));
         if (protectedRoutes.includes(router.pathname)) Router.push("/");
         toast.success("See you soon 👋🏻");
@@ -101,6 +108,7 @@ export const Header = () => {
   const activeLink = useRouter().pathname;
   const { authState } = useContext(AuthContext);
   const isLoggedIn = authState.user;
+  const [, , cartItems] = useContext(StoreContext);
   function toggle() {
     setisopen((s) => !s);
   }
@@ -147,8 +155,8 @@ export const Header = () => {
                   <li>
                     <Link href={m.link}>
                       <a>
-                        {m.link === "/cart" && (
-                          <div className="product-counter">1</div>
+                        {m.link === "/cart" && cartItems && (
+                          <div className="product-counter">{cartItems.qt}</div>
                         )}
                         <img src={m.icon} alt="cart-counter" />
                       </a>
