@@ -1,10 +1,13 @@
-import React from "react";
-import Navigation from "../BaseComponent/Navigation";
+import React, { useContext } from "react";
+import { AuthContext } from "../auth/auth";
 import UserNavigation from "../BaseComponent/UserNavigation";
 import EditProfile from "./EditProfile";
 import ProfileWrapper from "./style.profile";
 
 const ProfilePage = () => {
+  const {
+    authState: { user },
+  } = useContext(AuthContext);
   return (
     <>
       <ProfileWrapper>
@@ -22,42 +25,34 @@ const ProfilePage = () => {
             <div className="right-side">
               <div>
                 <h3>Profile Details</h3>
-                <EditProfile />
+                <EditProfile
+                  name={user?.displayName}
+                  email={user?.email}
+                  address={user?.address}
+                />
               </div>
               <hr />
               <div className="profile_details">
                 <div className="profile_details-name">
                   <span>Name </span>
-                  <span>John abc</span>
+                  <span>{user?.displayName}</span>
                 </div>
                 <div className="profile_details-email">
                   <span>Email Id</span>
-                  <span>xyz@gmail.com</span>
+                  <span>{user?.email}</span>
                 </div>
                 <div className="profile_details-contact">
                   <span>Contact No</span>
                   <div>
-                    <details open>
-                      <summary>Home</summary>
-                      <p>xxx-xxx-xxx</p>
-                    </details>
-                    <details open>
-                      <summary>Office</summary>
-                      <p>xxx-xxx-xxx</p>
-                    </details>
+                    <span>{user?.mobile || ""}</span>
                   </div>
                 </div>
                 <div className="profile_details-address">
                   <span>Address</span>
+
                   <div>
-                    <details open>
-                      <summary>Home</summary>
-                      <p>xxx-xxx-xxx</p>
-                    </details>
-                    <details open>
-                      <summary>Office</summary>
-                      <p>xxx-xxx-xxx</p>
-                    </details>
+                    <input type="textarea" />
+                    <input type="text" placeholder="hpome/officd" />
                   </div>
                 </div>
               </div>
