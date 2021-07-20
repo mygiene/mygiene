@@ -1,5 +1,6 @@
 import React from "react";
 import { FaIcon } from "../BaseComponent/FaIcon";
+import RefundCondition from "./RefundCondition";
 
 const OrderItem = () => {
   return (
@@ -19,10 +20,16 @@ const OrderItem = () => {
           <img src="/kitAssets/cover.png" />
         </div>
         <div className="order__card-content">
-          <h3>mygiene grooming kit</h3>
-          <span>$150.00 USD</span>
-          <span>Quantity : 1</span>
+          <div>
+            <h3>mygiene grooming kit</h3>
+            <span>$150.00 USD</span>
+            <span>Quantity : 1</span>
+          </div>
+          <div>
+            <RefundCondition />
+          </div>
         </div>
+
         <button className="download-icon">
           <FaIcon className="fa fa-download" />
         </button>

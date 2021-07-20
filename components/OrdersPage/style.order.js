@@ -99,17 +99,32 @@ export default styled.div`
             .order__card-content {
               display: flex;
               flex-direction: column;
-              h3 {
-                text-transform: uppercase;
-                font-size: 1rem;
-                margin-bottom: 0;
+              grid-gap: 2rem;
+              div:nth-child(1) {
+                display: flex;
+                flex-direction: column;
+                h3 {
+                  text-transform: uppercase;
+                  font-size: 1rem;
+                  margin-bottom: 0;
+                }
+                span:nth-child(1) {
+                  margin-top: 0.6rem;
+                  font-weight: 900;
+                }
+                span:nth-child(2) {
+                  margin-top: 1.25rem;
+                }
               }
-              span:nth-child(1) {
-                margin-top: 0.6rem;
-                font-weight: 900;
-              }
-              span:nth-child(2) {
-                margin-top: 1.25rem;
+              div:nth-child(2) {
+                button {
+                  color: red;
+                  font-weight: 600;
+                  padding-left: 0;
+                  font-size: 0.8rem;
+                  border: none;
+                  text-decoration: underline;
+                }
               }
             }
             .download-icon {
@@ -144,7 +159,7 @@ export default styled.div`
           margin: auto !;
           .order__card {
             width: 100% !important;
-            height: 240px !important;
+            height: 260px !important;
             flex-direction: column !important;
             grid-gap: 0.5rem !important;
             .order__card-image {
@@ -154,22 +169,36 @@ export default styled.div`
             .order__card-content {
               width: 90% !important;
               align-items: center !important;
-              h3 {
-                margin-top: 0.8rem !important;
-                font-size: 1.35rem !important;
-                font-weight: 800 !important;
-                margin-bottom: 0rem !important;
+              grid-gap: 1.3rem !important;
+              div:nth-child(1) {
+                h3 {
+                  margin-top: 0.8rem !important;
+                  font-size: 1.35rem !important;
+                  font-weight: 800 !important;
+                  margin-bottom: 0rem !important;
+                }
+                span:nth-child(1) {
+                  font-size: 1.5rem !important;
+                  font-weight: 800 !important;
+                  margin-top: 0.8rem !important;
+                  margin-bottom: 1rem !important;
+                }
+                span:nth-child(2) {
+                  font-size: 1.3rem !important;
+                  color: darkslategray !important;
+                  font-weight: 500 !important;
+                  margin-top: 1.15rem !important;
+                }
               }
-              span:nth-child(1) {
-                font-size: 1.5rem !important;
-                font-weight: 800 !important;
-                margin-top: 0.8rem !important;
-              }
-              span:nth-child(2) {
-                font-size: 1.3rem !important;
-                color: darkslategray !important;
-                font-weight: 500 !important;
-                margin-top: 1.15rem !important;
+              div:nth-child(2) {
+                button {
+                  color: red;
+                  font-weight: 600;
+                  padding-left: 0 !important;
+                  font-size: 1rem !important;
+                  border: none;
+                  text-decoration: underline;
+                }
               }
             }
           }
@@ -212,22 +241,35 @@ export default styled.div`
             .order__card-content {
               width: 90% !important;
               align-items: center !important;
-              h3 {
-                margin-top: 0.8rem !important;
-                font-size: 1.35rem !important;
-                font-weight: 800 !important;
-                margin-bottom: 0rem !important;
+              div:nth-child(1) {
+                h3 {
+                  margin-top: 0.8rem !important;
+                  font-size: 1.35rem !important;
+                  font-weight: 800 !important;
+                  margin-bottom: 0rem !important;
+                }
+                span:nth-child(1) {
+                  font-size: 1.5rem !important;
+                  font-weight: 800 !important;
+                  margin-top: 0.8rem !important;
+                }
+                span:nth-child(2) {
+                  font-size: 1.3rem !important;
+                  color: darkslategray !important;
+                  font-weight: 500 !important;
+                  margin-top: 1.15rem !important;
+                }
               }
-              span:nth-child(1) {
-                font-size: 1.5rem !important;
-                font-weight: 800 !important;
-                margin-top: 0.8rem !important;
-              }
-              span:nth-child(2) {
-                font-size: 1.3rem !important;
-                color: darkslategray !important;
-                font-weight: 500 !important;
-                margin-top: 1.15rem !important;
+              div:nth-child(2) {
+                margin-left: -6rem !important;
+                button {
+                  color: red;
+                  font-weight: 600;
+                  padding-left: 0;
+                  font-size: 0.8rem;
+                  border: none;
+                  text-decoration: underline;
+                }
               }
             }
           }
