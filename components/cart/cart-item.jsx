@@ -5,6 +5,8 @@ import { AuthContext } from "../auth/auth";
 import { FaIcon } from "../BaseComponent/FaIcon";
 import { ItemWrapper } from "./styles.cart";
 
+export const DeliveryPrice = "10";
+
 export const CartItem = (props) => {
   const {
     authState: { user },
@@ -14,7 +16,9 @@ export const CartItem = (props) => {
   const [quantity, setquantity] = useState(cartItems?.qt || 1);
   const [product, setproduct] = useState();
   const [submitting, setsubmitting] = useState(false);
-  const total = +product?.price * +quantity;
+  const total = expressDelivery
+    ? (+product?.price * +quantity + +DeliveryPrice).toFixed(2)
+    : (+product?.price * +quantity).toFixed(2);
 
   useEffect(async () => {
     if (cartItems) {

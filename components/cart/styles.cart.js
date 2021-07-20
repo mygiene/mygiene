@@ -55,6 +55,7 @@ export const ItemWrapper = styled.div`
               color: ${variables.primary_color};
             }
             & :disabled {
+              cursor: default;
               border-color: #bdbdbd;
               color: #bdbdbd;
             }
