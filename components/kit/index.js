@@ -69,7 +69,7 @@ export const Kit = () => {
 
   const [cart, setcart] = useState(null);
   const [product, setproduct] = useState();
-  const [quantity, setquantity] = useState(user?.cartItems?.qt || 1);
+  const [quantity, setquantity] = useState(cartItems?.qt || 1);
 
   useEffect(async () => {
     if (user) {
@@ -111,32 +111,6 @@ export const Kit = () => {
 
   function addToCart() {
     setcart({ pId: product.pId, qt: quantity });
-  }
-
-  function add() {
-    const prod = cart.find((p) => p.pId === product.pId);
-    if (!prod) {
-      setcart((oldCart) => [...oldCart, { ...product, qt: 1 }]);
-    } else {
-      const updatedCart = cart.map((p) =>
-        p.pId === prod.pId ? { ...p, qt: p.qt + 1 } : { ...p }
-      );
-      setcart(updatedCart);
-    }
-  }
-  function remove() {
-    const prod = cart.find((p) => p.pId === product.pId);
-    if (!prod) {
-      //skip and do nothing
-    } else if (prod.qt === 1) {
-      const updatedCart = cart.filter((f) => f.pId !== prod.pId);
-      setcart(updatedCart);
-    } else {
-      const updatedCart = cart.map((p) =>
-        p.pId === prod.pId ? { ...p, qt: (p.qt || 1) - 1 } : { ...p }
-      );
-      setcart(updatedCart);
-    }
   }
 
   return (

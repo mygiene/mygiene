@@ -9,8 +9,9 @@ export const CartItem = (props) => {
   const {
     authState: { user },
   } = useContext(AuthContext);
-  const [, , , setCartItems] = useContext(StoreContext);
+  const [, , cartItems, setCartItems] = useContext(StoreContext);
   const [expressDelivery, setExpressDelivery] = useState(false);
+  const [quantity, setquantity] = useState(cartItems?.qt || 1);
 
   async function emptyCart() {
     if (user) {
@@ -24,6 +25,67 @@ export const CartItem = (props) => {
       }
     } else {
       localStorage.setItem("cart", null);
+      setCartItems(null);
+    }
+  }
+
+  async function increase() {
+    setquantity((q) => q + 1);
+    if (user) {
+      try {
+        await firestore.doc(`users/${user.id}`).update({
+          cartItems: { ...user.cartItems, qt: user.cartItems.qt + 1 },
+        });
+        setCartItems({ ...user.cartItems, qt: user.cartItems.qt + 1 });
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      console.log({ cartItems });
+
+      if (cartItems) {
+        const updatedCart = {
+          ...cartItems,
+          qt: cartItems.qt + 1,
+        };
+        setCartItems(updatedCart);
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
+      } else {
+        const updatedCart = { pId: "grooming_kit", qt: 1 };
+        setCartItems(updatedCart);
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
+      }
+    }
+  }
+
+  async function decrease() {
+    if (quantity > 1) {
+      setquantity((q) => q - 1);
+      if (user) {
+        try {
+          await firestore.doc(`users/${user.id}`).update({
+            cartItems: { ...user.cartItems, qt: user.cartItems.qt - 1 },
+          });
+          setCartItems({ ...user.cartItems, qt: user.cartItems.qt - 1 });
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        if (cartItems) {
+          const updatedCart = {
+            ...cartItems,
+            qt: cartItems.qt - 1,
+          };
+          setCartItems(updatedCart);
+          localStorage.setItem("cart", JSON.stringify(updatedCart));
+        }
+        // else {
+        //   const updatedCart = { pId: "grooming_kit", qt: 1 };
+
+        //   setCartItems({ pId: "grooming_kit", qt: 1 });
+        //   localStorage.setItem("cart", JSON.stringify(updatedCart));
+        // }
+      }
     }
   }
   return (
@@ -36,11 +98,11 @@ export const CartItem = (props) => {
           <div className="item-name-quantity">
             <div className="item-name">MYGIENE GROOMING KIT</div>
             <div className="item-quantity">
-              <button>
+              <button onClick={decrease}>
                 <FaIcon className="fa-minus" />
               </button>
-              <span>{props.qt}</span>
-              <button>
+              <span>{quantity}</span>
+              <button onClick={increase}>
                 <FaIcon className="fa-plus" />
               </button>
             </div>
