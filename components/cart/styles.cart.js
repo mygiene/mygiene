@@ -54,6 +54,10 @@ export const ItemWrapper = styled.div`
 
               color: ${variables.primary_color};
             }
+            & :disabled {
+              border-color: #bdbdbd;
+              color: #bdbdbd;
+            }
           }
         }
         .item-price {
