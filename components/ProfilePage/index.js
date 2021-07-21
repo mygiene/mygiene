@@ -15,7 +15,7 @@ const ProfilePage = () => {
           <div className="top-section">
             <div>
               <h3>Account</h3>
-              <span>Name</span>
+              <span>{user?.displayName}</span>
             </div>
             <hr />
           </div>
@@ -51,8 +51,12 @@ const ProfilePage = () => {
                   <span>Address</span>
 
                   <div>
-                    <input type="textarea" />
-                    <input type="text" placeholder="Home/office" />
+                    {user?.address.map((m) => (
+                      <div>
+                        <span>{m.address}</span>
+                        <span>({m.type})</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>

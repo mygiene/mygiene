@@ -33,7 +33,7 @@ export default styled.div`
       .right-side {
         div {
           display: inline-block;
-          align-items: center;
+
           h3 {
             text-transform: uppercase;
 
@@ -62,10 +62,10 @@ export default styled.div`
             grid-gap: 6rem;
           }
           .profile_details-email {
-            grid-gap: 4.9rem;
+            grid-gap: 5rem;
           }
           .profile_details-contact {
-            grid-gap: 2.75rem;
+            grid-gap: 3.4rem;
             div {
               details {
                 summary {
@@ -104,42 +104,17 @@ export default styled.div`
             }
           }
           .profile_details-address {
-            grid-gap: 4.3rem;
+            grid-gap: 5.2rem;
+
             div {
-              details {
-                summary {
-                  margin: 0rem 0rem 1rem 0rem;
-                  list-style-type: none;
-                  text-transform: uppercase;
-                  font-size: 1rem;
-                  font-weight: 600;
-                }
-                p {
-                  margin: -0.3rem 0rem 0.8rem 2.2rem;
-                }
-                summary::marker {
-                  display: none;
-                }
-                summary:after {
-                  content: "+";
-                  color: #fff;
-                  float: left;
-                  font-size: 1.8rem;
-                  font-weight: 400;
-                  margin: -7px 4px 0 0;
-                  padding: 0px 3px;
-                  color: black;
-                  text-align: center;
-                  width: 20px;
-                  p {
-                    margin: 0rem 0rem 0.5rem 2.2rem;
-                  }
-                }
-              }
-              details[open] summary:after {
-                content: "-";
-                padding: 0px 3px;
-                margin: -7px 4px 0 0;
+              display: flex;
+              flex-direction: column;
+              grid-gap: 0.8rem;
+
+              div {
+                display: flex;
+                grid-gap: 1rem;
+                flex-direction: row;
               }
             }
           }
@@ -150,6 +125,24 @@ export default styled.div`
   @media only screen and (max-width: 425px) {
     .profile-view {
       flex-direction: column;
+      .right-side {
+        /* width: 100%; */
+        display: flex !important;
+        flex-direction: column !important;
+        /* justify-content: center; */
+        margin: auto !important;
+        align-items: center !important;
+      }
+    }
+  }
+  @media only screen and (max-width: 767px) and (min-width: 426px) {
+    .right-side {
+      /* width: 100%; */
+      display: flex !important;
+      flex-direction: column !important;
+      /* justify-content: center; */
+      margin: auto !important;
+      align-items: center !important;
     }
   }
 `;

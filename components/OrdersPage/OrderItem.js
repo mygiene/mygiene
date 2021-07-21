@@ -20,10 +20,15 @@ const OrderItem = () => {
           <img src="/kitAssets/cover.png" />
         </div>
         <div className="order__card-content">
-          <div>
+          <div className="content-outer">
             <h3>mygiene grooming kit</h3>
-            <span>$150.00 USD</span>
-            <span>Quantity : 1</span>
+            <span className="price">$150.00 USD</span>
+            <div className="quantity-order">
+              <span>Quantity : 1</span>
+              <span className="order-outer">
+                Order Id : <span> 746573746b6579</span>
+              </span>
+            </div>
           </div>
           <div>
             <RefundCondition />

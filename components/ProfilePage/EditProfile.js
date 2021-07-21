@@ -4,7 +4,7 @@ import { FaIcon } from "../BaseComponent/FaIcon";
 import { Modal } from "react-responsive-modal";
 import { firestore } from "../../firebase/utils";
 import { AuthContext } from "../auth/auth";
-
+import EditWrapper from "./style.modal";
 const EditProfile = (props) => {
   const {
     authState: { user },
@@ -48,61 +48,70 @@ const EditProfile = (props) => {
         open={open}
         center
         onClose={onCloseModal}
-        styles={{ modal: { background: "#f8e1e1" } }}
+        styles={{ modal: { background: "#f8e1e1", width: "80%" } }}
       >
-        <div>
-          <h3>Edit Profile</h3>
-          <div className="edit-form">
-            <form onSubmit={handleSubmit}>
-              <div>
-                <label>Name</label>
-                <input
-                  name="displayName"
-                  onChange={handleFieldChange}
-                  type="text"
-                  value={displayName}
-                />
-              </div>
-              <br />
-              <div>
-                <label>Email</label>
-                <input
-                  name="email"
-                  onChange={handleFieldChange}
-                  type="text"
-                  value={email}
-                />
-              </div>
-              <div>
-                <label>Contact</label>
-                <input
-                  name="mobile"
-                  onChange={handleFieldChange}
-                  type="text"
-                  value={mobile}
-                />
-              </div>
-              <div>
-                {address.length > 0 &&
-                  address.map((m) => (
-                    <div>
-                      <label>Address</label>
-                      <input name="type" value={m.type} type="text" />
-                      <input
-                        name="address"
-                        onChange={handleFieldChange}
-                        type="text"
-                        value={m.address}
-                      />
-                    </div>
-                  ))}
-              </div>
-              <div>
-                <button type="submit">Submit</button>
-              </div>
-            </form>
+        <EditWrapper>
+          <div className="edit-modal">
+            <h3>Edit Profile</h3>
+            <div className="edit-form">
+              <form onSubmit={handleSubmit}>
+                <div className="form-fields">
+                  <label>Name</label>
+                  <input
+                    name="displayName"
+                    onChange={handleFieldChange}
+                    type="text"
+                    value={displayName}
+                  />
+                </div>
+
+                <div className="form-fields">
+                  <label>Email</label>
+                  <input
+                    name="email"
+                    onChange={handleFieldChange}
+                    type="text"
+                    value={email}
+                  />
+                </div>
+                <div className="form-fields">
+                  <label>Contact</label>
+                  <input
+                    name="mobile"
+                    onChange={handleFieldChange}
+                    type="text"
+                    value={mobile}
+                  />
+                </div>
+                <div className="form-fields-address">
+                  <label>Address</label>
+                  <div className="address-fields">
+                    {address.length > 0 &&
+                      address.map((m) => (
+                        <div>
+                          <input
+                            name="type"
+                            value={m.type}
+                            type="text"
+                            placeholder="Type of Address"
+                          />
+                          <textarea
+                            name="address"
+                            // onChange={handleFieldChange}
+                            type="text"
+                            // value={m.address}
+                          />
+                        </div>
+                      ))}
+                  </div>
+                </div>
+                <div className="form-button">
+                  <button type="submit">Submit</button>
+                </div>
+              </form>
+            </div>
           </div>
-        </div>
+        </EditWrapper>
       </Modal>
     </>
   );

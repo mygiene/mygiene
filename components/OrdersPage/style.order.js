@@ -76,19 +76,20 @@ export default styled.div`
             }
           }
           .order__card {
-            width: 450px;
-            height: 165px;
+            width: 500px;
+            height: 200px;
             background-color: #ebebeb;
             align-items: center;
             display: flex;
-            grid-gap: 1.5rem;
+            grid-gap: 1rem;
             position: relative;
             border-radius: 8px;
             .order__card-image {
-              width: 144px;
-              height: 124px;
+              width: 200px;
+              height: 160px;
               background-color: ${variables.primary_color};
               margin-left: 1rem;
+
               img {
                 background-position: center;
                 object-fit: cover;
@@ -100,7 +101,7 @@ export default styled.div`
               display: flex;
               flex-direction: column;
               grid-gap: 2rem;
-              div:nth-child(1) {
+              .content-outer {
                 display: flex;
                 flex-direction: column;
                 h3 {
@@ -108,12 +109,24 @@ export default styled.div`
                   font-size: 1rem;
                   margin-bottom: 0;
                 }
-                span:nth-child(1) {
+                .price {
                   margin-top: 0.6rem;
                   font-weight: 900;
                 }
-                span:nth-child(2) {
-                  margin-top: 1.25rem;
+                .quantity-order {
+                  display: flex;
+                  margin-top: 1.5rem;
+                  grid-gap: 0.7rem;
+                  .order-outer {
+                    display: flex;
+                    align-items: baseline;
+                    span {
+                      font-size: 0.75rem;
+                      color: darkslategray;
+                      font-weight: 700;
+                      padding-left: 0.25rem;
+                    }
+                  }
                 }
               }
               div:nth-child(2) {
@@ -159,7 +172,7 @@ export default styled.div`
           margin: auto !;
           .order__card {
             width: 100% !important;
-            height: 260px !important;
+            height: 300px !important;
             flex-direction: column !important;
             grid-gap: 0.5rem !important;
             .order__card-image {
@@ -167,34 +180,38 @@ export default styled.div`
               margin-top: 1.2rem;
             }
             .order__card-content {
+              display: flex;
+              flex-direction: column;
+              grid-gap: 2rem;
               width: 90% !important;
               align-items: center !important;
-              grid-gap: 1.3rem !important;
-              div:nth-child(1) {
-                h3 {
-                  margin-top: 0.8rem !important;
-                  font-size: 1.35rem !important;
-                  font-weight: 800 !important;
-                  margin-bottom: 0rem !important;
-                }
-                span:nth-child(1) {
-                  font-size: 1.5rem !important;
-                  font-weight: 800 !important;
-                  margin-top: 0.8rem !important;
-                  margin-bottom: 1rem !important;
-                }
-                span:nth-child(2) {
-                  font-size: 1.3rem !important;
-                  color: darkslategray !important;
-                  font-weight: 500 !important;
-                  margin-top: 1.15rem !important;
+
+              .content-outer {
+                display: flex;
+
+                .quantity-order {
+                  display: flex;
+                  margin-top: 1.5rem;
+                  grid-gap: 0.7rem;
+                  font-size: 1.2rem !important;
+                  .order-outer {
+                    display: flex;
+                    align-items: baseline;
+                    font-size: 1.2rem !important;
+                    span {
+                      font-size: 1rem !important;
+                      color: darkslategray;
+                      font-weight: 700;
+                      padding-left: 0.25rem;
+                    }
+                  }
                 }
               }
               div:nth-child(2) {
                 button {
                   color: red;
                   font-weight: 600;
-                  padding-left: 0 !important;
+                  padding-left: 0;
                   font-size: 1rem !important;
                   border: none;
                   text-decoration: underline;
@@ -228,40 +245,48 @@ export default styled.div`
           width: 90% !important;
           margin: auto !important;
           margin: auto !important;
-          max-width: 450px !important;
+          max-width: 500px !important;
           .order__card {
             width: 100% !important;
-            height: 165px !important;
+            height: 200px !important;
 
-            grid-gap: 1.5rem !important;
             .order__card-image {
               margin-left: 0;
               margin-top: 1.2rem;
             }
             .order__card-content {
-              width: 90% !important;
-              align-items: center !important;
+              grid-gap: 1rem !important;
               div:nth-child(1) {
                 h3 {
-                  margin-top: 0.8rem !important;
-                  font-size: 1.35rem !important;
-                  font-weight: 800 !important;
-                  margin-bottom: 0rem !important;
+                  text-transform: uppercase;
+                  font-size: 1.2rem !important;
+                  //margin-bottom: 1rem !important;
                 }
-                span:nth-child(1) {
-                  font-size: 1.5rem !important;
-                  font-weight: 800 !important;
-                  margin-top: 0.8rem !important;
+                .price {
+                  margin-top: 0.6rem;
+                  font-weight: 900;
+                  font-size: 1.1rem !important;
                 }
-                span:nth-child(2) {
-                  font-size: 1.3rem !important;
-                  color: darkslategray !important;
-                  font-weight: 500 !important;
-                  margin-top: 1.15rem !important;
+                .quantity-order {
+                  display: flex;
+                  margin-top: 1.5rem;
+                  grid-gap: 0.7rem;
+                  font-size: 1.2rem !important;
+                  flex-direction: column !important;
+                  .order-outer {
+                    display: flex;
+                    align-items: baseline;
+                    span {
+                      font-size: 0.95rem !important;
+                      color: darkslategray;
+                      font-weight: 700;
+                      padding-left: 0.25rem;
+                    }
+                  }
                 }
               }
               div:nth-child(2) {
-                margin-left: -6rem !important;
+                margin-top: 1.5rem !important;
                 button {
                   color: red;
                   font-weight: 600;
