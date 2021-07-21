@@ -154,7 +154,7 @@ const EditProfile = (props) => {
                 {address.length <= 1 && (
                   <form onSubmitCapture={(e) => updateAddress(null, e)}>
                     <div className="form-fields-address">
-                      <label>Address</label>
+                      <label>Add / Delete Address Dynamically</label>
                       <div className="address-fields">
                         <div>
                           <input
@@ -173,20 +173,23 @@ const EditProfile = (props) => {
                             value={newAddress}
                             placeholder="Enter your Address"
                           />
+                          <div>
+                            <button type="submit">
+                              <FaIcon className="fa fa-plus" />
+                            </button>
+                          </div>
                         </div>
                       </div>
-                      <button type="submit">Add +</button>
                     </div>
                   </form>
                 )}
 
                 {address.length > 0 && (
-                  <div className="form-fields-address">
-                    <label>Address</label>
-                    <div className="address-fields">
+                  <div className="fetch-address">
+                    <form>
                       {address.map((m) => (
-                        <form>
-                          <div>
+                        <div className="address-card">
+                          <div className="input-fields">
                             <input
                               name="type"
                               value={m.type}
@@ -194,6 +197,8 @@ const EditProfile = (props) => {
                               onChange={(e) => updateAddress(m.id, e)}
                               placeholder="Type of Address"
                             />
+                          </div>
+                          <div className="input-fields">
                             <textarea
                               name="address"
                               value={m.address}
@@ -202,14 +207,55 @@ const EditProfile = (props) => {
                               placeholder="Your Address"
                             />
                           </div>
-                          <button onClick={(e) => remove(m.id, e)}>
-                            Delete
-                          </button>
-                        </form>
+                          <div className="delete-button">
+                            <button onClick={(e) => remove(m.id, e)}>
+                              <FaIcon className="fa fa-trash" />
+                            </button>
+                          </div>
+                        </div>
                       ))}
-                    </div>
+                    </form>
                   </div>
                 )}
+
+                {/* {address.length > 0 && (
+                  <div className="form-fields-address">
+                    <div className="address-fields">
+                      <form>
+                        <table>
+                          {address.map((m, index) => (
+                            <tr>
+                              <td>
+                                <input
+                                  name="type"
+                                  value={m.type}
+                                  type="text"
+                                  onChange={(e) => updateAddress(m.id, e)}
+                                  placeholder="Type of Address"
+                                />
+                              </td>
+                              <td>
+                                <textarea
+                                  name="address"
+                                  value={m.address}
+                                  onChange={(e) => updateAddress(m.id, e)}
+                                  type="text"
+                                  placeholder="Your Address"
+                                />
+                              </td>
+                              <td>
+                                <button onClick={(e) => remove(m.id, e)}>
+                                  <FaIcon className="fa fa-trash" />
+                                </button>
+                              </td>
+                            </tr>
+                          ))}
+                        </table>
+                      </form>
+                      
+                    </div>
+                  </div>
+                )} */}
                 <div className="form-button">
                   <button type="submit">Submit</button>
                 </div>
