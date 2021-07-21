@@ -15,7 +15,6 @@ const ProfilePage = () => {
           <div className="top-section">
             <div>
               <h3>Account</h3>
-              <span>{user?.displayName}</span>
             </div>
             <hr />
           </div>

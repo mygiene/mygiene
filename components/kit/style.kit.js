@@ -1,28 +1,6 @@
 import styled from "styled-components";
 import media from "../../util/media-queries";
 
-// export const ModalWrapper = styled.div`
-//   /* display: none;
-//   position: fixed;
-//   top: 50%;
-//   left: 50%;
-//   transform: translate(-50%, -50%);
-//   z-index: 9;
-//   div {
-//     background-color: grey;
-//     display: flex;
-//     flex-direction: column;
-//     padding: 2rem;
-//     background-color: gray;
-//     width: 80%;
-//     height: 500px;
-//   } */
-//   .react-responsive-modal-modal {
-//     width: 80% !important;
-//     height: 60%;
-//   }
-// `;
-
 export default styled.div`
   margin-top: 4.5rem;
 

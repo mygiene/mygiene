@@ -107,8 +107,10 @@ const EditProfile = (props) => {
   console.log(form.address);
   return (
     <>
-      <FaIcon onClick={onOpenModal} className="fa fa-edit" />
-
+      <button onClick={onOpenModal}>
+        <FaIcon className="fa fa-edit" />
+        <span>Edit</span>
+      </button>
       <Modal
         open={open}
         center

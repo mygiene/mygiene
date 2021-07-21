@@ -30,9 +30,13 @@ export default styled.div`
     .profile-view {
       display: flex;
       grid-gap: 3rem;
+      margin-bottom: 3rem;
       .right-side {
         div {
-          display: inline-block;
+          width: 100%;
+          display: flex;
+          grid-gap: 4rem;
+          align-items: baseline;
 
           h3 {
             text-transform: uppercase;
@@ -40,11 +44,29 @@ export default styled.div`
             margin-top: 2rem;
             float: left;
           }
-          i {
-            margin-top: 1.5rem;
-            margin-left: 2rem;
-            font-size: 2rem;
-            color: blue;
+          button {
+            display: flex;
+            background-color: #d5fafc;
+            border: none;
+            /* width: 100px; */
+            align-items: baseline;
+            width: 5rem;
+            height: 2.5rem;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10%;
+            i {
+              color: black;
+              font-size: 1.8rem;
+            }
+          }
+          button:hover {
+            background-color: #000000;
+
+            i,
+            span {
+              color: white;
+            }
           }
         }
         .profile_details {
@@ -65,41 +87,10 @@ export default styled.div`
             grid-gap: 5rem;
           }
           .profile_details-contact {
-            grid-gap: 3.4rem;
+            grid-gap: 0.2rem;
             div {
-              details {
-                summary {
-                  margin: 0rem 0rem 1rem 0rem;
-                  list-style-type: none;
-                  text-transform: uppercase;
-                  font-size: 1rem;
-                  font-weight: 600;
-                }
-                p {
-                  margin: -0.3rem 0rem 0.8rem 2.2rem;
-                }
-                summary::marker {
-                  display: none;
-                }
-                summary:after {
-                  content: "+";
-                  color: #fff;
-                  float: left;
-                  font-size: 1.8rem;
-                  font-weight: 400;
-                  margin: -7px 4px 0 0;
-                  padding: 0px 3px;
-                  color: black;
-                  text-align: center;
-                  width: 20px;
-
-                  /* border: 1px solid black; */
-                }
-              }
-              details[open] summary:after {
-                content: "-";
-                padding: 0px 3px;
-                margin: -7px 4px 0 0;
+              span {
+                width: 60%;
               }
             }
           }

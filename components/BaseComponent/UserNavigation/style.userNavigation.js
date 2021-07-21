@@ -16,7 +16,7 @@ export default styled.div`
         span {
           padding: 10px;
           color: grey;
-          font-size: 1.6rem;
+          font-size: 1.3rem;
           text-transform: uppercase;
         }
       }
@@ -26,7 +26,7 @@ export default styled.div`
         span {
           color: black;
           font-weight: 900;
-          font-size: 1.7rem;
+          font-size: 1.4rem;
         }
       }
     }
