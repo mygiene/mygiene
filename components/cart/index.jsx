@@ -5,7 +5,6 @@ import StyledWrapper from "./styles.cart";
 
 export const Cart = () => {
   const [, , cartItems] = useContext(StoreContext);
-  console.log("cartPage", cartItems);
   return (
     <StyledWrapper>
       <h2>YOUR CART ITEMS</h2>
