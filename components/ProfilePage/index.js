@@ -25,11 +25,7 @@ const ProfilePage = () => {
             <div className="right-side">
               <div>
                 <h3>Profile Details</h3>
-                <EditProfile
-                  name={user?.displayName}
-                  email={user?.email}
-                  address={user?.address}
-                />
+                <EditProfile {...user} />
               </div>
               <hr />
               <div className="profile_details">
@@ -51,12 +47,13 @@ const ProfilePage = () => {
                   <span>Address</span>
 
                   <div>
-                    {user?.address.map((m) => (
-                      <div>
-                        <span>{m.address}</span>
-                        <span>({m.type})</span>
-                      </div>
-                    ))}
+                    {user?.address?.length > 0 &&
+                      user?.address.map((m) => (
+                        <div>
+                          <span>{m.address}</span>
+                          <span>({m.type})</span>
+                        </div>
+                      ))}
                   </div>
                 </div>
               </div>

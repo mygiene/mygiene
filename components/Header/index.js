@@ -116,8 +116,7 @@ export const Header = () => {
   function getNameInitials() {
     let fullName, fName, lName, initials;
     if (isLoggedIn) {
-      fullName = isLoggedIn?.displayName;
-
+      fullName = isLoggedIn?.displayName || "New User";
       let nameArr = fullName.split(" ").filter(Boolean);
       fName = nameArr[0][0].toUpperCase() || "";
       lName = nameArr?.[1]?.[0]?.toUpperCase?.() || "";
