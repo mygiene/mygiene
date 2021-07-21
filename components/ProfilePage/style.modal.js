@@ -88,6 +88,7 @@ export default styled.div`
           }
         }
         .form-button {
+          margin-top: 2rem;
           button {
             height: 3rem;
             border-radius: 1.75rem;
@@ -121,9 +122,20 @@ export default styled.div`
               width: 95%;
               margin: auto;
 
-              input,
-              textarea {
+              input {
                 height: 2rem;
+                margin: 0.5rem 0rem;
+
+                font-size: 1.1rem;
+                width: 100%;
+                border: none;
+                z-index: 2;
+                padding-left: 1rem;
+
+                box-sizing: border-box;
+                max-width: 100%;
+              }
+              textarea {
                 margin: 0.5rem 0rem;
 
                 font-size: 1.1rem;
@@ -182,7 +194,7 @@ export default styled.div`
           margin: 0.5rem 0rem;
           border-radius: 0.5rem;
           font-size: 1.1rem;
-
+          line-height: 1.6rem;
           border: none;
           z-index: 2;
           padding-left: 1rem;
@@ -217,9 +229,8 @@ export default styled.div`
 
             input,
             textarea {
-              height: 2rem;
               margin: 0.5rem 0rem;
-
+              line-height: 1.6rem;
               font-size: 1.1rem;
               width: 100%;
               border: none;

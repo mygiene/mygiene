@@ -204,6 +204,7 @@ const EditProfile = (props) => {
                               value={m.address}
                               onChange={(e) => updateAddress(m.id, e)}
                               type="text"
+                              rows="3"
                               placeholder="Your Address"
                             />
                           </div>
