@@ -9,15 +9,22 @@ import {
 import { toast } from "react-toastify";
 import { auth, firestore, handleUserProfile } from "../../firebase/utils";
 import { StoreContext } from "../../store";
+import { IsCSR } from "../../util/common";
 
 const initialState = {
   user: null,
   pending: true,
+  isAdmin: false,
 };
 
 export const protectedRoutes = ["/profile", "/orders"];
-
 export const safeRoutes = ["/login", "/signup"];
+export const adminRoutes = [
+  "/admin",
+  "manage-product",
+  "users-list",
+  "orders-list",
+];
 
 export const AuthContext = createContext(initialState);
 
@@ -40,17 +47,31 @@ export const AuthProvider = ({ children }) => {
             id: snapshot.id,
             ...snapshot.data(),
           };
-          setAuthState({ user: currentUsr, pending: false });
+          if (
+            currentUsr?.authRoles &&
+            currentUsr?.authRoles.includes("admin-user")
+          )
+            setAuthState({ user: currentUsr, pending: false, isAdmin: true });
+          else {
+            if (adminRoutes.includes(router.pathname)) {
+              window.location = `${URL}`;
+            }
+            setAuthState({ user: currentUsr, pending: false, isAdmin: false });
+          }
         });
       } else {
+        if (adminRoutes.includes(router.pathname)) {
+          window.location = `${URL}`;
+        }
         if (protectedRoutes.includes(router.pathname))
           window.location = `${URL}/login`;
 
-        setAuthState({ user: userAuth, pending: false });
+        setAuthState({ user: userAuth, pending: false, isAdmin: false });
       }
     });
     return () => unsubscribe();
-  }, [typeof window !== undefined]);
+  }, []);
+  //typeof window !== undefined
 
   useEffect(async () => {
     const { user } = authState;

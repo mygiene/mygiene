@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { IsCSR } from "./common";
 
 // Custom Hook
 function useWindowSize() {
@@ -9,7 +10,8 @@ function useWindowSize() {
 
   useEffect(() => {
     // only execute all the code below in client side
-    if (typeof window !== "undefined") {
+    if (IsCSR) {
+      // window !== "undefined"
       function handleResize() {
         setWindowSize({
           width: window.innerWidth,

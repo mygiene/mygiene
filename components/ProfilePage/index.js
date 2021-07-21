@@ -52,7 +52,7 @@ const ProfilePage = () => {
 
                   <div>
                     <input type="textarea" />
-                    <input type="text" placeholder="hpome/officd" />
+                    <input type="text" placeholder="Home/office" />
                   </div>
                 </div>
               </div>
