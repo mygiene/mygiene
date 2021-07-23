@@ -40,7 +40,7 @@ const Pages = () => {
                 <thead>
                   <tr>
                     <th>
-                      <h1>Display Name</h1>
+                      <h1>S.No.</h1>
                     </th>
                     <th>
                       <h1>User Name</h1>
@@ -54,16 +54,22 @@ const Pages = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {/* {console.log(users)} */}
+                  {console.log(users)}
                   {users.length > 0 &&
-                    users.map((item) => (
+                    users.map((item, index) => (
                       <Link href={`/admin/user-list/${item?.id}`}>
                         <a>
                           <tr>
-                            <td>{item?.displayName}</td>
+                            <td>{index + 1}</td>
                             <td>{item?.displayName}</td>
                             <td>{item?.email}</td>
-                            <td>{item?.email}</td>
+                            <td>
+                              {new Date(
+                                item.createdAt.seconds * 1000
+                              ).toLocaleString("en-US", {
+                                timeZone: "Australia/Sydney",
+                              })}
+                            </td>
                           </tr>
                         </a>
                       </Link>
