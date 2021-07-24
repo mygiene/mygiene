@@ -88,10 +88,8 @@ export default styled.div`
           }
           .profile_details-contact {
             grid-gap: 0.2rem;
-            div {
-              span {
-                width: 60%;
-              }
+            span {
+              width: 60%;
             }
           }
           .profile_details-address {

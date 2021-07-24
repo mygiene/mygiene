@@ -31,6 +31,7 @@ export default styled.div`
     .orders-view {
       display: flex;
       grid-gap: 1.5rem;
+      margin-bottom: 3rem;
       .right-side {
         .order-item {
           display: flex;
@@ -49,12 +50,12 @@ export default styled.div`
               align-items: flex-start;
               span:nth-child(1) {
                 color: #004525;
-                font-size: 0.8rem;
+                font-size: 1.1rem;
                 font-weight: 700;
               }
               span:nth-child(2) {
                 color: #004525;
-                font-size: 0.8rem;
+                font-size: 1rem;
                 font-weight: 400;
               }
             }
@@ -65,12 +66,12 @@ export default styled.div`
               align-items: flex-end;
               span:nth-child(1) {
                 color: #004525;
-                font-size: 0.8rem;
+                font-size: 1.1rem;
                 font-weight: 700;
               }
               span:nth-child(2) {
                 color: #004525;
-                font-size: 0.8rem;
+                font-size: 1rem;
                 font-weight: 400;
               }
             }
