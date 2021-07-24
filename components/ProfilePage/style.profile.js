@@ -29,15 +29,22 @@ export default styled.div`
     }
     .profile-view {
       display: flex;
-      grid-gap: 3rem;
+      grid-gap: 1rem;
       margin-bottom: 3rem;
       .right-side {
-        div {
+        width: 600px;
+        .profile-icon {
           width: 100%;
-          display: flex;
-          grid-gap: 4rem;
-          align-items: baseline;
-
+          position: relative;
+          .icon-image {
+            display: flex;
+            width: 100%;
+            height: 11rem;
+            img {
+              object-fit: cover;
+              background-position: center;
+            }
+          }
           h3 {
             text-transform: uppercase;
 
@@ -48,6 +55,9 @@ export default styled.div`
             display: flex;
             background-color: #d5fafc;
             border: none;
+            position: absolute;
+            bottom: 1rem;
+            left: 15rem;
             /* width: 100px; */
             align-items: baseline;
             width: 5rem;
@@ -82,18 +92,28 @@ export default styled.div`
           }
           .profile_details-name {
             grid-gap: 6rem;
+            span {
+              font-size: 1.25rem;
+            }
           }
           .profile_details-email {
             grid-gap: 5rem;
+            span {
+              font-size: 1.25rem;
+            }
           }
           .profile_details-contact {
-            grid-gap: 0.2rem;
+            grid-gap: 1.2rem;
             span {
-              width: 60%;
+              font-size: 1.25rem;
+              width: 22%;
             }
           }
           .profile_details-address {
             grid-gap: 5.2rem;
+            span {
+              font-size: 1.25rem;
+            }
 
             div {
               display: flex;
@@ -113,25 +133,106 @@ export default styled.div`
   }
   @media only screen and (max-width: 425px) {
     .profile-view {
-      flex-direction: column;
       .right-side {
-        /* width: 100%; */
         display: flex !important;
         flex-direction: column !important;
-        /* justify-content: center; */
+        width: 100% !important;
         margin: auto !important;
         align-items: center !important;
+        .profile-icon {
+          width: 60% !important;
+          .icon-image {
+            justify-content: center !important;
+          }
+        }
+        .profile_details-name {
+          grid-gap: 4.7rem !important;
+          span {
+            font-size: 1.25rem;
+          }
+        }
+        .profile_details-email {
+          grid-gap: 0rem !important;
+          span {
+            font-size: 1.25rem;
+            width: 37% !important;
+          }
+        }
+        .profile_details-contact {
+          span {
+            font-size: 1.25rem;
+            width: 35% !important;
+          }
+        }
+        .profile_details-address {
+          grid-gap: 0.9rem !important;
+          span {
+            font-size: 1.25rem;
+            width: 35% !important;
+          }
+        }
+      }
+    }
+  }
+  @media only screen and (max-width: 1024px) {
+    .profile_details-contact {
+      grid-gap: 0.2rem !important;
+      span {
+        font-size: 1.25rem;
+        width: 22%;
+      }
+    }
+  }
+  @media only screen and (max-width: 840px) and (min-width: 768px) {
+    .profile_details-contact {
+      grid-gap: 0.7rem !important;
+      span {
+        font-size: 1.25rem;
+        width: 22%;
       }
     }
   }
   @media only screen and (max-width: 767px) and (min-width: 426px) {
-    .right-side {
-      /* width: 100%; */
-      display: flex !important;
-      flex-direction: column !important;
-      /* justify-content: center; */
-      margin: auto !important;
-      align-items: center !important;
+    .profile-view {
+      .right-side {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        margin: auto !important;
+        align-items: center !important;
+        .profile-icon {
+          width: 45% !important;
+          .icon-image {
+            justify-content: center !important;
+          }
+        }
+        .profile_details-name {
+          grid-gap: 4.7rem !important;
+          span {
+            font-size: 1.25rem;
+          }
+        }
+        .profile_details-email {
+          grid-gap: 0rem !important;
+          span {
+            font-size: 1.25rem;
+            width: 37% !important;
+          }
+        }
+        .profile_details-contact {
+          span {
+            font-size: 1.25rem;
+            width: 35% !important;
+          }
+        }
+        .profile_details-address {
+          grid-gap: 0.9rem !important;
+          span {
+            font-size: 1.25rem;
+            width: 35% !important;
+          }
+        }
+      }
     }
   }
 `;

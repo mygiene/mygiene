@@ -22,11 +22,14 @@ const ProfilePage = () => {
             <UserNavigation />
 
             <div className="right-side">
-              <div>
-                <h3>Profile Details</h3>
+              <div className="profile-icon">
+                {/* <h3>Profile Details</h3> */}
+                <div className="icon-image">
+                  <img src="/profileAssets/user.png" />
+                </div>
                 <EditProfile {...user} />
               </div>
-              <hr />
+
               <div className="profile_details">
                 <div className="profile_details-name">
                   <span>Name </span>
