@@ -4,6 +4,9 @@ import { StoreContext } from "../../store";
 import { AuthContext } from "../auth/auth";
 import { FaIcon } from "../BaseComponent/FaIcon";
 import { ItemWrapper } from "./styles.cart";
+import Link from "next/link";
+import axios from "axios";
+import { getStripe } from "../../stripe/getStripe";
 
 export const DeliveryPrice = "10";
 
@@ -111,6 +114,20 @@ export const CartItem = (props) => {
       }
     }
   }
+
+  async function redirectToCheckout(e) {
+    e.preventDefault();
+    const {
+      data: { id },
+    } = await axios.post("/api/checkout_sessions", {
+      items: [
+        { price: "price_1JGjBgSHrHmkkXVvImX9BgV9", quantity: cartItems.qt },
+      ],
+    });
+
+    const stripe = await getStripe();
+    await stripe.redirectToCheckout({ sessionId: id });
+  }
   return (
     <>
       {product?.name && quantity && (
@@ -169,7 +186,11 @@ export const CartItem = (props) => {
                 <div>$ {total} USD</div>
               </div>
               <div className="checkout-btn">
-                <button>Continue to Checkout</button>
+                {/* <Link href="/payment-details"> */}
+                <button onClick={redirectToCheckout}>
+                  Continue to Checkout
+                </button>
+                {/* </Link> */}
               </div>
             </div>
           </div>
