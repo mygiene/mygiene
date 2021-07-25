@@ -10,7 +10,6 @@ const OrdersPage = () => {
         <div className="top-section">
           <div>
             <h3>Account</h3>
-            <span>Name</span>
           </div>
           <hr />
         </div>

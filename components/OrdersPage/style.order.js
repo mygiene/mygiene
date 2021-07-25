@@ -33,6 +33,7 @@ export default styled.div`
       grid-gap: 1.5rem;
       margin-bottom: 3rem;
       .right-side {
+        margin: 1.5rem 0rem 3rem 0rem;
         .order-item {
           display: flex;
           margin-top: 1rem;
