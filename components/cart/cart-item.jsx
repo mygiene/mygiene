@@ -121,7 +121,7 @@ export const CartItem = (props) => {
       data: { id },
     } = await axios.post("/api/checkout_sessions", {
       items: [
-        { price: "price_1JGjBgSHrHmkkXVvImX9BgV9", quantity: cartItems.qt },
+        { price: "price_1JGtD7SHrHmkkXVv2N8o1PiF", quantity: cartItems.qt },
       ],
     });
 
