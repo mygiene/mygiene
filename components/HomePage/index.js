@@ -18,6 +18,28 @@ const kitList = [
   { id: 10, label: "Soap Case" },
 ];
 
+const testimonials = [
+  {
+    author: "Kim Maynard",
+    content:
+      "I bought this kit for my husband, and at first, he was a bit weary of it and then he came to use it everyday whilst we were on holidays and I could really see an improvement in his overall confidence and hygiene. Thanks so much Mygiene Australia!",
+  },
+  {
+    author: "Ann Nguyen",
+    content:
+      "I bought the Mygiene essentials kit for my husband as he wanted to try some products that were natural and effective. He loves the kit! Its easy to use and has everything he needs in order to stay squeaky clean! Nice work team, highly recommend.",
+  },
+  {
+    author: "Muhammad Ishad ",
+    content:
+      "Ever since I started using the astonishingly good Mygiene essentials kit I have had an increase of girls checking me out. The kit has significantly improved my sense of self worth and even gave me the confidence to hit on the girl I really like! ",
+  },
+  {
+    author: "Melissa Wapul",
+    content:
+      "Hey Mygiene, I purchased your kit for my partner for valentines day. Hes never been into having personal hygiene regime....but now he is! He loves it. And what a difference it has made. So healthy and happy now. Hes a southern bloke who is exposed to the elements with his work, so I'm thrilled to pass on that your kit works wonders for the roughest and toughest conditions!",
+  },
+];
 const valuesList = [
   {
     id: 1,
@@ -131,7 +153,7 @@ const HomePage = () => {
                 ref={(ref) => (carouselRef.current = ref)}
                 {...settings}
               >
-                {[1, 2, 3, 4].map((m) => (
+                {testimonials.map((m) => (
                   <div className="slide-outer">
                     <div className="star-images">
                       {[1, 2, 3, 4].map(() => (
@@ -140,16 +162,10 @@ const HomePage = () => {
                         </>
                       ))}
                     </div>
-                    <div className="content">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Praesentium quis, suscipit rem veritatis molestias dolor
-                      minus ratione maiores rerum. Voluptate, illo dignissimos
-                      laboriosam praesentium delectus tempora assumenda
-                      voluptatibus voluptatem ullam!
-                    </div>
+                    <div className="content">{m.content}</div>
                     <div className="author">
                       <img src="/homeAssets/boy-avatar.svg" alt="user-image" />
-                      John Doe
+                      {m.author}
                     </div>
                   </div>
                 ))}

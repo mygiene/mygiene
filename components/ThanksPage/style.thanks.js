@@ -1,6 +1,6 @@
 import styled from "styled-components";
 export default styled.div`
-  margin-top: 5rem;
+  margin-top: 3rem;
 
   .top__section {
     .logo {
