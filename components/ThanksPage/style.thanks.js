@@ -10,12 +10,21 @@ export default styled.div`
       width: 100%;
 
       grid-gap: 1rem;
-
-      h2 {
-        font-family: "quam_black";
-        font-size: 2.5rem;
-        color: black;
-        margin-bottom: 0;
+      a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: -1rem;
+        i {
+          margin-right: 1rem;
+        }
+        h2 {
+          font-family: "quam_black";
+          font-size: 2.5rem;
+          color: black;
+          margin-bottom: 0;
+          margin-top: 0;
+        }
       }
     }
     .thankyou__text {

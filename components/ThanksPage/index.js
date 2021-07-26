@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import { FaIcon } from "../BaseComponent/FaIcon";
 import ThanksWrapper from "./style.thanks";
 const ThanksPage = () => {
   return (
@@ -9,6 +10,7 @@ const ThanksPage = () => {
           <div className="logo">
             <Link href="/">
               <a href="/">
+                <FaIcon className="fa fa-long-arrow-left" />
                 <h2>mygiene</h2>
               </a>
             </Link>
