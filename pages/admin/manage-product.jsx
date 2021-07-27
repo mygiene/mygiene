@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import React, { useContext } from "react";
-import { AuthContext } from "../components/auth/auth";
+import { AuthContext } from "../../components/auth/auth";
 
 const URL = process.env.NEXT_PUBLIC_URL;
 
