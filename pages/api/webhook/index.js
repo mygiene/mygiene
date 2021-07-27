@@ -37,7 +37,7 @@ export default async function handler(req, res) {
 
     //handle event type and add business logic
     if (event.type === "checkout.session.completed") {
-      console.log("Payment Recieved");
+      console.log("Payment Recieved", event);
       // firestore.doc(`orders/`)
     } else {
       console.warn(`Unhandled event type, ${event.type}`);
