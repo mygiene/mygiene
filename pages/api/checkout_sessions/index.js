@@ -4,7 +4,7 @@ const URL = process.env.NEXT_PUBLIC_URL;
 
 const stripe = new Stripe(
   process.env.STRIPE_SECRET_KEY ||
-    "sk_test_51JFYTaSHrHmkkXVvN5j0psPEjN8e1lrqZisfRIN869rgQlAykySlxGokXKTWVKYtsl2ntDaASmZViSx2qCgyrtKr00Zk4c9C3j"
+    "sk_test_51JHMy7EDTtTQNBA8mWiIc4Tx5pdKoPOrrJjPhg5WGAFMp0AZbxw5UurTu5lmw1Amqu5022zMUE9QJw7kIIN4JDfu00Bkdgooaw"
 );
 
 export default async function handler(req, res) {
@@ -13,8 +13,12 @@ export default async function handler(req, res) {
       const session = await stripe.checkout.sessions.create({
         mode: "payment",
         payment_method_types: ["card"],
+        shipping_address_collection: {
+          allowed_countries: ["AU"],
+        },
+        shipping_rates: req?.body?.shippingRate || [],
         line_items: req?.body?.items ?? [],
-        success_url: `${URL}?session_id={CHECKOUT_SESSION_ID}`,
+        success_url: `${URL}/success?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${URL}/cart`,
       });
 

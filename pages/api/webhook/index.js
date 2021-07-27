@@ -1,11 +1,12 @@
 import Stripe from "stripe";
 import { buffer } from "micro";
+import { firestore } from "../../../firebase/utils";
 
 const URL = process.env.NEXT_PUBLIC_URL;
 
 const stripe = new Stripe(
   process.env.STRIPE_SECRET_KEY ||
-    "sk_test_51JFYTaSHrHmkkXVvN5j0psPEjN8e1lrqZisfRIN869rgQlAykySlxGokXKTWVKYtsl2ntDaASmZViSx2qCgyrtKr00Zk4c9C3j"
+    "sk_test_51JHMy7EDTtTQNBA8mWiIc4Tx5pdKoPOrrJjPhg5WGAFMp0AZbxw5UurTu5lmw1Amqu5022zMUE9QJw7kIIN4JDfu00Bkdgooaw"
 );
 
 export const config = {
@@ -37,6 +38,7 @@ export default async function handler(req, res) {
     //handle event type and add business logic
     if (event.type === "checkout.session.completed") {
       console.log("Payment Recieved");
+      // firestore.doc(`orders/`)
     } else {
       console.warn(`Unhandled event type, ${event.type}`);
     }

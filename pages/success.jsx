@@ -4,7 +4,7 @@ import ThanksPage from "../components/ThanksPage/index.js";
 const Page = () => {
   return (
     <>
-      <MetaHead title="Order Confirmed" />
+      <MetaHead title="Order Placed" />
       <ThanksPage />
     </>
   );

@@ -8,20 +8,28 @@ import Link from "next/link";
 import axios from "axios";
 import { getStripe } from "../../stripe/getStripe";
 
-export const DeliveryPrice = "10";
+export const StandardDelivery = {
+  price: "10",
+  id: "shr_1JHrYuEDTtTQNBA8fPmzIEHt",
+};
+export const ExpressDelivery = {
+  price: "15",
+  id: "shr_1JHrfFEDTtTQNBA85aKOjYpe",
+};
 
 export const CartItem = (props) => {
   const {
     authState: { user },
   } = useContext(AuthContext);
   const [, , cartItems, setCartItems] = useContext(StoreContext);
-  const [expressDelivery, setExpressDelivery] = useState(false);
+  const [delivery, setDelivery] = useState({ standard: true, express: false });
   const [quantity, setquantity] = useState(cartItems?.qt || 1);
   const [product, setproduct] = useState();
   const [submitting, setsubmitting] = useState(false);
-  const total = expressDelivery
-    ? (+product?.price * +quantity + +DeliveryPrice).toFixed(2)
-    : (+product?.price * +quantity).toFixed(2);
+
+  const total = delivery.express
+    ? (+product?.price * +quantity + +ExpressDelivery.price).toFixed(2)
+    : (+product?.price * +quantity + +StandardDelivery.price).toFixed(2);
 
   useEffect(async () => {
     if (cartItems) {
@@ -121,8 +129,11 @@ export const CartItem = (props) => {
       data: { id },
     } = await axios.post("/api/checkout_sessions", {
       items: [
-        { price: "price_1JGtD7SHrHmkkXVv2N8o1PiF", quantity: cartItems.qt },
+        { price: "price_1JHrUxEDTtTQNBA8s9G6Ffcv", quantity: cartItems.qt },
       ],
+      shippingRate: delivery.express
+        ? [ExpressDelivery.id]
+        : [StandardDelivery.id],
     });
 
     const stripe = await getStripe();
@@ -169,21 +180,47 @@ export const CartItem = (props) => {
                     <input
                       id={`express-delivery-${props.pId}`}
                       type="checkbox"
+                      name="standardDelivery"
+                      autoComplete="off"
+                      checked={delivery.standard}
+                      onChange={() =>
+                        setDelivery((s) => ({
+                          standard: !s.standard,
+                          express: !s.express,
+                        }))
+                      }
+                    />
+                  </span>
+                  <label htmlFor={`express-delivery-${props.pId}`}>
+                    Standard Delivery
+                  </label>
+                  <span className="service-price">$10.00 AUD</span>
+                </div>
+                <div className="services">
+                  <span>
+                    <input
+                      id={`express-delivery-${props.pId}`}
+                      type="checkbox"
                       name="expressDelivery"
                       autoComplete="off"
-                      checked={expressDelivery}
-                      onChange={() => setExpressDelivery((s) => !s)}
+                      checked={delivery.express}
+                      onChange={() =>
+                        setDelivery((s) => ({
+                          standard: !s.standard,
+                          express: !s.express,
+                        }))
+                      }
                     />
                   </span>
                   <label htmlFor={`express-delivery-${props.pId}`}>
                     Express Delivery
                   </label>
-                  <span className="service-price">$10.00 USD</span>
+                  <span className="service-price">$15.00 AUD</span>
                 </div>
               </div>
               <div className="total">
                 <div>Total</div>
-                <div>$ {total} USD</div>
+                <div>$ {total} AUD</div>
               </div>
               <div className="checkout-btn">
                 {/* <Link href="/payment-details"> */}

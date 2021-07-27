@@ -10,7 +10,7 @@ import useWindowSize from "../../util/windowSize";
 import { toast } from "react-toastify";
 import { AuthContext, protectedRoutes } from "../auth/auth";
 
-const RemoveHeader = ["/confirmed"];
+const RemoveHeader = ["/success"];
 const NavLinks = [
   { name: "Home", link: "/", icon: "" },
   { name: "About Us", link: "/about-us", icon: "" },
