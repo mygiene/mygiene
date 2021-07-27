@@ -18,7 +18,7 @@ module.exports = {
       //   "/p/deploy-nextjs": { page: "/post", query: { title: "deploy-nextjs" } },
     };
   },
-  trailingSlash: true,
+  // trailingSlash: true,
   eslint: {
     dirs: ["pages", "utils"], // Only run ESLint on the 'pages' and 'utils' directories during production builds (next build)
   },
