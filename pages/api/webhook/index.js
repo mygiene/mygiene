@@ -26,8 +26,8 @@ export default async function handler(req, res) {
       event = stripe.webhooks.constructEvent(
         rawBody.toString(),
         signature,
-        // process.env.STRIPE_WEBHOOK_SECRET ||
-        "whsec_qw5KlRwdwD9Wqo4ECFgt6rMqN8ccvfO3"
+        process.env.STRIPE_WEBHOOK_SECRET
+        // "whsec_qw5KlRwdwD9Wqo4ECFgt6rMqN8ccvfO3"
       );
     } catch (error) {
       res.status(400).json({ status: 400, message: error.message });
