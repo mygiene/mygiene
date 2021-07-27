@@ -34,14 +34,14 @@ export default async function handler(req, res) {
     }
 
     // SUCCESSFULLY CONSTRUCTED EVENT
-    console.log("Success:", event.id);
+    console.log("Success:", event?.id);
 
     //handle event type and add business logic
-    if (event.type === "checkout.session.completed") {
+    if (event?.type === "checkout.session.completed") {
       console.log("Payment Recieved", event);
       // firestore.doc(`orders/`)
     } else {
-      console.warn(`Unhandled event type, ${event.type}`);
+      console.warn(`Unhandled event type, ${event?.type}`);
     }
 
     res.json({ received: true });
