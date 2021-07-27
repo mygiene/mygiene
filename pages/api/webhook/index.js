@@ -16,6 +16,7 @@ export const config = {
 };
 
 export default async function handler(req, res) {
+  console.log("request started");
   if (req.method === "POST") {
     let event;
     try {
