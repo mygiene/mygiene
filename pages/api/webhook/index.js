@@ -5,8 +5,8 @@ import { firestore } from "../../../firebase/utils";
 const URL = process.env.NEXT_PUBLIC_URL;
 
 const stripe = new Stripe(
-  process.env.STRIPE_SECRET_KEY ||
-    "sk_test_51JHMy7EDTtTQNBA8mWiIc4Tx5pdKoPOrrJjPhg5WGAFMp0AZbxw5UurTu5lmw1Amqu5022zMUE9QJw7kIIN4JDfu00Bkdgooaw"
+  // process.env.STRIPE_SECRET_KEY ||
+  "sk_test_51JHMy7EDTtTQNBA8mWiIc4Tx5pdKoPOrrJjPhg5WGAFMp0AZbxw5UurTu5lmw1Amqu5022zMUE9QJw7kIIN4JDfu00Bkdgooaw"
 );
 
 export const config = {
@@ -26,8 +26,8 @@ export default async function handler(req, res) {
       event = stripe.webhooks.constructEvent(
         rawBody.toString(),
         signature,
-        process.env.STRIPE_WEBHOOK_SECRET
-        // "whsec_qw5KlRwdwD9Wqo4ECFgt6rMqN8ccvfO3"
+        "whsec_qw5KlRwdwD9Wqo4ECFgt6rMqN8ccvfO3"
+        // process.env.STRIPE_WEBHOOK_SECRET
       );
     } catch (error) {
       res.status(400).json({ status: 400, message: error.message });
