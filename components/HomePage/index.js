@@ -136,7 +136,7 @@ const HomePage = () => {
         </div>
         <div className="testimonials-outer">
           <h2>
-            <p>What they say about us</p>
+            <p>What they say </p>
             <hr />
           </h2>
           <div className="testimonials">
