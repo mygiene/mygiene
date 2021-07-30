@@ -13,7 +13,6 @@ const stripePromise = loadStripe(stripePublishableKey);
 const Page = () => {
   const { authState } = useContext(AuthContext);
   const user = authState.user || null;
-  console.log(process.env.STRIPE_PUBLIC_KEY);
   if (user)
     return (
       <>

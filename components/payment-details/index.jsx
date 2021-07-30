@@ -1,6 +1,8 @@
 import { CardElement, useElements } from "@stripe/react-stripe-js";
-import { useState } from "react";
+import axios from "axios";
+import { useContext, useState } from "react";
 import { CountryDropdown } from "react-country-region-selector";
+import { StoreContext } from "../../store";
 import StyledWrapper from "./style.payment";
 
 const initialState = {
@@ -12,21 +14,14 @@ const initialState = {
   country: "",
 };
 
-const billingInitialState = {
-  line1: "",
-  line2: "",
-  city: "",
-  state: "",
-  postalCode: "",
-  country: "",
-};
-
 export const PaymentDetails = () => {
+  const [, , , , cartTotal] = useContext(StoreContext);
   const elements = useElements();
   const [shippingAddress, setShippingAddress] = useState(initialState);
   const [billingAddress, setBillingAddress] = useState(initialState);
   const [recipientName, setRecipientName] = useState();
   const [nameOnCard, setnameOnCard] = useState();
+  console.log(cartTotal);
 
   function handleFieldChangeShipping(event) {
     const { name, value } = event.target;
@@ -58,6 +53,10 @@ export const PaymentDetails = () => {
       !nameOnCard
     )
       return;
+
+    axios.post("/api/payments", {
+      amount: cartTotal * 100,
+    });
   }
 
   const configCardElement = {
@@ -67,7 +66,7 @@ export const PaymentDetails = () => {
         fontSize: "16px",
       },
     },
-    // hidePostalCode: true,
+    hidePostalCode: true,
   };
 
   const { line1, line2, city, state, postalCode, country } = shippingAddress;

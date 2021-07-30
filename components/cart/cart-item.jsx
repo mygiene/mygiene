@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { firestore } from "../../firebase/utils";
+import { firestore, fixedByTwoDecimal } from "../../firebase/utils";
 import { StoreContext } from "../../store";
 import { AuthContext } from "../auth/auth";
 import { FaIcon } from "../BaseComponent/FaIcon";
@@ -21,15 +21,29 @@ export const CartItem = (props) => {
   const {
     authState: { user },
   } = useContext(AuthContext);
-  const [, , cartItems, setCartItems] = useContext(StoreContext);
+  const [, , cartItems, setCartItems, cartTotal, setCartTotal] =
+    useContext(StoreContext);
   const [delivery, setDelivery] = useState({ standard: true, express: false });
   const [quantity, setquantity] = useState(cartItems?.qt || 1);
   const [product, setproduct] = useState();
   const [submitting, setsubmitting] = useState(false);
 
   const total = delivery.express
-    ? (+product?.price * +quantity + +ExpressDelivery.price).toFixed(2)
-    : (+product?.price * +quantity + +StandardDelivery.price).toFixed(2);
+    ? fixedByTwoDecimal(Number(cartTotal) + Number(ExpressDelivery.price))
+    : fixedByTwoDecimal(Number(cartTotal) + Number(StandardDelivery.price));
+
+  useEffect(() => {
+    setsubmitting(true);
+    firestore
+      .doc(`users/${user.id}`)
+      .update({
+        cartItems: {
+          ...user.cartItems,
+          delivery: delivery.standard ? "standard" : "express",
+        },
+      })
+      .then(() => setsubmitting(false));
+  }, [delivery]);
 
   useEffect(async () => {
     if (cartItems) {
@@ -66,10 +80,22 @@ export const CartItem = (props) => {
         await firestore
           .doc(`users/${user.id}`)
           .update({
-            cartItems: { ...user.cartItems, qt: user.cartItems.qt + 1 },
+            cartItems: {
+              ...user.cartItems,
+              qt: user.cartItems.qt + 1,
+              cartSubTotal: fixedByTwoDecimal(
+                product.price * (user.cartItems.qt + 1)
+              ),
+            },
           })
           .then(() => {
-            setCartItems({ ...user.cartItems, qt: user.cartItems.qt + 1 });
+            setCartItems({
+              ...user.cartItems,
+              qt: user.cartItems.qt + 1,
+              cartSubTotal: fixedByTwoDecimal(
+                product.price * (user.cartItems.qt + 1)
+              ),
+            });
             setquantity((q) => q + 1);
           });
       } catch (error) {
@@ -86,9 +112,12 @@ export const CartItem = (props) => {
         };
         setCartItems(updatedCart);
         localStorage.setItem("cart", JSON.stringify(updatedCart));
+        setquantity((q) => q + 1);
       } else {
         const updatedCart = { pId: "grooming_kit", qt: 1 };
         setCartItems(updatedCart);
+        setquantity(1);
+
         localStorage.setItem("cart", JSON.stringify(updatedCart));
       }
       setsubmitting(false);
@@ -102,9 +131,21 @@ export const CartItem = (props) => {
       if (user) {
         try {
           await firestore.doc(`users/${user.id}`).update({
-            cartItems: { ...user.cartItems, qt: user.cartItems.qt - 1 },
+            cartItems: {
+              ...user.cartItems,
+              qt: user.cartItems.qt - 1,
+              cartSubTotal: fixedByTwoDecimal(
+                product.price * (user.cartItems.qt - 1)
+              ),
+            },
           });
-          setCartItems({ ...user.cartItems, qt: user.cartItems.qt - 1 });
+          setCartItems({
+            ...user.cartItems,
+            qt: user.cartItems.qt - 1,
+            cartSubTotal: fixedByTwoDecimal(
+              product.price * (user.cartItems.qt - 1)
+            ),
+          });
         } catch (error) {
           console.log(error);
         }
@@ -178,6 +219,7 @@ export const CartItem = (props) => {
                 <div className="services">
                   <span>
                     <input
+                      disabled={submitting}
                       id={`express-delivery-${props.pId}`}
                       type="checkbox"
                       name="standardDelivery"
@@ -199,6 +241,7 @@ export const CartItem = (props) => {
                 <div className="services">
                   <span>
                     <input
+                      disabled={submitting}
                       id={`express-delivery-${props.pId}`}
                       type="checkbox"
                       name="expressDelivery"
@@ -223,11 +266,9 @@ export const CartItem = (props) => {
                 <div>$ {total} AUD</div>
               </div>
               <div className="checkout-btn">
-                {/* <Link href="/payment-details"> */}
-                <button onClick={redirectToCheckout}>
-                  Continue to Checkout
-                </button>
-                {/* </Link> */}
+                <Link href={user ? "/payment-details" : "/login"}>
+                  <button disabled={submitting}>Continue to Checkout</button>
+                </Link>
               </div>
             </div>
           </div>

@@ -19,6 +19,7 @@ function reducer(state = initialState, action) {
 const Store = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [cartItems, updateCartItems] = useState(null);
+  const [cartSubTotal, updateCartSubTotal] = useState(null);
 
   useEffect(() => {
     const oldCart = JSON.parse(localStorage.getItem("cart"));
@@ -28,9 +29,21 @@ const Store = ({ children }) => {
   function setCartItems(cart) {
     updateCartItems(cart);
   }
+  function setCartSubTotal(total) {
+    updateCartSubTotal(total);
+  }
 
   return (
-    <StoreContext.Provider value={[state, dispatch, cartItems, setCartItems]}>
+    <StoreContext.Provider
+      value={[
+        state,
+        dispatch,
+        cartItems,
+        setCartItems,
+        cartSubTotal,
+        setCartSubTotal,
+      ]}
+    >
       {children}
     </StoreContext.Provider>
   );

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
-import { firestore } from "../../firebase/utils";
+import { firestore, fixedByTwoDecimal } from "../../firebase/utils";
 import { StoreContext } from "../../store";
 import { AuthContext } from "../auth/auth";
 import { FaIcon } from "../BaseComponent/FaIcon";
@@ -62,9 +62,6 @@ export const Kit = () => {
   const {
     authState: { user },
   } = useContext(AuthContext);
-  // const [open, setOpen] = useState(false);
-
-  // const onOpenModal = () => setOpen(true);
   const [, , cartItems, setCartItems] = useContext(StoreContext);
 
   const [cart, setcart] = useState(null);
@@ -110,7 +107,20 @@ export const Kit = () => {
   }
 
   function addToCart() {
-    setcart({ pId: product.pId, qt: quantity });
+    if (!cart?.qt && product)
+      setcart({
+        pId: product.pId,
+        qt: quantity,
+        cartSubTotal: fixedByTwoDecimal(product.price * quantity),
+        delivery: "standard",
+      });
+    else
+      setcart((c) => ({
+        ...c,
+        pId: product.pId,
+        qt: quantity,
+        cartSubTotal: fixedByTwoDecimal(product.price * quantity),
+      }));
   }
 
   return (
@@ -125,7 +135,7 @@ export const Kit = () => {
             </div>
             <div className="kit__top-right">
               <h3>{product.name}</h3>
-              <h2 className="kit-price">USD ${product.price}</h2>
+              <h2 className="kit-price">AUD ${product.price}</h2>
               <h2 className="kit-quantity">Quantity</h2>
               <div className="quantity-buttons">
                 <button onClick={decrease}>

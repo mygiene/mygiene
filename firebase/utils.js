@@ -4,6 +4,8 @@ import "firebase/firestore";
 import { firebaseConfig } from "./config";
 // Initialize Firebase
 
+export const fixedByTwoDecimal = (val) => Number(val).toFixed(2);
+
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }

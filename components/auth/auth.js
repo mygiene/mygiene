@@ -7,7 +7,12 @@ import {
   useState,
 } from "react";
 import { toast } from "react-toastify";
-import { auth, firestore, handleUserProfile } from "../../firebase/utils";
+import {
+  auth,
+  firestore,
+  fixedByTwoDecimal,
+  handleUserProfile,
+} from "../../firebase/utils";
 import { StoreContext } from "../../store";
 import { IsCSR } from "../../util/common";
 
@@ -33,7 +38,8 @@ const URL = process.env.NEXT_PUBLIC_URL;
 export const AuthProvider = ({ children }) => {
   const [authState, setAuthState] = useState(initialState);
   const router = useRouter();
-  const [, , cartItems, setCartItems] = useContext(StoreContext);
+  const [, , cartItems, setCartItems, cartSubTotal, setCartSubTotal] =
+    useContext(StoreContext);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (userAuth) => {
@@ -83,7 +89,7 @@ export const AuthProvider = ({ children }) => {
 
         const localItems = JSON.parse(localStorage.getItem("cart"));
 
-        //
+        // items exist only on localstorage and not on firebase
         if (localItems && !firebaseCart) {
           firestore
             .doc(`users/${user.id}`)
@@ -93,22 +99,46 @@ export const AuthProvider = ({ children }) => {
             })
             .catch((err) => console.log(err.message));
           setCartItems(localItems);
+          setCartSubTotal(localItems.cartSubTotal);
           localStorage.setItem("cart", null);
-        } else if (firebaseCart && !localItems) {
-          // update quantity over firebase by adding local storage cartitem quantity of the item, here we only have one item
+        }
+        // items exist only on firebase cart and not in localstorage
+        else if (firebaseCart && !localItems) {
           localStorage.setItem("cart", null);
           setCartItems(firebaseCart);
+          setCartSubTotal(firebaseCart.cartSubTotal);
         } else if (firebaseCart && localItems) {
+          // update quantity over firebase by adding local storage cartitem quantity of the item, here we only have one item
+          const product = (
+            await firestore.doc("products/grooming_kit").get()
+          ).data();
           firestore
             .doc(`users/${user.id}`)
             .update({
-              cartItems: { ...cartItems, qt: cartItems.qt + firebaseCart.qt },
+              cartItems: {
+                ...cartItems,
+                qt: cartItems.qt + firebaseCart.qt,
+                cartSubTotal: fixedByTwoDecimal(
+                  (product?.price || 1) * (cartItems.qt + firebaseCart.qt)
+                ),
+              },
             })
             .then(() => {
               console.log("");
             })
             .catch((err) => console.log(err.message));
-          setCartItems({ ...cartItems, qt: cartItems.qt + firebaseCart.qt });
+          setCartItems({
+            ...cartItems,
+            qt: cartItems.qt + firebaseCart.qt,
+            cartSubTotal: fixedByTwoDecimal(
+              (product?.price || 1) * (cartItems.qt + firebaseCart.qt)
+            ),
+          });
+          setCartSubTotal(
+            fixedByTwoDecimal(
+              (product?.price || 1) * (cartItems.qt + firebaseCart.qt)
+            )
+          );
           localStorage.setItem("cart", null);
         }
       }
