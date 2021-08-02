@@ -21,16 +21,21 @@ export const CartItem = (props) => {
   const {
     authState: { user },
   } = useContext(AuthContext);
-  const [, , cartItems, setCartItems, cartTotal, setCartTotal] =
+  const [, , cartItems, setCartItems, cartSubTotal, setCartTotal] =
     useContext(StoreContext);
-  const [delivery, setDelivery] = useState({ standard: true, express: false });
+  const delv = cartItems?.delivery || "standard";
+  const standardDelv = delv === "standard";
+  const [delivery, setDelivery] = useState({
+    standard: standardDelv,
+    express: !standardDelv,
+  });
   const [quantity, setquantity] = useState(cartItems?.qt || 1);
   const [product, setproduct] = useState();
   const [submitting, setsubmitting] = useState(false);
 
   const total = delivery.express
-    ? fixedByTwoDecimal(Number(cartTotal) + Number(ExpressDelivery.price))
-    : fixedByTwoDecimal(Number(cartTotal) + Number(StandardDelivery.price));
+    ? fixedByTwoDecimal(Number(cartSubTotal) + Number(ExpressDelivery.price))
+    : fixedByTwoDecimal(Number(cartSubTotal) + Number(StandardDelivery.price));
 
   useEffect(() => {
     setsubmitting(true);

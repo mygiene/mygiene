@@ -1,27 +1,49 @@
-import { CardElement, useElements } from "@stripe/react-stripe-js";
+import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import axios from "axios";
-import { useContext, useState } from "react";
+import router from "next/router";
+import { useContext, useEffect, useState } from "react";
 import { CountryDropdown } from "react-country-region-selector";
+import { toast } from "react-toastify";
+import { firestore, fixedByTwoDecimal } from "../../firebase/utils";
 import { StoreContext } from "../../store";
+import { AuthContext } from "../auth/auth";
+import { ExpressDelivery, StandardDelivery } from "../cart/cart-item";
+import { ApplePay } from "./apple-pay";
 import StyledWrapper from "./style.payment";
 
 const initialState = {
-  line1: "",
-  line2: "",
-  city: "",
-  state: "",
-  postalCode: "",
-  country: "",
+  line1: "adf",
+  line2: "as",
+  city: "sdfa",
+  state: "adfa",
+  postal_code: "asdfa",
+  country: "AU",
 };
 
 export const PaymentDetails = () => {
-  const [, , , , cartTotal] = useContext(StoreContext);
+  const stripe = useStripe();
   const elements = useElements();
+  const {
+    authState: { user },
+  } = useContext(AuthContext);
+  const [, , cartItems, setCartItems, cartSubTotal, setCartSubTotal] =
+    useContext(StoreContext);
   const [shippingAddress, setShippingAddress] = useState(initialState);
   const [billingAddress, setBillingAddress] = useState(initialState);
+  const [billingAdd, setBillingAdd] = useState(true);
   const [recipientName, setRecipientName] = useState();
   const [nameOnCard, setnameOnCard] = useState();
-  console.log(cartTotal);
+
+  useEffect(() => {
+    if (billingAdd) setBillingAddress(shippingAddress);
+  }, [billingAdd]);
+
+  const total =
+    cartItems?.delivery === "express"
+      ? fixedByTwoDecimal(Number(cartSubTotal) + Number(ExpressDelivery.price))
+      : fixedByTwoDecimal(
+          Number(cartSubTotal) + Number(StandardDelivery.price)
+        );
 
   function handleFieldChangeShipping(event) {
     const { name, value } = event.target;
@@ -36,27 +58,92 @@ export const PaymentDetails = () => {
   async function handleSubmit(e) {
     e.preventDefault();
     const cardElement = elements.getElement("card");
+
+    if (
+      typeof cartItems?.delivery !== "string" ||
+      cartItems?.pId !== "grooming_kit" ||
+      Number(cartItems?.price) < 59.99 ||
+      cartItems?.qt < 1 ||
+      cartSubTotal < 59.99
+    ) {
+      toast.info("Something is wrong with your cart.");
+      router.push("/");
+    }
+
     if (
       !shippingAddress.line1 ||
       !shippingAddress.line2 ||
       !shippingAddress.city ||
       !shippingAddress.state ||
-      !shippingAddress.postalCode ||
+      !shippingAddress.postal_code ||
       !shippingAddress.country ||
       !billingAddress.line1 ||
       !billingAddress.line2 ||
       !billingAddress.city ||
       !billingAddress.state ||
-      !billingAddress.postalCode ||
+      !billingAddress.postal_code ||
       !billingAddress.country ||
       !recipientName ||
       !nameOnCard
     )
       return;
 
-    axios.post("/api/payments", {
-      amount: cartTotal * 100,
-    });
+    await axios
+      .post("/api/payments", {
+        amount: Math.ceil(total * 100),
+        shipping: {
+          name: recipientName,
+          address: { ...shippingAddress },
+        },
+      })
+      .then(({ data: clientSecret }) => {
+        stripe
+          .createPaymentMethod({
+            type: "card",
+            card: cardElement,
+            billing_details: {
+              name: nameOnCard,
+              address: { ...billingAddress },
+            },
+          })
+          .then(({ paymentMethod }) => {
+            stripe
+              .confirmCardPayment(clientSecret, {
+                payment_method: paymentMethod.id,
+              })
+              .then(async ({ paymentIntent }) => {
+                return new Promise((resolve, reject) => {
+                  firestore
+                    .collection("orders")
+                    .doc()
+                    .set({
+                      paymentIntentId: paymentIntent.id,
+                      shippingAddress: paymentIntent.shipping.address,
+                      totalAmount: fixedByTwoDecimal(
+                        Number(paymentIntent.amount) / 100
+                      ),
+                      cartItems,
+                      orderUserId: user.id,
+                      createdAt: new Date(),
+                    })
+                    .then(async () => {
+                      await firestore
+                        .doc(`users/${user.id}`)
+                        .update({
+                          cartItems: null,
+                        })
+                        .then(() => {
+                          resolve();
+                        });
+                    })
+                    .catch((err) => {
+                      reject(err);
+                    });
+                });
+              });
+          });
+      })
+      .catch((err) => console.log({ err }));
   }
 
   const configCardElement = {
@@ -68,10 +155,10 @@ export const PaymentDetails = () => {
     },
     hidePostalCode: true,
   };
-
-  const { line1, line2, city, state, postalCode, country } = shippingAddress;
+  const { line1, line2, city, state, postal_code } = shippingAddress;
   return (
     <StyledWrapper>
+      <ApplePay cartItems={cartItems} cartTotal={total} />
       <form onSubmit={handleSubmit}>
         <div className="shipping">
           <div className="shipping-title">Shipping Address</div>
@@ -111,25 +198,26 @@ export const PaymentDetails = () => {
             <input
               required
               type="text"
-              name="postalCode"
-              value={postalCode}
+              name="postal_code"
+              value={postal_code}
               onChange={handleFieldChangeShipping}
               placeholder="Postal Code"
             />
 
             <CountryDropdown
               required
+              disabled
               onChange={(val) =>
                 handleFieldChangeShipping({
                   target: {
                     name: "country",
-                    value: val,
+                    value: "AU",
                   },
                 })
               }
               value={shippingAddress.country}
               className="country-dropdown"
-              valueType="full"
+              valueType="short"
             />
 
             <input
@@ -144,75 +232,88 @@ export const PaymentDetails = () => {
         </div>
         <div className="billing">
           <div className="billing-title">Billing Address</div>
-          <div className="billing-details">
+          <div>
             <input
-              required
-              type="text"
-              name="line1"
-              value={billingAddress.line1}
-              onChange={handleFieldChangeBilling}
-              placeholder="Address Line 1"
+              id="billing-address"
+              type="checkbox"
+              name="standardDelivery"
+              autoComplete="off"
+              checked={billingAdd}
+              onChange={() => setBillingAdd((b) => !b)}
             />
-            <input
-              required
-              type="text"
-              name="line2"
-              value={billingAddress.line2}
-              onChange={handleFieldChangeBilling}
-              placeholder="Address Line 2"
-            />
-            <input
-              required
-              type="text"
-              name="city"
-              value={billingAddress.city}
-              onChange={handleFieldChangeBilling}
-              placeholder="City"
-            />
-            <input
-              required
-              type="text"
-              name="state"
-              value={billingAddress.state}
-              onChange={handleFieldChangeBilling}
-              placeholder="State"
-            />
-            <input
-              required
-              type="text"
-              name="postalCode"
-              value={billingAddress.postalCode}
-              onChange={handleFieldChangeBilling}
-              placeholder="Postal Code"
-            />
-            <CountryDropdown
-              required
-              onChange={(val) =>
-                handleFieldChangeBilling({
-                  target: {
-                    name: "country",
-                    value: val,
-                  },
-                })
-              }
-              value={billingAddress.country}
-              className="country-dropdown"
-              valueType="full"
-            />
-
-            <div className="card-details">
-              <h3>Card Details</h3>
+            <label htmlFor="billing-address">Same as Shipping Address</label>
+          </div>{" "}
+          <br />
+          {!billingAdd && (
+            <div className="billing-details">
               <input
                 required
                 type="text"
-                name="nameOnCard"
-                value={nameOnCard}
-                onChange={(e) => setnameOnCard(e.target.value)}
-                placeholder="Name on Card"
+                name="line1"
+                value={billingAddress.line1}
+                onChange={handleFieldChangeBilling}
+                placeholder="Address Line 1"
               />
-              <br />
-              <CardElement options={configCardElement} />
+              <input
+                required
+                type="text"
+                name="line2"
+                value={billingAddress.line2}
+                onChange={handleFieldChangeBilling}
+                placeholder="Address Line 2"
+              />
+              <input
+                required
+                type="text"
+                name="city"
+                value={billingAddress.city}
+                onChange={handleFieldChangeBilling}
+                placeholder="City"
+              />
+              <input
+                required
+                type="text"
+                name="state"
+                value={billingAddress.state}
+                onChange={handleFieldChangeBilling}
+                placeholder="State"
+              />
+              <input
+                required
+                type="text"
+                name="postal_code"
+                value={billingAddress.postal_code}
+                onChange={handleFieldChangeBilling}
+                placeholder="Postal Code"
+              />
+              <CountryDropdown
+                required
+                onChange={(val) =>
+                  handleFieldChangeBilling({
+                    target: {
+                      name: "country",
+                      value: val,
+                    },
+                  })
+                }
+                value={billingAddress.country}
+                className="country-dropdown"
+                valueType="short"
+              />
             </div>
+          )}
+          <div className="card-details">
+            <h3>Card Details</h3>
+            <input
+              required
+              type="text"
+              name="nameOnCard"
+              value={nameOnCard}
+              onChange={(e) => setnameOnCard(e.target.value)}
+              placeholder="Name on Card"
+            />
+            <br />
+            <CardElement required options={configCardElement} />
           </div>
         </div>
         <button type="submit">Pay Now</button>

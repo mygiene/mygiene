@@ -27,7 +27,14 @@ export default styled.div`
       }
     }
     .billing {
-      margin-top: 2rem;
+      .card-details {
+        margin-top: 1rem;
+        input {
+          height: 2.5rem;
+          width: 100%;
+          margin-bottom: 1rem;
+        }
+      }
       .billing-title {
         font-size: 1.5rem;
         font-weight: 700;
