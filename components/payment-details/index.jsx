@@ -20,6 +20,13 @@ const initialState = {
   country: "AU",
 };
 
+export const deliveryStatus = {
+  "Order Placed": 1,
+  Packed: 2,
+  Shipped: 3,
+  Delivered: 4,
+};
+
 export const PaymentDetails = () => {
   const stripe = useStripe();
   const elements = useElements();
@@ -125,6 +132,7 @@ export const PaymentDetails = () => {
                       cartItems,
                       orderUserId: user.id,
                       createdAt: new Date(),
+                      status: deliveryStatus["Order Placed"],
                     })
                     .then(async () => {
                       await firestore
@@ -134,6 +142,7 @@ export const PaymentDetails = () => {
                         })
                         .then(() => {
                           resolve();
+                          router.push("/success");
                         });
                     })
                     .catch((err) => {
