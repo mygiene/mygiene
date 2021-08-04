@@ -196,4 +196,8 @@ export default styled.div`
   max-width: 1400px;
   margin: 7rem auto;
   min-height: 60vh;
+  .empty-cart-block {
+    margin-top: 3rem;
+    text-align: center;
+  }
 `;

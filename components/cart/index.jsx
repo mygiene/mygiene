@@ -7,9 +7,15 @@ export const Cart = () => {
   const [, , cartItems] = useContext(StoreContext);
   return (
     <StyledWrapper>
-      <h2>YOUR CART ITEMS</h2>
+      <h2>CART ITEMS</h2>
 
-      {cartItems && <CartItem key={cartItems.pId} {...cartItems} />}
+      {cartItems ? (
+        <CartItem key={cartItems.pId} {...cartItems} />
+      ) : (
+        <div className="empty-cart-block">
+          <p>Your cart is empty.</p>
+        </div>
+      )}
     </StyledWrapper>
   );
 };

@@ -33,7 +33,7 @@ export const Layout = ({ children }) => {
       <Header />
       {isAdmin && (
         <div className="admin-header">
-          <Link href="/admin">Admin</Link>
+          <Link href="/admin">Admin Dashboard</Link>
         </div>
       )}
       {children}
