@@ -17,6 +17,7 @@ module.exports = {
       "/signup": { page: "/signup" },
       "/orders": { page: "/orders" },
       "/profile": { page: "/profile" },
+      "/payment-details": { page: "/payment-details" },
       //   "/p/hello-nextjs": { page: "/post", query: { title: "hello-nextjs" } },
       //   "/p/learn-nextjs": { page: "/post", query: { title: "learn-nextjs" } },
       //   "/p/deploy-nextjs": { page: "/post", query: { title: "deploy-nextjs" } },

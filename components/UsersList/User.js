@@ -5,15 +5,28 @@ import { firestore } from "../../firebase/utils";
 //const u =await  firestore.doc(`users/${Router.pathname}`).get(); u.data();
 const User = () => {
   const Router = useRouter();
-  const [details, setDetails] = useState({});
+  const [userDetails, setUserDetails] = useState();
+  const [orders, setOrders] = useState();
   const fetchInfo = async () => {
-    const data = await firestore.doc(`users/${Router.query.user}`).get();
-    setDetails(data.data());
+    const userId = Router.query.user;
+    const user = await firestore.doc(`users/${userId}`).get();
+    setUserDetails(user.data());
+
+    const allOrders = [];
+    const response = firestore
+      .collection("orders")
+      .where("orderUserId", "==", userId);
+    const ordersData = await response.get();
+    ordersData.docs.forEach((order) => {
+      allOrders.push(order.data());
+    });
+    setOrders(allOrders);
   };
   useEffect(() => {
     if (Router.query.user) fetchInfo();
   }, []);
-  console.log(details);
+  console.log(orders);
+  console.log(userDetails);
   return <div>users page</div>;
 };
 
