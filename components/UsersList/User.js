@@ -18,14 +18,14 @@ const User = () => {
       .where("orderUserId", "==", userId);
     const ordersData = await response.get();
     ordersData.docs.forEach((order) => {
-      allOrders.push(order.data());
+      allOrders.push({ ...order.data(), id: order.id });
     });
     setOrders(allOrders);
   };
   useEffect(() => {
     if (Router.query.user) fetchInfo();
   }, []);
-  console.log(orders);
+  console.log("orders", orders);
   console.log(userDetails);
   return <div>users page</div>;
 };
