@@ -48,7 +48,7 @@ const Order = () => {
                 <span>{details?.id}</span>
               </p>
               <p>
-                <strong>Created At</strong>
+                <strong>Ordered At</strong>
                 <span>
                   {new Date(details?.createdAt?.seconds * 1000).toLocaleString(
                     "en-US",
@@ -60,10 +60,11 @@ const Order = () => {
               </p>
               <p>
                 <strong>Product Id</strong>
+                <span>{details.cartItems?.pId}</span>
               </p>
               <p>
                 <strong>Product Name </strong>
-                <span>{details.cartItems?.pId}</span>{" "}
+                <span>MyGiene Grooming Kit</span>
               </p>
               <p>
                 <strong>Quanity</strong>

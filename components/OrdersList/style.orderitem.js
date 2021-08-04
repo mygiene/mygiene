@@ -1,14 +1,15 @@
 import styled from "styled-components";
 export default styled.div`
   .order-item {
-    margin-top: 6rem;
+    margin-top: 7rem;
     padding: 0;
     width: 100%;
     margin-bottom: 3rem;
 
     .heading {
       display: flex;
-      width: 100%;
+      width: 90%;
+      margin: auto;
       justify-content: center;
       h2 {
         font-size: 1.8rem;
@@ -212,6 +213,74 @@ export default styled.div`
           span {
             text-transform: capitalize;
           }
+        }
+      }
+    }
+  }
+  @media only screen and (max-width: 1023px) and (min-width: 769px) {
+    .order-item {
+      .details-1 {
+        .order-details,
+        .customer-details {
+          width: 48%;
+        }
+      }
+      .details-bottom {
+        .shipping-details,
+        .payment-details {
+          width: 48%;
+        }
+      }
+    }
+  }
+  @media only screen and (max-width: 768px) {
+    .order-item {
+      .heading {
+        h2 {
+          font-size: 1.5rem;
+        }
+      }
+      .details-1 {
+        flex-direction: column;
+        gap: 2rem;
+        .order-details,
+        .customer-details {
+          width: 100%;
+        }
+      }
+      .details-bottom {
+        flex-direction: column;
+        gap: 2rem;
+        .shipping-details,
+        .payment-details {
+          width: 100%;
+        }
+      }
+    }
+  }
+  @media only screen and (max-width: 425px) {
+    .order-item {
+      .heading {
+        h2 {
+          font-size: 1.5rem;
+        }
+      }
+      .details-1 {
+        flex-direction: column;
+        gap: 2rem;
+        width: 100%;
+        .order-details,
+        .customer-details {
+          width: 100%;
+        }
+      }
+      .details-bottom {
+        flex-direction: column;
+        gap: 2rem;
+        width: 100%;
+        .shipping-details,
+        .payment-details {
+          width: 100%;
         }
       }
     }
