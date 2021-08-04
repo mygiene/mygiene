@@ -141,6 +141,7 @@ const EditProfile = (props) => {
                     onChange={handleFieldChange}
                     type="text"
                     value={email}
+                    disabled
                   />
                 </div>
                 <div className="form-fields">

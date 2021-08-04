@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { firestore } from "../../firebase/utils";
 import { AuthContext } from "../auth/auth";
 import OrderItemWrapper from "./style.orderitem";
+import { FaIcon } from "../BaseComponent/FaIcon";
 const Order = () => {
   const Router = useRouter();
   console.log(Router.query);
@@ -37,6 +38,10 @@ const Order = () => {
         </div>
         <div className="details-1">
           <div className="order-details">
+            <div className="order-head">
+              <FaIcon className="fa-shopping-bag"></FaIcon>
+              <span>Order Details</span>
+            </div>
             <div className="order-info">
               <p>
                 <strong>Order Id </strong>
@@ -67,6 +72,10 @@ const Order = () => {
             </div>
           </div>
           <div className="customer-details">
+            <div className="customer-head">
+              <FaIcon className="fa-user"></FaIcon>
+              <span>Customer Details</span>
+            </div>
             <div className="customer-info">
               <p>
                 <strong>User Id </strong>
@@ -88,28 +97,72 @@ const Order = () => {
           </div>
         </div>
         <div className="details-bottom">
+          <div className="shipping-details">
+            <div className="shipping-head">
+              <FaIcon className="fa-shopping-cart"></FaIcon>
+              <span>Shipping Details</span>
+            </div>
+            <div className="shipping-info">
+              <p>
+                <strong>Address Line 1</strong>{" "}
+                <span>{details.shippingAddress?.line1}</span>
+              </p>
+              <p>
+                <strong>Address Line 2</strong>{" "}
+                <span>{details.shippingAddress?.line2}</span>
+              </p>
+              <p>
+                <strong>Postal Code</strong>{" "}
+                <span>{details.shippingAddress?.postal_code}</span>
+              </p>
+              <p>
+                <strong>City </strong>{" "}
+                <span>{details.shippingAddress?.city}</span>
+              </p>
+              <p>
+                <strong>State</strong>{" "}
+                <span>{details.shippingAddress?.state}</span>
+              </p>
+              <p>
+                <strong>Country</strong>{" "}
+                <span>{details.shippingAddress?.country}</span>
+              </p>
+            </div>
+          </div>
           <div className="payment-details">
-            <p>
-              <strong>Payment Id</strong>
-              <a
-                target="_blank"
-                href="https://dashboard.stripe.com/test/payments/pi_3JKeDZEDTtTQNBA80EovEMQc"
-              >
-                {details?.paymentIntentId}
-              </a>
-            </p>
-            <p>
-              <strong>Sub Total</strong>{" "}
-              <span>{details.cartItems?.cartSubTotal}</span>
-            </p>
-            <p>
-              <strong>Type of Delivery</strong>{" "}
-              <span>{details.cartItems.delivery}</span>
-            </p>
-            <p>
-              <strong>Total</strong>
-              <span> $ {details?.totalAmount}</span>
-            </p>
+            <div className="payment-head">
+              <FaIcon className="fa-money"></FaIcon>
+              <span>Payment Details</span>
+            </div>
+            <div className="payment-info">
+              <p>
+                <strong>Payment Id</strong>
+                <a
+                  target="_blank"
+                  href={`https://dashboard.stripe.com/test/payments/${details?.paymentIntentId}`}
+                >
+                  {details?.paymentIntentId}
+                  <FaIcon className="fa-external-link" />
+                </a>
+              </p>
+              <p>
+                <strong>Sub Total</strong>{" "}
+                <span> $ {details.cartItems?.cartSubTotal}</span>
+              </p>
+              <p>
+                <strong>Type of Delivery</strong>{" "}
+                <span>
+                  {details.cartItems?.delivery}{" "}
+                  <span>
+                    {details.cartItems?.delivery === "standard" ? "$10" : "$15"}
+                  </span>
+                </span>
+              </p>
+              <p>
+                <strong>Total</strong>
+                <span> $ {details?.totalAmount}</span>
+              </p>
+            </div>
           </div>
         </div>
       </div>
