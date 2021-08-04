@@ -9,6 +9,7 @@ import { setCurrentUser } from "../../store/user/userActions";
 import { Elements } from "@stripe/react-stripe-js";
 import { stripePublishableKey } from "../../stripe/config";
 import { loadStripe } from "@stripe/stripe-js";
+import Link from "next/link";
 
 // const stripePromise = loadStripe(stripePublishableKey);
 // const stripePromise = loadStripe(
@@ -17,21 +18,24 @@ import { loadStripe } from "@stripe/stripe-js";
 
 export const Layout = ({ children }) => {
   const {
-    authState: { user },
+    authState: { user, isAdmin },
   } = useContext(AuthContext);
   const [state, dispatch] = useContext(StoreContext);
   useEffect(() => {
-    // const { user } = authState;
     if (user) {
       dispatch(setCurrentUser(user));
-    }
+    } else dispatch(setCurrentUser(null));
   }, [user]);
 
-  // console.log({ state });
   return (
     <div className="layout">
       {/* <Elements stripe={stripePromise}> */}
       <Header />
+      {isAdmin && (
+        <div className="admin-header">
+          <Link href="/admin">Admin</Link>
+        </div>
+      )}
       {children}
       <Footer />
       {/* </Elements> */}

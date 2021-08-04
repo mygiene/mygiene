@@ -139,9 +139,6 @@ export const Header = () => {
         </div>
         <div className="nav-list">
           <ul>
-            {/* <li>
-              <Link href="/profile">profile</Link>
-            </li> */}
             {NavLinks.map((m, i) => {
               if (m.name)
                 return (

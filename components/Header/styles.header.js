@@ -64,6 +64,7 @@ export default styled.div`
   top: 0;
   width: 100%;
   background-color: whitesmoke;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   z-index: 10;
   .nav-outer-block {
     overflow: hidden;
