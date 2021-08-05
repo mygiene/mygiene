@@ -2,7 +2,15 @@ import React from "react";
 import { FaIcon } from "../BaseComponent/FaIcon";
 import RefundCondition from "./RefundCondition";
 
-const OrderItem = () => {
+const OrderItem = ({
+  createdAt,
+  cartItems,
+  orderUserId,
+  paymentIntentId,
+  shippingAddress,
+  status = 1,
+  totalAmount,
+}) => {
   return (
     <div className="order-item">
       <div className="order-status">
