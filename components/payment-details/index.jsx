@@ -39,6 +39,7 @@ export const PaymentDetails = () => {
   const [billingAddress, setBillingAddress] = useState(initialState);
   const [billingAdd, setBillingAdd] = useState(true);
   const [recipientName, setRecipientName] = useState();
+  const [receiptEmail, setReceiptEmail] = useState();
   const [nameOnCard, setnameOnCard] = useState();
 
   useEffect(() => {
@@ -98,6 +99,7 @@ export const PaymentDetails = () => {
     await axios
       .post("/api/payments", {
         amount: Math.ceil(total * 100),
+        receiptEmail,
         shipping: {
           name: recipientName,
           address: { ...shippingAddress },
@@ -142,7 +144,7 @@ export const PaymentDetails = () => {
                         })
                         .then(() => {
                           resolve();
-                          router.push("/success");
+                          router.push(`/success?orderid=`);
                         });
                     })
                     .catch((err) => {
@@ -236,6 +238,14 @@ export const PaymentDetails = () => {
               value={recipientName}
               onChange={(e) => setRecipientName(e.target.value)}
               placeholder="Recipient Name"
+            />
+            <input
+              required
+              type="email"
+              name="receiptEmail"
+              value={receiptEmail}
+              onChange={(e) => setReceiptEmail(e.target.value)}
+              placeholder="Email"
             />
           </div>
         </div>

@@ -7,12 +7,13 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 export default async function handler(req, res) {
   if (req.method === "POST") {
     try {
-      const { amount, shipping } = req.body;
+      const { amount, shipping, receiptEmail } = req.body;
 
       const paymentIntent = await stripe.paymentIntents.create({
         shipping,
         amount,
         currency: "aud",
+        receipt_email: receiptEmail,
       });
 
       res.status(200).send(paymentIntent.client_secret);
