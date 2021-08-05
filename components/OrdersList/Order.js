@@ -1,23 +1,12 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { firestore } from "../../firebase/utils";
-import { AuthContext } from "../auth/auth";
 import OrderItemWrapper from "./style.orderitem";
 import { FaIcon } from "../BaseComponent/FaIcon";
 const Order = () => {
   const Router = useRouter();
-  console.log(Router.query);
-  const {
-    authState: { user },
-  } = useContext(AuthContext);
+
   const [details, setDetails] = useState({});
-  const fetchInfo = async () => {
-    const data = await firestore
-      .collection(`orders`)
-      .where("orderUserId", "==", user.id)
-      .get();
-    setDetails(data.data());
-  };
 
   async function fetchOrder() {
     const order = await firestore.doc(`orders/${Router.query?.order}`).get();
@@ -29,7 +18,7 @@ const Order = () => {
   useEffect(() => {
     if (Router.query?.order) fetchOrder();
   }, []);
-  console.log(details);
+
   return (
     <OrderItemWrapper>
       <div className="order-item">

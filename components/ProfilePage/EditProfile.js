@@ -102,9 +102,10 @@ const EditProfile = (props) => {
       })
       .catch((err) => console.log(err));
   }
+
   const { displayName, email, address, mobile } = form;
   const { newType, newAddress } = addressForm;
-  console.log(form.address);
+
   return (
     <>
       <button onClick={onOpenModal}>

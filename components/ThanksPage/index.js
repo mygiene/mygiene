@@ -1,8 +1,32 @@
+import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
 import React from "react";
+import { useState, useContext, useEffect } from "react";
+
+import { firestore } from "../../firebase/utils";
+import { AuthContext } from "../auth/auth";
 import { FaIcon } from "../BaseComponent/FaIcon";
 import ThanksWrapper from "./style.thanks";
 const ThanksPage = () => {
+  const Router = useRouter();
+  const {
+    authState: { user },
+  } = useContext(AuthContext);
+  const [order, setorder] = useState();
+
+  useEffect(() => {
+    const orderId = Router?.query?.orderId;
+    console.log({ orderId });
+    fetchOrder(orderId);
+  }, [Router.query, user]);
+
+  async function fetchOrder(orderId) {
+    const order = await firestore.doc(`orders/${orderId}`).get();
+    setorder({ ...order.data(), id: order.id });
+  }
+
+  const shippingAddress = order?.shippingAddress;
+  // console.log({ order });
   return (
     <>
       <ThanksWrapper>
@@ -24,10 +48,10 @@ const ThanksPage = () => {
           <div className="order-details">
             <h2>We've received your Order!</h2>
 
-            <span>Hey UserName,</span>
+            <span>Hey {user?.displayName},</span>
             <p>
-              Great news! We've recieved your order *|TITLE|* and we're getting
-              it ready to ship.{" "}
+              Great news! We've recieved your order of 'Men's Grooming Kit' and
+              we're getting it ready to ship.
             </p>
           </div>
           <div className="order-table">
@@ -37,15 +61,23 @@ const ThanksPage = () => {
             </div>
             <div className="shipping-address">
               <h3>Shipping Address</h3>
-              <span>Card</span>
+              <span>
+                {shippingAddress
+                  ? `${shippingAddress?.line1} ${
+                      shippingAddress?.line2 || ""
+                    } ${shippingAddress?.city} ${
+                      shippingAddress?.postal_code
+                    } ${shippingAddress?.state} Australia`
+                  : ""}
+              </span>
             </div>
             <div className="email-address">
               <h3>Email Address</h3>
-              <span>xyz@gmail.com</span>
+              <span>{order?.receiptEmail || user?.email}</span>
             </div>
             <div className="order-id">
               <h3>Order Id</h3>
-              <span>Card</span>
+              <span>{order?.id || ""}</span>
             </div>
           </div>
         </div>

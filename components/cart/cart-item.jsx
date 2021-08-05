@@ -108,8 +108,6 @@ export const CartItem = (props) => {
       }
       setsubmitting(false);
     } else {
-      console.log({ cartItems });
-
       if (cartItems) {
         const updatedCart = {
           ...cartItems,

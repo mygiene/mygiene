@@ -9,6 +9,7 @@ const User = () => {
   const Router = useRouter();
   const [userDetails, setUserDetails] = useState([]);
   const [orders, setOrders] = useState();
+
   const fetchInfo = async () => {
     const userId = Router.query.user;
     const user = await firestore.doc(`users/${userId}`).get();
@@ -24,11 +25,10 @@ const User = () => {
     });
     setOrders(allOrders);
   };
+
   useEffect(() => {
     if (Router.query.user) fetchInfo();
   }, []);
-  console.log("orders", orders);
-  console.log("user", userDetails);
 
   return (
     <UserItemWrapper>

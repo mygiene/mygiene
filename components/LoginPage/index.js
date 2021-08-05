@@ -24,11 +24,9 @@ const LoginPage = () => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log("working");
     try {
       const { email, password } = form;
-      const res = await auth.signInWithEmailAndPassword(email, password);
-      console.log({ res });
+      await auth.signInWithEmailAndPassword(email, password);
     } catch (error) {
       toast.error(error.message || "Something went wrong");
     }

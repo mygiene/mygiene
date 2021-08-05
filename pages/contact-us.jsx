@@ -25,7 +25,7 @@ const Page = () => {
       message_html: message,
       reply_to: email,
     };
-    console.log(form);
+
     emailjs
       .send(
         "service_9xqton3",
@@ -43,12 +43,14 @@ const Page = () => {
         }
       );
   };
+
   function handleFieldChange(event) {
     const { name, value } = event.target;
     setform({ ...form, [name]: value });
   }
 
   const { name, email, subject, message } = form;
+
   return (
     <>
       <MetaHead title="Contact Us" />

@@ -10,7 +10,6 @@ export const ApplePay = ({ cartItems, cartTotal }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [paymentrequest, setpaymentrequest] = useState();
-  console.log({ stripe });
   useEffect(() => {
     if (!stripe || !elements || !cartItems?.cartSubTotal || !cartTotal) return;
 
@@ -37,7 +36,6 @@ export const ApplePay = ({ cartItems, cartTotal }) => {
       // ],
     });
     pr.canMakePayment().then((result) => {
-      console.log("res", result);
       if (result) {
         setpaymentrequest(pr);
         // pr.show();

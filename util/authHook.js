@@ -11,7 +11,6 @@ export const useFirebaseAuthentication = () => {
         const userRef = await handleUserProfile(userAuth);
         userRef.onSnapshot((snapshot) => {
           //set provider with current user
-          console.log(snapshot.data());
           const currentUsr = {
             id: snapshot.id,
             ...snapshot.data(),

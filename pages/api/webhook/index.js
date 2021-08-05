@@ -13,7 +13,6 @@ export const config = {
 };
 
 export default async function handler(req, res) {
-  console.log("request started");
   if (req.method === "POST") {
     let event;
     try {
@@ -30,11 +29,11 @@ export default async function handler(req, res) {
     }
 
     // SUCCESSFULLY CONSTRUCTED EVENT
-    console.log("Success value:", event);
+    // console.log("Success value:", event);
 
     //handle event type and add business logic
     if (event?.type === "checkout.session.completed") {
-      console.log("Payment Recieved", event);
+      // console.log("Payment Recieved", event);
       // firestore.doc(`orders/`)
     } else {
       console.warn(`Unhandled event type, ${event?.type}`);

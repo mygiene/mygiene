@@ -41,6 +41,7 @@ export const PaymentDetails = () => {
   const [recipientName, setRecipientName] = useState();
   const [receiptEmail, setReceiptEmail] = useState();
   const [nameOnCard, setnameOnCard] = useState();
+  const [submitting, setsubmitting] = useState(false);
 
   useEffect(() => {
     if (billingAdd) setBillingAddress(shippingAddress);
@@ -95,7 +96,7 @@ export const PaymentDetails = () => {
       !nameOnCard
     )
       return;
-
+    setsubmitting(true);
     await axios
       .post("/api/payments", {
         amount: Math.ceil(total * 100),
@@ -121,13 +122,15 @@ export const PaymentDetails = () => {
                 payment_method: paymentMethod.id,
               })
               .then(async ({ paymentIntent }) => {
+                console.log(paymentIntent);
                 return new Promise((resolve, reject) => {
                   firestore
                     .collection("orders")
-                    .doc()
-                    .set({
+                    .add({
                       paymentIntentId: paymentIntent.id,
+                      receiptEmail: paymentIntent.receipt_email,
                       shippingAddress: paymentIntent.shipping.address,
+                      recipientName: paymentIntent.shipping.address.name,
                       totalAmount: fixedByTwoDecimal(
                         Number(paymentIntent.amount) / 100
                       ),
@@ -136,7 +139,7 @@ export const PaymentDetails = () => {
                       createdAt: new Date(),
                       status: deliveryStatus["Order Placed"],
                     })
-                    .then(async () => {
+                    .then(async (orderRef) => {
                       await firestore
                         .doc(`users/${user.id}`)
                         .update({
@@ -144,17 +147,28 @@ export const PaymentDetails = () => {
                         })
                         .then(() => {
                           resolve();
-                          router.push(`/success?orderid=`);
+                          setsubmitting(false);
+                          router.push(`/success?orderId=${orderRef.id}`);
                         });
                     })
                     .catch((err) => {
                       reject(err);
+                      toast.info(err.message);
+                      setsubmitting(false);
                     });
                 });
+              })
+              .catch((err) => {
+                toast.info(err.message);
+                setsubmitting(false);
               });
           });
       })
-      .catch((err) => console.log({ err }));
+      .catch((err) => {
+        setsubmitting(false);
+        console.log({ err });
+        toast.info(err.message);
+      });
   }
 
   const configCardElement = {
@@ -176,6 +190,7 @@ export const PaymentDetails = () => {
           <div className="shipping-details">
             <input
               required
+              disabled={submitting}
               type="text"
               name="line1"
               value={line1}
@@ -184,6 +199,7 @@ export const PaymentDetails = () => {
             />
             <input
               required
+              disabled={submitting}
               type="text"
               name="line2"
               value={line2}
@@ -192,6 +208,7 @@ export const PaymentDetails = () => {
             />
             <input
               required
+              disabled={submitting}
               type="text"
               name="city"
               value={city}
@@ -200,6 +217,7 @@ export const PaymentDetails = () => {
             />
             <input
               required
+              disabled={submitting}
               type="text"
               name="state"
               value={state}
@@ -208,6 +226,7 @@ export const PaymentDetails = () => {
             />
             <input
               required
+              disabled={submitting}
               type="text"
               name="postal_code"
               value={postal_code}
@@ -233,6 +252,7 @@ export const PaymentDetails = () => {
 
             <input
               required
+              disabled={submitting}
               type="text"
               name="recipientName"
               value={recipientName}
@@ -241,6 +261,7 @@ export const PaymentDetails = () => {
             />
             <input
               required
+              disabled={submitting}
               type="email"
               name="receiptEmail"
               value={receiptEmail}
@@ -254,6 +275,7 @@ export const PaymentDetails = () => {
           <div>
             <input
               id="billing-address"
+              disabled={submitting}
               type="checkbox"
               name="standardDelivery"
               autoComplete="off"
@@ -267,6 +289,7 @@ export const PaymentDetails = () => {
             <div className="billing-details">
               <input
                 required
+                disabled={submitting}
                 type="text"
                 name="line1"
                 value={billingAddress.line1}
@@ -275,6 +298,7 @@ export const PaymentDetails = () => {
               />
               <input
                 required
+                disabled={submitting}
                 type="text"
                 name="line2"
                 value={billingAddress.line2}
@@ -283,6 +307,7 @@ export const PaymentDetails = () => {
               />
               <input
                 required
+                disabled={submitting}
                 type="text"
                 name="city"
                 value={billingAddress.city}
@@ -291,6 +316,7 @@ export const PaymentDetails = () => {
               />
               <input
                 required
+                disabled={submitting}
                 type="text"
                 name="state"
                 value={billingAddress.state}
@@ -300,6 +326,7 @@ export const PaymentDetails = () => {
               <input
                 required
                 type="text"
+                disabled={submitting}
                 name="postal_code"
                 value={billingAddress.postal_code}
                 onChange={handleFieldChangeBilling}
@@ -307,6 +334,7 @@ export const PaymentDetails = () => {
               />
               <CountryDropdown
                 required
+                disabled={submitting}
                 onChange={(val) =>
                   handleFieldChangeBilling({
                     target: {
@@ -325,6 +353,7 @@ export const PaymentDetails = () => {
             <h3>Card Details</h3>
             <input
               required
+              disabled={submitting}
               type="text"
               name="nameOnCard"
               value={nameOnCard}
@@ -332,10 +361,17 @@ export const PaymentDetails = () => {
               placeholder="Name on Card"
             />
             <br />
-            <CardElement required options={configCardElement} />
+
+            <CardElement
+              required
+              disabled={submitting}
+              options={configCardElement}
+            />
           </div>
         </div>
-        <button type="submit">Pay Now</button>
+        <button disabled={submitting} type="submit">
+          Pay Now
+        </button>
       </form>
     </StyledWrapper>
   );

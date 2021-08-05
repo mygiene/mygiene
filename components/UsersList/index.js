@@ -18,7 +18,6 @@ const UsersList = () => {
       allUser.push({ ...item.data(), id: item.id });
     });
     setUsers(allUser.filter(Boolean));
-    // console.log(data.docs.data);
   };
   useEffect(() => {
     fetchUsers();
@@ -48,7 +47,6 @@ const UsersList = () => {
                 </tr>
               </thead>
               <tbody>
-                {console.log(users)}
                 {users.length > 0 &&
                   users.map((item, index) => (
                     <Link href={`/admin/user-list/${item?.id}`}>

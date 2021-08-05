@@ -3,6 +3,7 @@ import media from "../../util/media-queries";
 
 export default styled.div`
   margin-top: 4.5rem;
+  min-height: 60vh;
 
   .kit {
     max-width: 1450px;

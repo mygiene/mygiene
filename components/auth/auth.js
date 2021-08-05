@@ -22,13 +22,13 @@ const initialState = {
   isAdmin: false,
 };
 
-export const protectedRoutes = ["/profile", "/orders"];
+export const protectedRoutes = ["/profile", "/orders", "/success"];
 export const safeRoutes = ["/login", "/signup"];
 export const adminRoutes = [
   "/admin",
-  "manage-product",
-  "users-list",
-  "orders-list",
+  "/admin/manage-product",
+  "/admin/users-list",
+  "/admin/orders-list",
 ];
 
 export const AuthContext = createContext(initialState);

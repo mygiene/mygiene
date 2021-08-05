@@ -30,7 +30,6 @@ const OrdersList = () => {
   useEffect(() => {
     fetchOrders();
   }, []);
-  console.log(orders);
 
   return (
     <>
