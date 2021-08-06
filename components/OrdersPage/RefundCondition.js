@@ -13,7 +13,7 @@ const RefundCondition = () => {
 
   return (
     <>
-      <button onClick={onOpenModal}>Raise a Refund/Return Request</button>
+      <button onClick={onOpenModal}>Raise a Refund / Return Request</button>
 
       <Modal
         open={open}
@@ -22,7 +22,7 @@ const RefundCondition = () => {
         styles={{ modal: { background: "#f8e1e1" } }}
       >
         <RefundWrapper>
-          <h3>Refund/Return Request</h3>
+          <h3>Refund / Return Request</h3>
           <div className="content">
             <span>
               At Mygiene we stand behind our product and provide a level of

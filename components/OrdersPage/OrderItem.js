@@ -1,6 +1,17 @@
 import React from "react";
 import { FaIcon } from "../BaseComponent/FaIcon";
+import { deliveryStatus } from "../payment-details";
 import RefundCondition from "./RefundCondition";
+
+export const createListFromObject = (data) => {
+  const keys = Object.keys(data).filter((f) => !Number(f) && Number(f) !== 0);
+  let list = [];
+  keys.forEach((f) => {
+    list.push({ label: f, value: data[f] });
+  });
+  return list;
+};
+export const deliveryStatusList = createListFromObject(deliveryStatus);
 
 const OrderItem = ({
   createdAt,
@@ -9,18 +20,30 @@ const OrderItem = ({
   paymentIntentId,
   shippingAddress,
   status = 1,
+  id,
   totalAmount,
 }) => {
+  const statusLabel = status
+    ? deliveryStatusList.find((f) => Number(f.value) == Number(status)).label
+    : "";
   return (
     <div className="order-item">
       <div className="order-status">
         <div className="first-step">
           <span>Order Placed</span>
-          <span>on Sat,21 January 2021</span>
+          <span>
+            {new Date(createdAt.seconds * 1000).toLocaleString("en-US", {
+              timeZone: "Australia/Sydney",
+            })}
+          </span>
         </div>
         <div className="current-step">
-          <span>Order Placed</span>
-          <span>on Sat,21 January 2021</span>
+          <span>{statusLabel}</span>
+          <span>
+            {new Date(createdAt.seconds * 1000).toLocaleString("en-US", {
+              timeZone: "Australia/Sydney",
+            })}
+          </span>
         </div>
       </div>
       <div className="order__card">
@@ -30,11 +53,13 @@ const OrderItem = ({
         <div className="order__card-content">
           <div className="content-outer">
             <h3>mygiene grooming kit</h3>
-            <span className="price">$150.00 AUD</span>
+            <span className="price">${totalAmount} AUD</span>
             <div className="quantity-order">
-              <span>Quantity : 1</span>
+              <span>
+                <strong>Quantity </strong> <span>: {cartItems.qt}</span>
+              </span>
               <span className="order-outer">
-                Order Id : <span> 746573746b6579</span>
+                <strong>Order Id </strong> <span> : {id}</span>
               </span>
             </div>
           </div>

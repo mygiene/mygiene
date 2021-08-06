@@ -37,13 +37,17 @@ export default styled.div`
         .order-item {
           display: flex;
           margin-top: 1rem;
+          margin-bottom: 2rem;
           flex-direction: column;
           justify-content: flex-start;
+          width: 100%;
           .order-status {
-            display: block;
-            grid-gap: 41%;
+            display: flex;
+            justify-content: space-between;
+
             margin-bottom: 0.3rem;
             grid-gap: 0.4rem;
+            width: 100%;
             .first-step {
               display: flex;
               float: left;
@@ -78,7 +82,8 @@ export default styled.div`
             }
           }
           .order__card {
-            width: 500px;
+            width: 100%;
+            min-width: 545px;
             height: 200px;
             background-color: #ebebeb;
             align-items: center;
@@ -103,6 +108,7 @@ export default styled.div`
               display: flex;
               flex-direction: column;
               grid-gap: 2rem;
+              width: 100%;
               .content-outer {
                 display: flex;
                 flex-direction: column;
@@ -118,15 +124,19 @@ export default styled.div`
                 .quantity-order {
                   display: flex;
                   margin-top: 1.5rem;
-                  grid-gap: 0.7rem;
+                  grid-gap: 0.6rem;
+                  font-size: 1.05rem;
+                  width: 98%;
+                  flex-direction: column;
+
                   .order-outer {
                     display: flex;
                     align-items: baseline;
                     span {
-                      font-size: 0.75rem;
+                      font-size: 1rem;
                       color: darkslategray;
                       font-weight: 700;
-                      padding-left: 0.25rem;
+                      padding-left: 0.2rem;
                     }
                   }
                 }
@@ -171,10 +181,11 @@ export default styled.div`
         .order-item {
           width: 90% !important;
           margin: auto !important;
-          margin: auto !;
+          margin-bottom: 2rem !important;
           .order__card {
             width: 100% !important;
-            height: 300px !important;
+            height: max-content !important;
+            min-width: 0rem !important;
             flex-direction: column !important;
             grid-gap: 0.5rem !important;
             .order__card-image {
@@ -195,6 +206,9 @@ export default styled.div`
                   display: flex;
                   margin-top: 1.5rem;
                   grid-gap: 0.7rem;
+                  width: 100% !important;
+                  flex-direction: column;
+                  gap: 1rem !important;
                   font-size: 1.2rem !important;
                   .order-outer {
                     display: flex;
@@ -210,6 +224,7 @@ export default styled.div`
                 }
               }
               div:nth-child(2) {
+                margin-bottom: 1.2rem;
                 button {
                   color: red;
                   font-weight: 600;
@@ -246,12 +261,12 @@ export default styled.div`
         .order-item {
           width: 90% !important;
           margin: auto !important;
-          margin: auto !important;
+          margin-bottom: 2rem !important;
           max-width: 500px !important;
           .order__card {
             width: 100% !important;
-            height: 200px !important;
-
+            height: 250px !important;
+            min-width: 0 !important;
             .order__card-image {
               margin-left: 0;
               margin-top: 1.2rem;
@@ -273,12 +288,13 @@ export default styled.div`
                   display: flex;
                   margin-top: 1.5rem;
                   grid-gap: 0.7rem;
-                  font-size: 1.2rem !important;
+                  font-size: 1.05rem !important;
                   flex-direction: column !important;
+                  width: 98%;
                   .order-outer {
                     display: flex;
                     align-items: baseline;
-                    span {
+                    font-size: 1.05rem span {
                       font-size: 0.95rem !important;
                       color: darkslategray;
                       font-weight: 700;

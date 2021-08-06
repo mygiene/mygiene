@@ -63,11 +63,11 @@ const ThanksPage = () => {
               <h3>Shipping Address</h3>
               <span>
                 {shippingAddress
-                  ? `${shippingAddress?.line1} ${
-                      shippingAddress?.line2 || ""
-                    } ${shippingAddress?.city} ${
+                  ? `${shippingAddress?.line1}, ${
+                      shippingAddress?.line2 + ", " || ""
+                    } ${shippingAddress?.city}, ${
                       shippingAddress?.postal_code
-                    } ${shippingAddress?.state} Australia`
+                    }, ${shippingAddress?.state}, Australia`
                   : ""}
               </span>
             </div>

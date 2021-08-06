@@ -3,6 +3,7 @@ import { firestore } from "../../firebase/utils";
 import { AuthContext } from "../auth/auth";
 
 import UserNavigation from "../BaseComponent/UserNavigation";
+import NoOrder from "../NoOrder";
 import OrderItem from "./OrderItem";
 import OrderWapper from "./style.order";
 const OrdersPage = () => {
@@ -40,7 +41,7 @@ const OrdersPage = () => {
             {orders?.length > 0 ? (
               orders.map((m) => <OrderItem {...m} />)
             ) : (
-              <p>You havent ordered anything.</p>
+              <NoOrder />
             )}
           </div>
         </div>
