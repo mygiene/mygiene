@@ -24,7 +24,18 @@ const NavLinks = [
   { name: "", link: "/cart", icon: "/headerAssets/add-to-basket.png" },
 ];
 
-export const Dropdown = ({ show, closeOnClick, isLoggedIn }) => {
+const AdminLink = [
+  { name: "Users", link: "/admin/user-list", icon: "" },
+  { name: "Orders", link: "/admin/orders-list", icon: "" },
+  { name: "Manage Product", link: "/admin/manage-product", icon: "" },
+  {
+    name: "",
+    link: "",
+    icon: "/headerAssets/profile-icon.png",
+  },
+];
+
+export const Dropdown = ({ show, closeOnClick, user, isAdmin }) => {
   const [, , , setCartItems] = useContext(StoreContext);
   const [, dispatch] = useContext(StoreContext);
   const router = useRouter();
@@ -45,7 +56,7 @@ export const Dropdown = ({ show, closeOnClick, isLoggedIn }) => {
       })
       .catch((err) => console.log("Error"));
   }
-  if (isLoggedIn && show)
+  if (user && show && !isAdmin)
     return (
       <DropdownWrapper>
         <div className="dropdown-outer">
@@ -58,6 +69,23 @@ export const Dropdown = ({ show, closeOnClick, isLoggedIn }) => {
             <li>
               <Link href="/orders">
                 <a onClick={closeOnClick}>Orders</a>
+              </Link>
+            </li>
+            <li>
+              <a onClick={logMeOut}>Logout</a>
+            </li>
+          </ul>
+        </div>
+      </DropdownWrapper>
+    );
+  else if (isAdmin && show)
+    return (
+      <DropdownWrapper>
+        <div className="dropdown-outer">
+          <ul>
+            <li>
+              <Link href="/profile">
+                <a onClick={closeOnClick}>My Profile</a>
               </Link>
             </li>
             <li>
@@ -106,8 +134,9 @@ export const Header = () => {
   const [isopen, setisopen] = useState(false);
   const [show, setshow] = useState(false);
   const activeLink = useRouter().pathname;
-  const { authState } = useContext(AuthContext);
-  const isLoggedIn = authState.user;
+  const {
+    authState: { user, isAdmin },
+  } = useContext(AuthContext);
   const [, , cartItems] = useContext(StoreContext);
   function toggle() {
     setisopen((s) => !s);
@@ -115,8 +144,8 @@ export const Header = () => {
 
   function getNameInitials() {
     let fullName, fName, lName, initials;
-    if (isLoggedIn) {
-      fullName = isLoggedIn?.displayName || "New User";
+    if (user) {
+      fullName = user?.displayName || "New User";
       let nameArr = fullName.split(" ").filter(Boolean);
       fName = nameArr[0][0].toUpperCase() || "";
       lName = nameArr?.[1]?.[0]?.toUpperCase?.() || "";
@@ -139,7 +168,7 @@ export const Header = () => {
         </div>
         <div className="nav-list">
           <ul>
-            {NavLinks.map((m, i) => {
+            {(isAdmin ? [...AdminLink] : [...NavLinks]).map((m, i) => {
               if (m.name)
                 return (
                   <li className={activeLink === m.link ? "active" : ""}>
@@ -162,7 +191,7 @@ export const Header = () => {
               else
                 return (
                   <li>
-                    {isLoggedIn ? (
+                    {user ? (
                       <a onClick={() => setshow((s) => !s)}>
                         <div className="circle">
                           {getNameInitials() || "NU"}
@@ -175,20 +204,22 @@ export const Header = () => {
                     )}
                   </li>
                 );
+
+              <li>
+                <FaIcon
+                  onClick={toggle}
+                  className={isopen ? "fa-window-close-o" : "fa-bars"}
+                />
+              </li>;
             })}
-            <li>
-              <FaIcon
-                onClick={toggle}
-                className={isopen ? "fa-window-close-o" : "fa-bars"}
-              />
-            </li>
           </ul>
         </div>
       </div>
       <Modal isOpen={isopen} activeLink={activeLink} closeOnClick={toggle} />
       <Dropdown
         show={show}
-        isLoggedIn={isLoggedIn}
+        isAdmin={isAdmin}
+        user={user}
         closeOnClick={() => setshow((s) => !s)}
       />
     </HeaderWrapper>

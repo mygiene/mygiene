@@ -31,11 +31,11 @@ export const Layout = ({ children }) => {
     <div className="layout">
       {/* <Elements stripe={stripePromise}> */}
       <Header />
-      {isAdmin && (
+      {/* {isAdmin && (
         <div className="admin-header">
           <Link href="/admin">Admin Dashboard</Link>
         </div>
-      )}
+      )} */}
       {children}
       <Footer />
       {/* </Elements> */}
