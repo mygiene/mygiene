@@ -61,6 +61,7 @@ export default styled.div`
       span {
         font-size: 1.3rem;
         font-weight: 600;
+        text-transform: capitalize;
       }
       p {
         font-size: 1.2rem;
