@@ -25,6 +25,7 @@ const NavLinks = [
 ];
 
 const AdminLink = [
+  { name: "Preview Kit", link: "/kit", icon: "" },
   { name: "Users", link: "/admin/user-list", icon: "" },
   { name: "Orders", link: "/admin/orders-list", icon: "" },
   { name: "Manage Product", link: "/admin/manage-product", icon: "" },
@@ -33,9 +34,10 @@ const AdminLink = [
     link: "",
     icon: "/headerAssets/profile-icon.png",
   },
+  { name: "Home", link: "/", icon: "" },
 ];
 
-export const Dropdown = ({ show, closeOnClick, user, isAdmin }) => {
+const Dropdown = ({ show, closeOnClick, user, isAdmin }) => {
   const [, , , setCartItems] = useContext(StoreContext);
   const [, dispatch] = useContext(StoreContext);
   const router = useRouter();
@@ -98,13 +100,13 @@ export const Dropdown = ({ show, closeOnClick, user, isAdmin }) => {
   return <></>;
 };
 
-export const Modal = ({ isOpen, activeLink, closeOnClick }) => {
+const Modal = ({ isOpen, isAdmin, activeLink, closeOnClick }) => {
   const windowSize = useWindowSize();
   if (isOpen && windowSize.width < 640)
     return (
       <ModalWrapper>
         <div className="list">
-          {NavLinks.map((m) => {
+          {(isAdmin ? [...AdminLink] : [...NavLinks]).map((m) => {
             if (m.name)
               return (
                 <li className={activeLink === m.link ? "active" : ""}>
@@ -204,18 +206,23 @@ export const Header = () => {
                     )}
                   </li>
                 );
-
-              <li>
-                <FaIcon
-                  onClick={toggle}
-                  className={isopen ? "fa-window-close-o" : "fa-bars"}
-                />
-              </li>;
             })}
+
+            <li>
+              <FaIcon
+                onClick={toggle}
+                className={isopen ? "fa-window-close-o" : "fa-bars"}
+              />
+            </li>
           </ul>
         </div>
       </div>
-      <Modal isOpen={isopen} activeLink={activeLink} closeOnClick={toggle} />
+      <Modal
+        isOpen={isopen}
+        isAdmin={isAdmin}
+        activeLink={activeLink}
+        closeOnClick={toggle}
+      />
       <Dropdown
         show={show}
         isAdmin={isAdmin}

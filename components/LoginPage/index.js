@@ -1,6 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import { auth, signInWithGoogle } from "../../firebase/utils";
+import {
+  auth,
+  signInWithFacebook,
+  signInWithGoogle,
+} from "../../firebase/utils";
 import LoginWrapper, { ForgotPassWrapper } from "./styles.login";
 import Link from "next/link";
 
@@ -27,6 +31,24 @@ const LoginPage = () => {
     try {
       const { email, password } = form;
       await auth.signInWithEmailAndPassword(email, password);
+    } catch (error) {
+      toast.error(error.message || "Something went wrong");
+    }
+  }
+
+  function signWithFacebook(e) {
+    e.preventDefault();
+    try {
+      signInWithFacebook();
+    } catch (error) {
+      toast.error(error.message || "Something went wrong");
+    }
+  }
+
+  function signWithGoogle(e) {
+    e.preventDefault();
+    try {
+      signInWithGoogle();
     } catch (error) {
       toast.error(error.message || "Something went wrong");
     }
@@ -83,7 +105,7 @@ const LoginPage = () => {
               </div>
               <div className="login__google">
                 <span>
-                  <button onClick={signInWithGoogle}>
+                  <button onClick={signWithGoogle}>
                     <img src="/loginAssets/google.png" alt="google-icon" />
                     Sign In with Google
                   </button>
@@ -91,7 +113,7 @@ const LoginPage = () => {
               </div>
               <div className="login__fb">
                 <span>
-                  <button>
+                  <button onClick={signWithFacebook}>
                     <img src="/loginAssets/fb.png" alt="facebook-icon" />
                     Sign In with FaceBook
                   </button>
@@ -104,7 +126,10 @@ const LoginPage = () => {
             </div>
           </div>
           <div className="login__right">
-            <img src="/loginAssets/login_banner.jpeg" alt="banner-image" />
+            <img
+              src="/loginAssets/login_banner.jpeg"
+              alt="mygiene kit banner"
+            />
           </div>
         </login>
       </LoginWrapper>

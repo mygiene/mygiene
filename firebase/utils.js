@@ -14,8 +14,19 @@ export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
 const GoogleProvider = new firebase.auth.GoogleAuthProvider();
+const FacebookProvider = new firebase.auth.FacebookAuthProvider();
 // GoogleProvider.setCustomParameters({ prompt: "select_amount" });
-export const signInWithGoogle = () => auth.signInWithPopup(GoogleProvider);
+export const signInWithGoogle = () =>
+  auth
+    .signInWithPopup(GoogleProvider)
+    .then((res) => res.user)
+    .catch((err) => err);
+
+export const signInWithFacebook = () =>
+  auth
+    .signInWithPopup(FacebookProvider)
+    .then((res) => res.user)
+    .catch((err) => err);
 
 export const handleUserProfile = async (userAuth, additionalData) => {
   if (!userAuth) return;
