@@ -130,7 +130,7 @@ export const PaymentDetails = () => {
                       paymentIntentId: paymentIntent.id,
                       receiptEmail: paymentIntent.receipt_email,
                       shippingAddress: paymentIntent.shipping.address,
-                      recipientName: paymentIntent.shipping.address.name,
+                      recipientName: recipientName,
                       totalAmount: fixedByTwoDecimal(
                         Number(paymentIntent.amount) / 100
                       ),
