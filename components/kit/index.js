@@ -130,7 +130,10 @@ export const Kit = () => {
           <div className="kit__top">
             <div className="kit__top-left">
               <div className="kit__top-cover">
-                <img src="/kitAssets/cover.png" alt="kit-image" />
+                <img
+                  src={product?.image || "/kitAssets/cover.png"}
+                  alt="kit-image"
+                />
               </div>
             </div>
             <div className="kit__top-right">

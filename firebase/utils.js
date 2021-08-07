@@ -1,6 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
+import "firebase/storage";
 import { firebaseConfig } from "./config";
 // Initialize Firebase
 
@@ -12,6 +13,7 @@ if (!firebase.apps.length) {
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
+export const storage = firebase.storage();
 
 const GoogleProvider = new firebase.auth.GoogleAuthProvider();
 const FacebookProvider = new firebase.auth.FacebookAuthProvider();
@@ -52,3 +54,5 @@ export const handleUserProfile = async (userAuth, additionalData) => {
   }
   return userRef;
 };
+
+export default firebase;
