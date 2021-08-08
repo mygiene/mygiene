@@ -144,6 +144,13 @@ export const PaymentDetails = () => {
                       orderUserId: user.id,
                       createdAt: new Date(),
                       status: deliveryStatus["Order Placed"],
+                      statusDateTime: new Date(),
+                      statusHistoy: [
+                        {
+                          status: deliveryStatus["Order Placed"],
+                          dateTime: new Date(),
+                        },
+                      ],
                     })
                     .then(async (orderRef) => {
                       await firestore
