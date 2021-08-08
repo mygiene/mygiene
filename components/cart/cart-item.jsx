@@ -7,6 +7,7 @@ import { ItemWrapper } from "./styles.cart";
 import Link from "next/link";
 import axios from "axios";
 import { getStripe } from "../../stripe/getStripe";
+import { toast } from "react-toastify";
 
 export const StandardDelivery = {
   price: "10",
@@ -39,15 +40,17 @@ export const CartItem = (props) => {
 
   useEffect(() => {
     setsubmitting(true);
-    firestore
-      .doc(`users/${user.id}`)
-      .update({
-        cartItems: {
-          ...user.cartItems,
-          delivery: delivery.standard ? "standard" : "express",
-        },
-      })
-      .then(() => setsubmitting(false));
+    if (user)
+      firestore
+        .doc(`users/${user.id}`)
+        .update({
+          cartItems: {
+            ...user.cartItems,
+            delivery: delivery.standard ? "standard" : "express",
+          },
+        })
+        .then(() => setsubmitting(false))
+        .catch((err) => toast.info(err.message));
   }, [delivery]);
 
   useEffect(async () => {
