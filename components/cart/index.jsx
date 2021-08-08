@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { StoreContext } from "../../store";
+import NoOrder from "../NoOrder";
 import { CartItem } from "./cart-item";
 import StyledWrapper from "./styles.cart";
 
@@ -13,7 +14,7 @@ export const Cart = () => {
         <CartItem key={cartItems.pId} {...cartItems} />
       ) : (
         <div className="empty-cart-block">
-          <p>Your cart is empty.</p>
+          <NoOrder />
         </div>
       )}
     </StyledWrapper>

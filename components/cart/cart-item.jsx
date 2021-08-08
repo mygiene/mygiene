@@ -39,8 +39,8 @@ export const CartItem = (props) => {
     : fixedByTwoDecimal(Number(cartSubTotal) + Number(StandardDelivery.price));
 
   useEffect(() => {
-    setsubmitting(true);
-    if (user)
+    if (user) {
+      setsubmitting(true);
       firestore
         .doc(`users/${user.id}`)
         .update({
@@ -51,6 +51,7 @@ export const CartItem = (props) => {
         })
         .then(() => setsubmitting(false))
         .catch((err) => toast.info(err.message));
+    }
   }, [delivery]);
 
   useEffect(async () => {
@@ -186,6 +187,7 @@ export const CartItem = (props) => {
     const stripe = await getStripe();
     await stripe.redirectToCheckout({ sessionId: id });
   }
+  console.log(submitting);
   return (
     <>
       {product?.name && quantity && (
