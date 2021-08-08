@@ -107,7 +107,7 @@ const Order = () => {
               </p>
               <p>
                 <strong>Individual Price</strong>
-                <span>{details?.totalAmount / details.cartItems?.qt}</span>{" "}
+                <span>$ {details?.totalAmount / details.cartItems?.qt}AUD</span>
               </p>
             </div>
           </div>
@@ -200,7 +200,7 @@ const Order = () => {
               </p>
               <p>
                 <strong>Total</strong>
-                <span> $ {details?.totalAmount}</span>
+                <span> $ {details?.totalAmount}AUD</span>
               </p>
             </div>
           </div>
