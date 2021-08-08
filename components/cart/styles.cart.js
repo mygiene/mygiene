@@ -203,6 +203,7 @@ export default styled.div`
   min-height: 60vh;
   .empty-cart-block {
     margin-top: 3rem;
-    text-align: center;
+    display: flex;
+    justify-content: center;
   }
 `;

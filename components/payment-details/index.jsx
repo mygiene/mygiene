@@ -145,7 +145,7 @@ export const PaymentDetails = () => {
                       createdAt: new Date(),
                       status: deliveryStatus["Order Placed"],
                       statusDateTime: new Date(),
-                      statusHistoy: [
+                      statusHistory: [
                         {
                           status: deliveryStatus["Order Placed"],
                           dateTime: new Date(),

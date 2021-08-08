@@ -5,6 +5,11 @@ import OrderItemWrapper from "./style.orderitem";
 import { FaIcon } from "../BaseComponent/FaIcon";
 import { deliveryStatusList } from "../OrdersPage/OrderItem";
 import { toast } from "react-toastify";
+import {
+  VerticalTimeline,
+  VerticalTimelineElement,
+} from "react-vertical-timeline-component";
+
 const Order = () => {
   const Router = useRouter();
   const [submitting, setsubmitting] = useState(false);
@@ -18,6 +23,7 @@ const Order = () => {
       .get();
     setDetails({ ...order.data(), user: user.data(), id: order.id });
   }
+
   useEffect(() => {
     if (Router.query?.order) fetchOrder();
   }, []);
@@ -36,12 +42,13 @@ const Order = () => {
         status: deliveryStatus,
         statusDateTime: new Date(),
         statusHistory: [
-          ...details?.statusHistory,
+          ...(details || [])?.statusHistory,
           { status: deliveryStatus, dateTime: new Date() },
         ],
       })
       .then(() => {
         toast.success("Delivery Status updated");
+        fetchOrder();
         setsubmitting(false);
       })
       .catch((err) => {
@@ -50,7 +57,7 @@ const Order = () => {
         toast.info(err.message);
       });
   }
-  console.log(deliveryStatus);
+
   return (
     <OrderItemWrapper>
       <div className="order-item">
@@ -205,6 +212,42 @@ const Order = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div className="status-timeline">
+        <VerticalTimeline>
+          {details?.statusHistory?.length > 0 &&
+            details.statusHistory.map((m) => {
+              const statusLabel = m?.status
+                ? deliveryStatusList.find(
+                    (f) => Number(f.value) == Number(m?.status)
+                  ).label
+                : "";
+              return (
+                <VerticalTimelineElement
+                  className="vertical-timeline-element--work"
+                  contentStyle={{
+                    background: "rgb(33, 150, 243)",
+                    color: "#fff",
+                  }}
+                  contentArrowStyle={{
+                    borderRight: "7px solid  rgb(33, 150, 243)",
+                  }}
+                  iconStyle={{ background: "rgb(33, 150, 243)", color: "#fff" }}
+                  // icon={<WorkIcon />}
+                >
+                  <div>{statusLabel}</div>
+                  <div>
+                    {new Date(m.dateTime.seconds * 1000).toLocaleString(
+                      "en-US",
+                      {
+                        timeZone: "Australia/Sydney",
+                      }
+                    )}
+                  </div>
+                </VerticalTimelineElement>
+              );
+            })}
+        </VerticalTimeline>
       </div>
     </OrderItemWrapper>
   );
