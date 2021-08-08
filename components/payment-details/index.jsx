@@ -25,6 +25,11 @@ export const deliveryStatus = {
   Packed: 2,
   Shipped: 3,
   Delivered: 4,
+  "Refund Initiated": 5,
+  "Refund Completed": 6,
+  "Refund Declined": 7,
+  "Re-delivered": 8,
+  Replaced: 9,
 };
 
 export const PaymentDetails = () => {

@@ -17,6 +17,15 @@ export default styled.div`
         font-style: italic;
       }
     }
+    .delivery-dropdown {
+      display: flex;
+      width: 90%;
+      margin: auto;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
     .details-1 {
       width: 90%;
       margin: auto;

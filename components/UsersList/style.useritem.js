@@ -167,6 +167,10 @@ export default styled.div`
                   }
                 }
               }
+              .order-status {
+                text-align: left;
+                margin-top: 0.5rem;
+              }
             }
             div:nth-child(2) {
               button {

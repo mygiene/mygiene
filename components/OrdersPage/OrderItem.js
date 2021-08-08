@@ -15,6 +15,7 @@ export const deliveryStatusList = createListFromObject(deliveryStatus);
 
 const OrderItem = ({
   createdAt,
+  statusDateTime,
   cartItems,
   orderUserId,
   paymentIntentId,
@@ -26,6 +27,7 @@ const OrderItem = ({
   const statusLabel = status
     ? deliveryStatusList.find((f) => Number(f.value) == Number(status)).label
     : "";
+
   return (
     <div className="order-item">
       <div className="order-status">
@@ -40,9 +42,14 @@ const OrderItem = ({
         <div className="current-step">
           <span>{statusLabel}</span>
           <span>
-            {new Date(createdAt.seconds * 1000).toLocaleString("en-US", {
-              timeZone: "Australia/Sydney",
-            })}
+            {statusDateTime
+              ? new Date(statusDateTime.seconds * 1000).toLocaleString(
+                  "en-US",
+                  {
+                    timeZone: "Australia/Sydney",
+                  }
+                )
+              : ""}
           </span>
         </div>
       </div>

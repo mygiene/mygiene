@@ -3,10 +3,13 @@ import { useRouter } from "next/router";
 import { firestore } from "../../firebase/utils";
 import OrderItemWrapper from "./style.orderitem";
 import { FaIcon } from "../BaseComponent/FaIcon";
+import { deliveryStatusList } from "../OrdersPage/OrderItem";
+import { toast } from "react-toastify";
 const Order = () => {
   const Router = useRouter();
-
+  const [submitting, setsubmitting] = useState(false);
   const [details, setDetails] = useState({});
+  const [deliveryStatus, setDeliveryStatus] = useState();
 
   async function fetchOrder() {
     const order = await firestore.doc(`orders/${Router.query?.order}`).get();
@@ -19,12 +22,55 @@ const Order = () => {
     if (Router.query?.order) fetchOrder();
   }, []);
 
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    if (details?.status === deliveryStatus) {
+      toast.info("This status is already been set.");
+    }
+    setsubmitting(true);
+
+    firestore
+      .doc(`orders/${details?.id}`)
+      .update({
+        status: deliveryStatus,
+        statusDateTime: new Date(),
+        statusHistory: [
+          ...details?.statusHistory,
+          { status: deliveryStatus, dateTime: new Date() },
+        ],
+      })
+      .then(() => {
+        toast.success("Delivery Status updated");
+        setsubmitting(false);
+      })
+      .catch((err) => {
+        setsubmitting(false);
+
+        toast.info(err.message);
+      });
+  }
+  console.log(deliveryStatus);
   return (
     <OrderItemWrapper>
       <div className="order-item">
         <div className="heading">
           <h2>ORDER PAGE #{details?.id}</h2>
         </div>
+        <form onSubmit={handleSubmit} className="delivery-dropdown">
+          <label htmlFor="status">Delivery Status</label>
+          <select
+            name="status"
+            id="status"
+            onChange={(e) => setDeliveryStatus(e.target.value)}
+            value={deliveryStatus || details?.status}
+          >
+            {deliveryStatusList.map((m) => (
+              <option value={m.value}>{m.label}</option>
+            ))}
+          </select>
+          <button type="submit">Update Status</button>
+        </form>
         <div className="details-1">
           <div className="order-details">
             <div className="order-head">
