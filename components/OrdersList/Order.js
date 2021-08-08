@@ -112,6 +112,10 @@ const Order = () => {
                 <strong>Quanity</strong>
                 <span>{details.cartItems?.qt}</span>{" "}
               </p>
+              <p>
+                <strong>Individual Price</strong>
+                <span>{details?.totalAmount / details.cartItems?.qt}</span>{" "}
+              </p>
             </div>
           </div>
           <div className="customer-details">
