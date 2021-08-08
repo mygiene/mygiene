@@ -107,6 +107,7 @@ export const Kit = () => {
   }
 
   function addToCart() {
+    // if (product.outOfStock) return;
     if (!cart?.qt && product)
       setcart({
         pId: product.pId,
@@ -152,7 +153,9 @@ export const Kit = () => {
               <div className="cart-button">
                 <button onClick={addToCart}>
                   <span>
-                    {cartItems
+                    {product.outOfStock
+                      ? "OUT OF STOCK"
+                      : cartItems
                       ? cartItems.qt > 0
                         ? "Update Cart"
                         : "Add to Cart"

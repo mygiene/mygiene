@@ -199,13 +199,16 @@ export const CartItem = (props) => {
                 <div className="item-name">{product?.name}</div>
                 <div className="item-quantity">
                   <button
-                    disabled={submitting || quantity < 2}
+                    disabled={submitting || quantity < 2 || product?.outOfStock}
                     onClick={decrease}
                   >
                     <FaIcon className="fa-minus" />
                   </button>
                   <span>{quantity}</span>
-                  <button disabled={submitting} onClick={increase}>
+                  <button
+                    disabled={submitting || product?.outOfStock}
+                    onClick={increase}
+                  >
                     <FaIcon className="fa-plus" />
                   </button>
                 </div>
@@ -222,7 +225,7 @@ export const CartItem = (props) => {
                 <div className="services">
                   <span>
                     <input
-                      disabled={submitting}
+                      disabled={submitting || product?.outOfStock}
                       id={`express-delivery-${props.pId}`}
                       type="checkbox"
                       name="standardDelivery"
@@ -244,7 +247,7 @@ export const CartItem = (props) => {
                 <div className="services">
                   <span>
                     <input
-                      disabled={submitting}
+                      disabled={submitting || product?.outOfStock}
                       id={`express-delivery-${props.pId}`}
                       type="checkbox"
                       name="expressDelivery"
@@ -270,7 +273,11 @@ export const CartItem = (props) => {
               </div>
               <div className="checkout-btn">
                 <Link href={user ? "/payment-details" : "/login"}>
-                  <button disabled={submitting}>Continue to Checkout</button>
+                  <button disabled={submitting || product?.outOfStock}>
+                    {product?.outOfStock
+                      ? "PRODUCT OUT OF STOCK"
+                      : "Continue to Checkout"}
+                  </button>
                 </Link>
               </div>
             </div>

@@ -7,7 +7,10 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 export default async function handler(req, res) {
   if (req.method === "POST") {
     try {
-      const { amount, shipping, receiptEmail } = req.body;
+      const { amount, shipping, receiptEmail, outOfStock } = req.body;
+      if (outOfStock == undefined || outOfStock == null || outOfStock == true) {
+        res.status(401).send("You are not authorized for payment");
+      }
 
       const paymentIntent = await stripe.paymentIntents.create({
         shipping,

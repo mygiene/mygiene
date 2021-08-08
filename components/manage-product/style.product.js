@@ -25,6 +25,7 @@ export default styled.div`
         max-width: 500px;
       }
     }
+
     input {
       width: 300px;
       height: 30px;
@@ -41,6 +42,16 @@ export default styled.div`
         display: flex;
         gap: 0.5rem;
         flex-direction: column;
+      }
+      .out-of-stock {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        input {
+          height: 1.3rem;
+          width: 1.3rem;
+        }
       }
     }
     button {

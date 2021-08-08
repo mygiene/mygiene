@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { AuthContext } from "../components/auth/auth.js";
 import { MetaHead } from "../components/Meta-Head.jsx";
 import { PaymentDetails } from "../components/payment-details/index.jsx";
+import { StoreContext } from "../store/index.js";
 import { stripePublishableKey } from "../stripe/config.js";
 
 const URL = process.env.NEXT_PUBLIC_URL;
@@ -12,8 +13,10 @@ const stripePromise = loadStripe(stripePublishableKey);
 
 const Page = () => {
   const { authState } = useContext(AuthContext);
+  const [, , , , , , product] = useContext(StoreContext);
+
   const user = authState.user || null;
-  if (user)
+  if (user && !product.outOfStock)
     return (
       <>
         <MetaHead title="Orders" />

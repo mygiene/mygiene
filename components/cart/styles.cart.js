@@ -119,6 +119,11 @@ export const ItemWrapper = styled.div`
           font-size: 1rem;
           border-radius: 1.5rem;
           padding: 1rem 1.5rem;
+          &:disabled {
+            background-color: grey;
+            color: white;
+            cursor: progress;
+          }
         }
       }
     }

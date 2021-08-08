@@ -33,7 +33,7 @@ export const PaymentDetails = () => {
   const {
     authState: { user },
   } = useContext(AuthContext);
-  const [, , cartItems, setCartItems, cartSubTotal, setCartSubTotal] =
+  const [, , cartItems, setCartItems, cartSubTotal, setCartSubTotal, product] =
     useContext(StoreContext);
   const [shippingAddress, setShippingAddress] = useState(initialState);
   const [billingAddress, setBillingAddress] = useState(initialState);
@@ -105,6 +105,7 @@ export const PaymentDetails = () => {
           name: recipientName,
           address: { ...shippingAddress },
         },
+        outOfStock: product.outOfStock,
       })
       .then(({ data: clientSecret }) => {
         stripe
@@ -147,7 +148,6 @@ export const PaymentDetails = () => {
                         })
                         .then(() => {
                           resolve();
-                          setsubmitting(false);
                           router.push(`/success?orderId=${orderRef.id}`);
                         });
                     })

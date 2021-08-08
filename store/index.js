@@ -1,4 +1,5 @@
 import { createContext, useEffect, useReducer, useState } from "react";
+import { firestore } from "../firebase/utils";
 import { userTypes } from "./user/userActions";
 
 const initialState = {};
@@ -20,10 +21,16 @@ const Store = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [cartItems, updateCartItems] = useState(null);
   const [cartSubTotal, updateCartSubTotal] = useState(null);
+  const [product, setproduct] = useState();
 
-  useEffect(() => {
+  useEffect(async () => {
     const oldCart = JSON.parse(localStorage.getItem("cart"));
     setCartItems(oldCart);
+
+    const prodData = (
+      await firestore.doc("products/grooming_kit").get()
+    ).data();
+    setproduct(prodData);
   }, []);
 
   function setCartItems(cart) {
@@ -42,6 +49,7 @@ const Store = ({ children }) => {
         setCartItems,
         cartSubTotal,
         setCartSubTotal,
+        product,
       ]}
     >
       {children}

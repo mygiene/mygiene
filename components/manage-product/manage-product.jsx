@@ -8,6 +8,7 @@ const initState = {
   price: undefined,
   description: undefined,
   image: undefined,
+  outOfStock: false,
 };
 
 export const ManageProduct = () => {
@@ -113,6 +114,11 @@ export const ManageProduct = () => {
     setform({ ...form, [name]: value });
   }
 
+  function handleChangeCheckbox(event) {
+    const { name, checked } = event.target;
+    setform({ ...form, [name]: checked });
+  }
+
   function handleChangeImage(e) {
     const file = e.target.files[0];
     setimagefile(file);
@@ -194,6 +200,19 @@ export const ManageProduct = () => {
               value={form?.description}
               onChange={handleChange}
               placeholder={placeholder?.description}
+            />
+          </div>
+          <div className="out-of-stock">
+            <label htmlFor="pstock">Product Out of Stock</label>
+            <input
+              id="pstock"
+              disabled={submitting}
+              autoComplete="off"
+              name="outOfStock"
+              checked={form?.outOfStock}
+              type="checkbox"
+              onChange={handleChangeCheckbox}
+              placeholder={placeholder?.outOfStock}
             />
           </div>
           <button disabled={submitting} type="submit">

@@ -17,31 +17,6 @@ const Page = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const { name, email, message, subject } = form;
-
-    let templateParams = {
-      from_name: name,
-      to_name: "mygiene",
-      subject_html: subject,
-      message_html: message,
-      reply_to: email,
-    };
-
-    emailjs
-      .send(
-        "service_9xqton3",
-        "template_u8f3khr",
-        templateParams,
-        "user_Opy8NZFO39PC74O0yvTdC"
-      )
-      .then(
-        () => {
-          toast("Mail sent successfully.");
-          setform(initialState);
-        },
-        (error) => {
-          toast.error(error.text);
-        }
-      );
   };
 
   function handleFieldChange(event) {

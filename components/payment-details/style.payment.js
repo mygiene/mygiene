@@ -69,6 +69,11 @@ export default styled.div`
       border: none;
       color: whitesmoke;
       padding: 1rem 0;
+      &:disabled {
+        background-color: grey;
+        color: white;
+        cursor: progress;
+      }
     }
   }
 `;
