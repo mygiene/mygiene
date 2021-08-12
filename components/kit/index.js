@@ -126,7 +126,7 @@ export const Kit = () => {
 
   return (
     <StyledWrapper>
-      {product && (
+      {product ? (
         <div className="kit">
           <div className="kit__top">
             <div className="kit__top-left">
@@ -221,6 +221,8 @@ export const Kit = () => {
             </div>
           </div>
         </div>
+      ) : (
+        <h3>There aren't any products yet!</h3>
       )}
     </StyledWrapper>
   );
