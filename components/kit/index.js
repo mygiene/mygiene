@@ -126,7 +126,7 @@ export const Kit = () => {
 
   return (
     <StyledWrapper>
-      {product ? (
+      {product?.name ? (
         <div className="kit">
           <div className="kit__top">
             <div className="kit__top-left">
@@ -222,7 +222,15 @@ export const Kit = () => {
           </div>
         </div>
       ) : (
-        <h3>There aren't any products yet!</h3>
+        <h3
+          style={{
+            textAlign: "center",
+            marginTop: "10rem",
+            fontSize: "1.5rem",
+          }}
+        >
+          There aren't any products yet!
+        </h3>
       )}
     </StyledWrapper>
   );

@@ -85,24 +85,50 @@ export const ManageProduct = () => {
         },
         () => {
           // Upload completed successfully, now we can get the download URL
-          uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-            firestore
-              .doc(`products/grooming_kit`)
-              .update({
-                image: downloadURL,
-              })
-              .then(() => {
-                toast.success("Product Image updated, check out the kit page!");
-                setimagefile(null);
-                setsubmitting(false);
-              })
-              .catch((err) => {
-                setimagefile(null);
-                setpreview(null);
-                setsubmitting(false);
+          uploadTask.snapshot.ref.getDownloadURL().then(async (downloadURL) => {
+            const productRef = await firestore
+              .doc("products/grooming_kit")
+              .get();
+            if (productRef.exists)
+              firestore
+                .doc(`products/grooming_kit`)
+                .update({
+                  image: downloadURL,
+                })
+                .then(() => {
+                  toast.success(
+                    "Product Image updated, check out the kit page!"
+                  );
+                  setimagefile(null);
+                  setsubmitting(false);
+                })
+                .catch((err) => {
+                  setimagefile(null);
+                  setpreview(null);
+                  setsubmitting(false);
 
-                toast.info(err.message);
-              });
+                  toast.info(err.message);
+                });
+            else
+              firestore
+                .doc(`products/grooming_kit`)
+                .set({
+                  image: downloadURL,
+                })
+                .then(() => {
+                  toast.success(
+                    "Product Image updated, check out the kit page!"
+                  );
+                  setimagefile(null);
+                  setsubmitting(false);
+                })
+                .catch((err) => {
+                  setimagefile(null);
+                  setpreview(null);
+                  setsubmitting(false);
+
+                  toast.info(err.message);
+                });
           });
         }
       );
