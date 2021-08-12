@@ -5,6 +5,7 @@ import { MetaHead } from "../components/Meta-Head.jsx";
 import StyledWrapper from "../styles/styles.contact";
 import emailjs from "emailjs-com";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 const contactQuote =
   "Please fill up the form below to get in touch and one of our friendly team members will get back to you asap";
@@ -14,9 +15,19 @@ const initialState = { name: "", email: "", subject: "", message: "" };
 const Page = () => {
   const [form, setform] = useState(initialState);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const { name, email, message, subject } = form;
+    try {
+      await axios.post("/api/transactional-email", {
+        name,
+        email,
+        subject,
+        message,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   function handleFieldChange(event) {

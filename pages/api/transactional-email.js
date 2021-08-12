@@ -5,18 +5,23 @@ const mailInstance = mailchimp(process.env.MANDRILL_API_KEY);
 export default async function handler(req, res) {
   const { name, email, message, subject } = req.body;
   const mailMessage = {
-    from_email: email,
+    from_email: "hello@mygiene.com.au",
     subject,
     text: message,
     to: [
       {
-        email: "freddie@example.com",
+        email: "rakshitmaini@gmail.com",
         type: "to",
       },
     ],
   };
-  const response = await mailInstance.messages.send({
-    message: mailMessage,
-  });
-  console.log(response);
+  try {
+    const response = await mailInstance.messages.send({
+      message: mailMessage,
+    });
+    console.log(response);
+  } catch (error) {
+    console.log(error);
+    res.send(error);
+  }
 }
