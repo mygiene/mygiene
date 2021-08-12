@@ -153,20 +153,35 @@ export const ManageProduct = () => {
   function handleSubmit(e) {
     e.preventDefault();
     setsubmitting(true);
-
-    firestore
-      .doc(`products/grooming_kit`)
-      .update({
-        ...form,
-      })
-      .then(() => {
-        toast.success("Product Info update, check out the kit page!");
-        setsubmitting(false);
-      })
-      .catch((err) => {
-        setsubmitting(false);
-        toast.info(err.message);
-      });
+    const productRef = await firestore.doc("products/grooming_kit").get();
+    if (productRef.exists)
+      firestore
+        .doc(`products/grooming_kit`)
+        .update({
+          ...form,
+        })
+        .then(() => {
+          toast.success("Product Info update, check out the kit page!");
+          setsubmitting(false);
+        })
+        .catch((err) => {
+          setsubmitting(false);
+          toast.info(err.message);
+        });
+    else
+      firestore
+        .doc(`products/grooming_kit`)
+        .set({
+          ...form,
+        })
+        .then(() => {
+          toast.success("Product Info update, check out the kit page!");
+          setsubmitting(false);
+        })
+        .catch((err) => {
+          setsubmitting(false);
+          toast.info(err.message);
+        });
   }
   console.log(form);
   return (
