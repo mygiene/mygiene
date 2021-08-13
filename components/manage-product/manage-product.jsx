@@ -150,7 +150,7 @@ export const ManageProduct = () => {
     setimagefile(file);
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     setsubmitting(true);
     const productRef = await firestore.doc("products/grooming_kit").get();
