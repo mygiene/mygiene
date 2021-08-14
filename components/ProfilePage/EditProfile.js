@@ -141,8 +141,9 @@ const EditProfile = (props) => {
                     name="email"
                     onChange={handleFieldChange}
                     type="text"
+                    placeholder="Please Enter Valid Email "
                     value={email}
-                    disabled
+                    disabled={Boolean(props?.email)}
                   />
                 </div>
                 <div className="form-fields">

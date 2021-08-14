@@ -1,6 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import { toast } from "react-toastify";
-import { auth, handleUserProfile } from "../../firebase/utils";
+import {
+  auth,
+  handleUserProfile,
+  signInWithFacebook,
+  signInWithGoogle,
+} from "../../firebase/utils";
 import SignUpWrapper from "./styles.signup";
 import Link from "next/link";
 import { FaIcon } from "../BaseComponent/FaIcon";
@@ -42,6 +47,24 @@ const SignUpPage = () => {
         password
       );
       await handleUserProfile(user, { displayName });
+    } catch (error) {
+      toast.error(error.message || "Something went wrong");
+    }
+  }
+
+  function signWithFacebook(e) {
+    e.preventDefault();
+    try {
+      signInWithFacebook();
+    } catch (error) {
+      toast.error(error.message || "Something went wrong");
+    }
+  }
+
+  function signWithGoogle(e) {
+    e.preventDefault();
+    try {
+      signInWithGoogle();
     } catch (error) {
       toast.error(error.message || "Something went wrong");
     }
@@ -124,13 +147,13 @@ const SignUpPage = () => {
               <hr />
             </div>
             <div className="signup__google">
-              <button>
+              <button onClick={signWithGoogle}>
                 <img src="/loginAssets/google.png" alt="google-icon" />
                 <span>Sign Up with Google</span>
               </button>
             </div>
             <div className="signup__fb">
-              <button type="submit">
+              <button onClick={signWithFacebook}>
                 <img src="/loginAssets/fb.png" alt="facebook-icon" />
                 <span>Sign Up with FaceBook</span>
               </button>

@@ -9,7 +9,7 @@ import { stripePublishableKey } from "../stripe/config.js";
 
 const URL = process.env.NEXT_PUBLIC_URL;
 
-const stripePromise = loadStripe(stripePublishableKey);
+// const stripePromise = loadStripe(stripePublishableKey);
 
 const Page = () => {
   const { authState } = useContext(AuthContext);
@@ -20,9 +20,9 @@ const Page = () => {
     return (
       <>
         <MetaHead title="Orders" />
-        <Elements stripe={stripePromise}>
-          <PaymentDetails />
-        </Elements>
+        {/* <Elements stripe={stripePromise}> */}
+        <PaymentDetails />
+        {/* </Elements> */}
       </>
     );
   else {

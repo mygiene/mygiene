@@ -24,11 +24,15 @@ export const signInWithGoogle = () =>
     .then((res) => res.user)
     .catch((err) => err);
 
-export const signInWithFacebook = () =>
-  auth
+export const signInWithFacebook = () => {
+  FacebookProvider.addScope("email");
+  return auth
     .signInWithPopup(FacebookProvider)
-    .then((res) => res.user)
+    .then((res) => {
+      return res.user;
+    })
     .catch((err) => err);
+};
 
 export const handleUserProfile = async (userAuth, additionalData) => {
   if (!userAuth) return;
@@ -38,6 +42,7 @@ export const handleUserProfile = async (userAuth, additionalData) => {
 
   const snapshot = await userRef.get();
   if (!snapshot.exists) {
+    console.log({ userAuth });
     const { displayName, email } = userAuth;
     const timeStamp = new Date();
     const authRoles = ["user"];

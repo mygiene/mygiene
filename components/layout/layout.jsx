@@ -11,10 +11,7 @@ import { stripePublishableKey } from "../../stripe/config";
 import { loadStripe } from "@stripe/stripe-js";
 import Link from "next/link";
 
-// const stripePromise = loadStripe(stripePublishableKey);
-// const stripePromise = loadStripe(
-//   "pk_test_51JHMy7EDTtTQNBA8nr8L1zzxD13kJ9lcSvgUuOVwe5JEQZn932Bewfl5brM8v1jxW7GEGPYkhPVioyZCMuod6uaQ00kitsoJbr"
-// );
+const stripePromise = loadStripe(stripePublishableKey);
 
 export const Layout = ({ children }) => {
   const {
@@ -29,16 +26,11 @@ export const Layout = ({ children }) => {
 
   return (
     <div className="layout">
-      {/* <Elements stripe={stripePromise}> */}
-      <Header />
-      {/* {isAdmin && (
-        <div className="admin-header">
-          <Link href="/admin">Admin Dashboard</Link>
-        </div>
-      )} */}
-      {children}
-      <Footer />
-      {/* </Elements> */}
+      <Elements stripe={stripePromise}>
+        <Header />
+        {children}
+        <Footer />
+      </Elements>
     </div>
   );
 };

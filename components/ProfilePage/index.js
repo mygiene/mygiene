@@ -34,7 +34,7 @@ const ProfilePage = () => {
                 </div>
                 <div className="profile_details-email">
                   <span>Email Id</span>
-                  <span>{user?.email}</span>
+                  <span>{user?.email || "Add an E-mail"}</span>
                 </div>
                 <div className="profile_details-contact">
                   <span>Contact No</span>

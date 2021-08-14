@@ -47,6 +47,7 @@ export const PaymentDetails = () => {
   const [receiptEmail, setReceiptEmail] = useState();
   const [nameOnCard, setnameOnCard] = useState();
   const [submitting, setsubmitting] = useState(false);
+  console.log("ous",product.outOfStock);
 
   useEffect(() => {
     if (billingAdd) setBillingAddress(shippingAddress);
@@ -195,7 +196,7 @@ export const PaymentDetails = () => {
   const { line1, line2, city, state, postal_code } = shippingAddress;
   return (
     <StyledWrapper>
-      <ApplePay cartItems={cartItems} cartTotal={total} />
+      {/* <ApplePay cartItems={cartItems} cartTotal={total} /> */}
       <form onSubmit={handleSubmit}>
         <div className="shipping">
           <div className="shipping-title">Shipping Address</div>

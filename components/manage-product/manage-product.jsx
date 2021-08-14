@@ -12,7 +12,7 @@ const initState = {
 };
 
 export const ManageProduct = () => {
-  const [form, setform] = useState({});
+  const [form, setform] = useState(initState);
   const [placeholder, setplaceholder] = useState({});
   const [imagefile, setimagefile] = useState();
   const [preview, setpreview] = useState();
@@ -159,6 +159,7 @@ export const ManageProduct = () => {
         .doc(`products/grooming_kit`)
         .update({
           ...form,
+          outOfStock: Boolean(form?.outOfStock),
         })
         .then(() => {
           toast.success("Product Info update, check out the kit page!");
@@ -173,6 +174,7 @@ export const ManageProduct = () => {
         .doc(`products/grooming_kit`)
         .set({
           ...form,
+          outOfStock: Boolean(form?.outOfStock),
         })
         .then(() => {
           toast.success("Product Info update, check out the kit page!");
@@ -250,7 +252,7 @@ export const ManageProduct = () => {
               disabled={submitting}
               autoComplete="off"
               name="outOfStock"
-              checked={form?.outOfStock}
+              checked={form?.outOfStock || false}
               type="checkbox"
               onChange={handleChangeCheckbox}
               placeholder={placeholder?.outOfStock}
