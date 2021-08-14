@@ -75,9 +75,9 @@ const OrderItem = ({
           </div>
         </div>
 
-        <button className="download-icon">
+        {/* <button className="download-icon">
           <FaIcon className="fa fa-download" />
-        </button>
+        </button> */}
       </div>
     </div>
   );
