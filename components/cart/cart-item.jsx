@@ -10,11 +10,11 @@ import { getStripe } from "../../stripe/getStripe";
 import { toast } from "react-toastify";
 
 export const StandardDelivery = {
-  price: "10",
+  price: "0",
   id: "shr_1JHrYuEDTtTQNBA8fPmzIEHt",
 };
 export const ExpressDelivery = {
-  price: "15",
+  price: "0",
   id: "shr_1JHrfFEDTtTQNBA85aKOjYpe",
 };
 
