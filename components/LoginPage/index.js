@@ -41,7 +41,7 @@ const LoginPage = () => {
     try {
       signInWithFacebook();
     } catch (error) {
-      toast.error(error.message || "Something went wrong");
+      console.log({ error });
     }
   }
 
@@ -50,7 +50,7 @@ const LoginPage = () => {
     try {
       signInWithGoogle();
     } catch (error) {
-      toast.error(error.message || "Something went wrong");
+      console.log({ error });
     }
   }
 

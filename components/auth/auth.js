@@ -1,12 +1,5 @@
 import { useRouter } from "next/router";
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useReducer,
-  useState,
-} from "react";
-import { toast } from "react-toastify";
+import { createContext, useContext, useEffect, useState } from "react";
 import {
   auth,
   firestore,
@@ -14,7 +7,6 @@ import {
   handleUserProfile,
 } from "../../firebase/utils";
 import { StoreContext } from "../../store";
-import { IsCSR } from "../../util/common";
 
 const initialState = {
   user: null,
