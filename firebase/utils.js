@@ -45,7 +45,6 @@ export const handleUserProfile = async (userAuth, additionalData) => {
 
   const snapshot = await userRef.get();
   if (!snapshot.exists) {
-    console.log({ userAuth });
     const { displayName, email } = userAuth;
     const timeStamp = new Date();
     const authRoles = ["user"];
