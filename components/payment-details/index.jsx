@@ -47,7 +47,6 @@ export const PaymentDetails = () => {
   const [receiptEmail, setReceiptEmail] = useState();
   const [nameOnCard, setnameOnCard] = useState();
   const [submitting, setsubmitting] = useState(false);
-  console.log("ous",product.outOfStock);
 
   useEffect(() => {
     if (billingAdd) setBillingAddress(shippingAddress);
