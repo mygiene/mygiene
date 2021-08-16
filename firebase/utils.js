@@ -2,6 +2,7 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 import "firebase/storage";
+import { toast } from "react-toastify";
 import { firebaseConfig } from "./config";
 // Initialize Firebase
 
@@ -22,16 +23,18 @@ export const signInWithGoogle = () =>
   auth
     .signInWithPopup(GoogleProvider)
     .then((res) => res.user)
-    .catch((err) => err);
+    .catch((err) => {
+      toast.info(err.message);
+    });
 
 export const signInWithFacebook = () => {
   FacebookProvider.addScope("email");
   return auth
     .signInWithPopup(FacebookProvider)
-    .then((res) => {
-      return res.user;
-    })
-    .catch((err) => err);
+    .then((res) => res.user)
+    .catch((err) => {
+      toast.info(err.message);
+    });
 };
 
 export const handleUserProfile = async (userAuth, additionalData) => {
