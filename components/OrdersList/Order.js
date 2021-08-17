@@ -186,7 +186,7 @@ const Order = () => {
                 <strong>Payment Id</strong>
                 <a
                   target="_blank"
-                  href={`https://dashboard.stripe.com/test/payments/${details?.paymentIntentId}`}
+                  href={`https://dashboard.stripe.com/payments/${details?.paymentIntentId}`}
                 >
                   {details?.paymentIntentId}
                   <FaIcon className="fa-external-link" />
