@@ -47,7 +47,6 @@ export const PaymentDetails = () => {
   const [receiptEmail, setReceiptEmail] = useState();
   const [nameOnCard, setnameOnCard] = useState();
   const [submitting, setsubmitting] = useState(false);
-  console.log("ous",product.outOfStock);
 
   useEffect(() => {
     if (billingAdd) setBillingAddress(shippingAddress);
@@ -77,9 +76,9 @@ export const PaymentDetails = () => {
     if (
       typeof cartItems?.delivery !== "string" ||
       cartItems?.pId !== "grooming_kit" ||
-      Number(cartItems?.price) < 59.99 ||
+      Number(cartItems?.price) < 1 ||
       cartItems?.qt < 1 ||
-      cartSubTotal < 59.99
+      Number(cartSubTotal) < 1
     ) {
       toast.info("Something is wrong with your cart.");
       router.push("/");

@@ -16,7 +16,6 @@ const ThanksPage = () => {
 
   useEffect(() => {
     const orderId = Router?.query?.orderId;
-    console.log({ orderId });
     fetchOrder(orderId);
   }, [Router.query, user]);
 

@@ -22,7 +22,7 @@ export const CartItem = (props) => {
   const {
     authState: { user },
   } = useContext(AuthContext);
-  const [, , cartItems, setCartItems, cartSubTotal, setCartTotal] =
+  const [, , cartItems, setCartItems, cartSubTotal, setCartSubTotal] =
     useContext(StoreContext);
   const delv = cartItems?.delivery || "standard";
   const standardDelv = delv === "standard";
@@ -35,8 +35,12 @@ export const CartItem = (props) => {
   const [submitting, setsubmitting] = useState(false);
 
   const total = delivery.express
-    ? fixedByTwoDecimal(Number(cartSubTotal) + Number(ExpressDelivery.price))
-    : fixedByTwoDecimal(Number(cartSubTotal) + Number(StandardDelivery.price));
+    ? fixedByTwoDecimal(
+        Number(cartItems.cartSubTotal) + Number(ExpressDelivery.price)
+      )
+    : fixedByTwoDecimal(
+        Number(cartItems.cartSubTotal) + Number(StandardDelivery.price)
+      );
 
   useEffect(() => {
     if (user) {
@@ -116,12 +120,17 @@ export const CartItem = (props) => {
         const updatedCart = {
           ...cartItems,
           qt: cartItems.qt + 1,
+          cartSubTotal: fixedByTwoDecimal(product.price * (+cartItems.qt + 1)),
         };
         setCartItems(updatedCart);
         localStorage.setItem("cart", JSON.stringify(updatedCart));
         setquantity((q) => q + 1);
       } else {
-        const updatedCart = { pId: "grooming_kit", qt: 1 };
+        const updatedCart = {
+          pId: "grooming_kit",
+          qt: 1,
+          cartSubTotal: fixedByTwoDecimal(product.price * 1),
+        };
         setCartItems(updatedCart);
         setquantity(1);
 
@@ -142,7 +151,7 @@ export const CartItem = (props) => {
               ...user.cartItems,
               qt: user.cartItems.qt - 1,
               cartSubTotal: fixedByTwoDecimal(
-                product.price * (user.cartItems.qt - 1)
+                +product.price * (+cartItems.qt - 1)
               ),
             },
           });
@@ -150,7 +159,7 @@ export const CartItem = (props) => {
             ...user.cartItems,
             qt: user.cartItems.qt - 1,
             cartSubTotal: fixedByTwoDecimal(
-              product.price * (user.cartItems.qt - 1)
+              +product.price * (+user.cartItems.qt - 1)
             ),
           });
         } catch (error) {
@@ -162,6 +171,9 @@ export const CartItem = (props) => {
           const updatedCart = {
             ...cartItems,
             qt: cartItems.qt - 1,
+            cartSubTotal: fixedByTwoDecimal(
+              +product.price * (+cartItems.qt - 1)
+            ),
           };
           setCartItems(updatedCart);
           localStorage.setItem("cart", JSON.stringify(updatedCart));
@@ -184,10 +196,10 @@ export const CartItem = (props) => {
         : [StandardDelivery.id],
     });
 
-    const stripe = await getStripe();
-    await stripe.redirectToCheckout({ sessionId: id });
+    // const stripe = await getStripe();
+    // await stripe.redirectToCheckout({ sessionId: id });
   }
-  console.log(submitting);
+  console.log(product, cartItems, total);
   return (
     <>
       {product?.name && quantity && (
