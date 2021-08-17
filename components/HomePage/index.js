@@ -142,7 +142,7 @@ const HomePage = () => {
           <div className="testimonials">
             <div className="testimonial-images">
               <div className="testimonial-Image">
-                <img src="/homeAssets/testimonial-2.png" alt="testimonia" />
+                <img src="/homeAssets/testimonial-2.png" alt="testimonial" />
               </div>
               <div className="testimonial-Image">
                 <img src="/homeAssets/testimonial-1.png" alt="testimonia" />
