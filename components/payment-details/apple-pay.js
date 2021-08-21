@@ -5,17 +5,20 @@ import {
 } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
 import { fixedByTwoDecimal } from "../../firebase/utils";
+import { IsCSR } from "../../util/common";
 
-export const ApplePay = ({ cartItems, cartTotal }) => {
+export const ApplePay = ({}) => {
   const stripe = useStripe();
   const elements = useElements();
   const [paymentrequest, setpaymentrequest] = useState();
   useEffect(() => {
-    if (!stripe || !elements || !cartItems?.cartSubTotal || !cartTotal) return;
+    // || !cartItems?.cartSubTotal || !cartTotal
+    if (!stripe || !elements) return;
+    console.log("working");
 
     const pr = stripe.paymentRequest({
-      currency: "usd",
-      country: "US",
+      currency: "aud",
+      country: "AU",
       requestPayerName: true,
       requestPayerEmail: true,
       total: {
@@ -36,56 +39,57 @@ export const ApplePay = ({ cartItems, cartTotal }) => {
       // ],
     });
     pr.canMakePayment().then((result) => {
+      console.log({ result });
       if (result) {
         setpaymentrequest(pr);
         // pr.show();
       }
     });
 
-    pr.on("paymentmethod", async (e) => {
-      await axios
-        .post("/api/payments", {
-          amount: Math.ceil(total * 100),
-          shipping: {
-            name: recipientName,
-            address: { ...shippingAddress },
-          },
-        })
-        .then(({ data: clientSecret }) => {
-          stripe
-            .createPaymentMethod({
-              type: "card",
-              currency: "usd",
-              // billing_details: {
-              //   name: nameOnCard,
-              //   address: { ...billingAddress },
-              // },
-            })
-            .then(async ({ paymentMethod }) => {
-              const { error, paymentIntent } = await stripe.confirmCardPayment(
-                clientSecret,
-                {
-                  payment_method: paymentMethod.id,
-                },
-                { handleActions: false }
-              );
-              if (error) {
-                e.complete("fail");
-              }
-              e.complete("success");
-              if (paymentIntent.status == "requires_action") {
-                stripe.confirmCardPayment(clientSecret);
-              }
-            });
-        });
-    });
+    // pr.on("paymentmethod", async (e) => {
+    //   await axios
+    //     .post("/api/payments", {
+    //       amount: Math.ceil(total * 100),
+    //       shipping: {
+    //         name: recipientName,
+    //         address: { ...shippingAddress },
+    //       },
+    //     })
+    //     .then(({ data: clientSecret }) => {
+    //       stripe
+    //         .createPaymentMethod({
+    //           type: "card",
+    //           currency: "usd",
+    //           // billing_details: {
+    //           //   name: nameOnCard,
+    //           //   address: { ...billingAddress },
+    //           // },
+    //         })
+    //         .then(async ({ paymentMethod }) => {
+    //           const { error, paymentIntent } = await stripe.confirmCardPayment(
+    //             clientSecret,
+    //             {
+    //               payment_method: paymentMethod.id,
+    //             },
+    //             { handleActions: false }
+    //           );
+    //           if (error) {
+    //             e.complete("fail");
+    //           }
+    //           e.complete("success");
+    //           if (paymentIntent.status == "requires_action") {
+    //             stripe.confirmCardPayment(clientSecret);
+    //           }
+    //         });
+    //     });
+    // });
   }, [stripe, elements]);
 
-  console.log({ paymentrequest });
+  console.log({ paymentrequest, IsCSR });
 
   return (
     <div>
-      <h2>Apple-Pay</h2>
+      <h2>Pay</h2>
       {paymentrequest && (
         <PaymentRequestButtonElement options={{ paymentrequest }} />
       )}

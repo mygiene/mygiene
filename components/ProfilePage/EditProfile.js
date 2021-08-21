@@ -5,6 +5,7 @@ import { Modal } from "react-responsive-modal";
 import { firestore } from "../../firebase/utils";
 import { AuthContext } from "../auth/auth";
 import EditWrapper from "./style.modal";
+import { Details } from "./addressDetails";
 
 const initialState = {
   newType: "",
@@ -24,6 +25,7 @@ const EditProfile = (props) => {
   const [addressForm, setaddressForm] = useState(initialState);
 
   const [open, setOpen] = useState(false);
+  const [modal, setmodal] = useState(false);
 
   const onOpenModal = () => setOpen(true);
   const onCloseModal = () => setOpen(false);
@@ -103,14 +105,19 @@ const EditProfile = (props) => {
       .catch((err) => console.log(err));
   }
 
+  function openModal(e) {
+    e.preventDefault();
+    setmodal((v) => !v);
+  }
+
   const { displayName, email, address, mobile } = form;
   const { newType, newAddress } = addressForm;
 
   return (
     <>
       <button onClick={onOpenModal}>
-        <FaIcon className="fa fa-edit" />
         <span>Edit</span>
+        <FaIcon className="fa-edit fa-lg" />
       </button>
       <Modal
         open={open}
@@ -122,7 +129,7 @@ const EditProfile = (props) => {
           <div className="edit-modal">
             <h3>Edit Profile</h3>
             <div className="edit-form">
-              <form onSubmit={handleSubmit}>
+              <form name="outer-form" onSubmit={handleSubmit}>
                 <div className="form-fields">
                   <label>Name</label>
                   <input
@@ -156,6 +163,20 @@ const EditProfile = (props) => {
                     value={mobile}
                   />
                 </div>
+                <form>
+                  <label>Add / Delete Address Dynamically</label>{" "}
+                  <button onClick={openModal}>
+                    Add <FaIcon className="fa fa-plus" />
+                  </button>
+                </form>
+                <Modal
+                  open={modal}
+                  center
+                  onClose={() => setmodal(false)}
+                  styles={{ modal: { background: "#f8e1e1", width: "80%" } }}
+                >
+                  <Details isNew onComplete={() => setmodal(false)} />
+                </Modal>
                 {address.length <= 1 && (
                   <form onSubmitCapture={(e) => updateAddress(null, e)}>
                     <div className="form-fields-address">
@@ -223,45 +244,6 @@ const EditProfile = (props) => {
                     </form>
                   </div>
                 )}
-
-                {/* {address.length > 0 && (
-                  <div className="form-fields-address">
-                    <div className="address-fields">
-                      <form>
-                        <table>
-                          {address.map((m, index) => (
-                            <tr>
-                              <td>
-                                <input
-                                  name="type"
-                                  value={m.type}
-                                  type="text"
-                                  onChange={(e) => updateAddress(m.id, e)}
-                                  placeholder="Type of Address"
-                                />
-                              </td>
-                              <td>
-                                <textarea
-                                  name="address"
-                                  value={m.address}
-                                  onChange={(e) => updateAddress(m.id, e)}
-                                  type="text"
-                                  placeholder="Your Address"
-                                />
-                              </td>
-                              <td>
-                                <button onClick={(e) => remove(m.id, e)}>
-                                  <FaIcon className="fa fa-trash" />
-                                </button>
-                              </td>
-                            </tr>
-                          ))}
-                        </table>
-                      </form>
-                      
-                    </div>
-                  </div>
-                )} */}
                 <div className="form-button">
                   <button type="submit">Submit</button>
                 </div>

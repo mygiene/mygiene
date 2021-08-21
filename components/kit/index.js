@@ -7,6 +7,7 @@ import { FaIcon } from "../BaseComponent/FaIcon";
 import KitModalView from "./KitModalView";
 import StyledWrapper from "./style.kit";
 import { Modal } from "react-responsive-modal";
+import { toast } from "react-toastify";
 
 const kitItems = [
   {
@@ -67,8 +68,10 @@ export const Kit = () => {
   const [cart, setcart] = useState(null);
   const [product, setproduct] = useState();
   const [quantity, setquantity] = useState(cartItems?.qt || 1);
+  const [loading, setloading] = useState(false);
 
   useEffect(async () => {
+    setloading(true);
     if (user) {
       setCartItems(user.cartItems);
       setcart(user.cartItems);
@@ -78,9 +81,15 @@ export const Kit = () => {
         setcart(storedData);
       }
     }
-    const productRef = await firestore.doc("products/grooming_kit").get();
-    const { id } = productRef;
-    setproduct({ ...productRef.data(), pId: id });
+    try {
+      const productRef = await firestore.doc("products/grooming_kit").get();
+      const { id } = productRef;
+      setproduct({ ...productRef.data(), pId: id });
+      setloading(false);
+    } catch (error) {
+      setloading(false);
+      toast.info(error.message);
+    }
   }, []);
 
   useEffect(() => {
@@ -92,7 +101,10 @@ export const Kit = () => {
           setCartItems(cart);
           localStorage.setItem("cart", null);
         })
-        .catch((err) => console.log(err.message));
+        .catch((err) => {
+          toast.info(err.message);
+          console.log(err.message);
+        });
     } else if (!user) {
       setCartItems(cart);
       localStorage.setItem("cart", JSON.stringify(cart));
@@ -126,7 +138,18 @@ export const Kit = () => {
 
   return (
     <StyledWrapper>
-      {product?.name ? (
+      {loading ? (
+        <div
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%,-50%)",
+          }}
+        >
+          <img src="/loader2.svg" alt="loading" />
+        </div>
+      ) : product?.name ? (
         <div className="kit">
           <div className="kit__top">
             <div className="kit__top-left">

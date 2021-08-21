@@ -50,7 +50,7 @@ export default styled.div`
             background-color: #d5fafc;
             border: none;
             /* width: 100px; */
-            align-items: baseline;
+            align-items: center;
             width: 5rem;
             height: 2.5rem;
             justify-content: center;
@@ -58,7 +58,8 @@ export default styled.div`
             border-radius: 10%;
             i {
               color: black;
-              font-size: 1.8rem;
+              /* font-size: 1.8rem; */
+              margin-left: 0.3rem;
             }
           }
           button:hover {
