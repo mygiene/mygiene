@@ -120,7 +120,7 @@ export default styled.div`
         display: flex !important;
         flex-direction: column !important;
         /* justify-content: center; */
-        margin: auto !important;
+        margin: 2rem auto !important;
         align-items: center !important;
       }
     }
@@ -131,7 +131,7 @@ export default styled.div`
       display: flex !important;
       flex-direction: column !important;
       /* justify-content: center; */
-      margin: auto !important;
+      margin: 2rem auto !important;
       align-items: center !important;
     }
   }
