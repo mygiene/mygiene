@@ -132,9 +132,9 @@ export default styled.div`
             color: #055f5b;
           }
           p {
-            letter-spacing: -0.02em;
-            text-transform: capitalize;
-            line-height: 1.6rem;
+            letter-spacing: 0.03rem;
+
+            line-height: 1.8rem;
             color: #000000;
             font-size: 1.05rem;
           }
