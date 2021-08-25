@@ -81,12 +81,12 @@ const HomePage = () => {
             <div className="banner-image">
               <img
                 src="/homeAssets/home-banner.jpg"
-                alt="mygiene - Men's Grooming Kit"
+                alt="mygiene - Men's Essentials Kit"
               />
             </div>
           </div>
           <div className="intro-section">
-            <h1>Best grooming kit for men</h1>
+            <h1>Best Essemtials kit for men</h1>
             <p>
               Mygiene delivers a complete, one-stop toiletries package at the
               click of a button.
@@ -101,7 +101,7 @@ const HomePage = () => {
             <img src="/homeAssets/home-kit.jpg" alt="kit" />
           </div>
           <div className="kit-content">
-            <h1>ALL IN ONE GROOMING KIT</h1>
+            <h1>ALL IN ONE ESSENTIALS KIT</h1>
             <p className="kit-intro">
               Mygiene is out to revolutionise the way you pack with our
               all-inclusive toiletries bag for men. No more scrambling

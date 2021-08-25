@@ -49,8 +49,8 @@ const ThanksPage = () => {
 
             <span>Hey {user?.displayName},</span>
             <p>
-              Great news! We've recieved your order of 'Men's Grooming Kit' and
-              we're getting it ready to ship.
+              Great news! We've recieved your order of 'Men's Essentials Kit'
+              and we're getting it ready to ship.
             </p>
           </div>
           <div className="order-table">

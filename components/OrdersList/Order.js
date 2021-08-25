@@ -106,7 +106,7 @@ const Order = () => {
               </p>
               <p>
                 <strong>Product Name </strong>
-                <span>MyGiene Grooming Kit</span>
+                <span>MyGiene Essentials Kit</span>
               </p>
               <p>
                 <strong>Quanity</strong>
