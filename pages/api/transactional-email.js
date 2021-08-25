@@ -6,12 +6,12 @@ export default async function handler(req, res) {
   const { name, email, message, subject } = req.body;
   console.log("api started");
   const mailMessage = {
-    from_email: "hello@mygiene.com.au",
+    from_email: "rakshitmaini@gmail.com",
     subject,
     text: message,
     to: [
       {
-        email: "rakshitmaini@gmail.com",
+        email: "hello@mygiene.com.au",
         type: "to",
       },
     ],
