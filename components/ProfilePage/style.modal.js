@@ -88,7 +88,9 @@ export default styled.div`
           }
         }
         .form-button {
-          margin-top: 2rem;
+          margin: 2rem auto;
+          width: 100%;
+
           button {
             height: 3rem;
             border-radius: 1.75rem;

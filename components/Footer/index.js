@@ -43,7 +43,6 @@ export const Footer = () => {
             </a>
           </Link>
 
-          <span>All in one grooming kit for men.</span>
           <div className="footer__social__icons">
             <div>
               <a

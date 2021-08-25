@@ -34,10 +34,6 @@ const About = () => {
             <div className="about__banner-head">
               <h2>About Our Company</h2>
 
-              <span>
-                We solved X problem by providing Y solution with mygiene
-                Australia
-              </span>
               <div className="banner-buttons">
                 <button>
                   <Link href="/kit">Buy Kit</Link>

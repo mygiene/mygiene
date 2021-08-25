@@ -123,7 +123,15 @@ const EditProfile = (props) => {
         open={open}
         center
         onClose={onCloseModal}
-        styles={{ modal: { background: "#f8e1e1", width: "80%" } }}
+        styles={{
+          modal: {
+            background: "#f8e1e1",
+            width: "90%",
+
+            margin: "0",
+            padding: "0",
+          },
+        }}
       >
         <EditWrapper>
           <div className="edit-modal">

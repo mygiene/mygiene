@@ -12,11 +12,11 @@ import { ApplePay } from "./apple-pay";
 import StyledWrapper from "./style.payment";
 
 const initialState = {
-  line1: "adf",
-  line2: "as",
-  city: "sdfa",
-  state: "adfa",
-  postal_code: "asdfa",
+  line1: "",
+  line2: "",
+  city: "",
+  state: "",
+  postal_code: "",
   country: "AU",
 };
 
