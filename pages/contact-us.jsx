@@ -3,8 +3,6 @@ import Banner from "../components/BaseComponent/Banner";
 import { FaIcon } from "../components/BaseComponent/FaIcon";
 import { MetaHead } from "../components/Meta-Head.jsx";
 import StyledWrapper from "../styles/styles.contact";
-import emailjs from "emailjs-com";
-import { toast } from "react-toastify";
 import axios from "axios";
 
 const contactQuote =
