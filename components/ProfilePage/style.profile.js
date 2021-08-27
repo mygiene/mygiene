@@ -33,7 +33,7 @@ export default styled.div`
 
       .right-side {
         margin: 1.5rem 0rem 3rem 0rem;
-        div {
+        div:nth-child(1) {
           width: 100%;
           display: flex;
           grid-gap: 4rem;
@@ -81,21 +81,17 @@ export default styled.div`
           .profile_details-contact,
           .profile_details-address {
             display: flex;
+            justify-content: space-between;
           }
-          .profile_details-name {
-            grid-gap: 6rem;
-          }
-          .profile_details-email {
-            grid-gap: 5rem;
-          }
+
           .profile_details-contact {
-            grid-gap: 0.2rem;
+            /* grid-gap: 0.2rem; */
             span {
               width: 60%;
             }
           }
           .profile_details-address {
-            grid-gap: 5.2rem;
+            /* grid-gap: 5.2rem; */
 
             div {
               display: flex;
@@ -123,17 +119,30 @@ export default styled.div`
         /* justify-content: center; */
         margin: 2rem auto !important;
         align-items: center !important;
+        div:nth-child(1) {
+          grid-gap: 2rem !important;
+          justify-content: center;
+        }
+        .profile_details {
+          width: 100%;
+        }
       }
     }
   }
   @media only screen and (max-width: 767px) and (min-width: 426px) {
     .right-side {
-      /* width: 100%; */
       display: flex !important;
       flex-direction: column !important;
       /* justify-content: center; */
       margin: 2rem auto !important;
       align-items: center !important;
+      div:nth-child(1) {
+        grid-gap: 2rem !important;
+        justify-content: center;
+      }
+      .profile_details {
+        width: 100%;
+      }
     }
   }
 `;

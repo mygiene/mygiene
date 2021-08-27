@@ -86,7 +86,7 @@ const HomePage = () => {
             </div>
           </div>
           <div className="intro-section">
-            <h1>Best Essemtials kit for men</h1>
+            <h1>Best Essentials kit for men</h1>
             <p>
               Mygiene delivers a complete, one-stop toiletries package at the
               click of a button.

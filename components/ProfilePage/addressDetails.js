@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 
 import { firestore } from "../../firebase/utils";
 import { AuthContext } from "../auth/auth";
-
+import DetailsModal from "./style.details";
 const initState = {
   type: "af",
   line1: "ad",
@@ -48,64 +48,85 @@ export const Details = ({ isNew, onComplete }) => {
 
   const { line1, line2, type, city, state, postal_code } = form;
   return (
-    <div>
-      <form></form>
-      <form name="inner-form" onSubmitCapture={handleSubmit}>
-        <input
-          required
-          name="type"
-          value={type}
-          type="text"
-          onChange={handleChange}
-          placeholder="Type of Address"
-        />
-        <input
-          required
-          disabled={submitting}
-          type="text"
-          name="line1"
-          value={line1}
-          onChange={handleChange}
-          placeholder="Address Line 1"
-        />
-        <input
-          required
-          disabled={submitting}
-          type="text"
-          name="line2"
-          value={line2}
-          onChange={handleChange}
-          placeholder="Address Line 2"
-        />
-        <input
-          required
-          disabled={submitting}
-          type="text"
-          name="city"
-          value={city}
-          onChange={handleChange}
-          placeholder="City"
-        />
-        <input
-          required
-          disabled={submitting}
-          type="text"
-          name="state"
-          value={state}
-          onChange={handleChange}
-          placeholder="State"
-        />
-        <input
-          required
-          disabled={submitting}
-          type="text"
-          name="postal_code"
-          value={postal_code}
-          onChange={handleChange}
-          placeholder="Postal Code"
-        />
-        <button type="submit">Submit</button>
-      </form>
-    </div>
+    <DetailsModal>
+      <div className="edit-form">
+        <form name="outer-form" onSubmitCapture={handleSubmit}>
+          <div className="form-fields">
+            <label>Type of Address</label>
+            <input
+              required
+              name="type"
+              value={type}
+              type="text"
+              onChange={handleChange}
+              placeholder="Type of Address"
+            />
+          </div>
+          <div className="form-fields">
+            <label>Address Line 1</label>
+            <input
+              required
+              disabled={submitting}
+              type="text"
+              name="line1"
+              value={line1}
+              onChange={handleChange}
+              placeholder="Address Line 1"
+            />
+          </div>
+          <div className="form-fields">
+            <label>Address Line 2</label>
+            <input
+              required
+              disabled={submitting}
+              type="text"
+              name="line2"
+              value={line2}
+              onChange={handleChange}
+              placeholder="Address Line 2"
+            />
+          </div>
+          <div className="form-fields">
+            <label>City</label>
+            <input
+              required
+              disabled={submitting}
+              type="text"
+              name="city"
+              value={city}
+              onChange={handleChange}
+              placeholder="City"
+            />
+          </div>
+          <div className="form-fields">
+            <label>State</label>
+            <input
+              required
+              disabled={submitting}
+              type="text"
+              name="state"
+              value={state}
+              onChange={handleChange}
+              placeholder="State"
+            />
+          </div>
+          <div className="form-fields">
+            <label>Postal Code</label>
+            <input
+              required
+              disabled={submitting}
+              type="text"
+              name="postal_code"
+              value={postal_code}
+              onChange={handleChange}
+              placeholder="Postal Code"
+            />
+          </div>
+          <div className="form-button">
+            <button type="submit">Submit</button>
+          </div>
+        </form>
+      </div>
+    </DetailsModal>
   );
 };

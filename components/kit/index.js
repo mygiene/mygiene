@@ -11,16 +11,22 @@ import { toast } from "react-toastify";
 
 const kitItems = [
   {
-    title: "Razor",
+    title: "Razor Handle",
     image: "/kitAssets/razor.png",
     content:
-      "Get the job done with this four-blade razor, featuring a textured metal handle for an unrivaled grip and effortless glide. Comes with additional blades.",
+      "Get the job done with this three-blade razor, featuring a textured metal handle for an unrivaled grip and effortless glide. Plus your razor it is compatible with the Gillette Mach 3 razor attachment.",
   },
   {
     title: "Razor case",
     image: "/kitAssets/razor_cover.png",
     content:
       "Your safety is our top priority, but that doesn’t mean you have to sacrifice convenience. This razor case is easy-to-use and free from fiddly clips and locks.",
+  },
+  {
+    title: "Razor Refills",
+    image: "/kitAssets/razor_cover.png",
+    content:
+      "These razor blade refills deliver a close shave, while feeling better after 10th shave than a new disposable does on the first. Each razor blade refill features 3 comfortable blades for long-lasting triple action.",
   },
   {
     title: "Bamboo toothbrush",
@@ -35,7 +41,7 @@ const kitItems = [
       "Durable, waterproof, and stylish, this Dupont Tyvek bag keeps your toiletries securely in their place during transit.",
   },
   {
-    title: "Soap",
+    title: "Soap & Soap Case",
     image: "/kitAssets/soap.png",
     content:
       "Australian-made, this high-quality soap will keep you smelling and feeling fresh and squeaky clean, even when on the go.",
@@ -48,15 +54,16 @@ const kitItems = [
   },
   {
     title: "Shaving soap",
-    image: "/kitAssets/soap.png",
+    image: "/kitAssets/shaving_soap.png",
     content:
       "With a thick, rich lather and invigorating citrus scent, our shaving soap and tin ensures you get a clean, comfortable shave when and wherever you need.",
   },
+
   {
-    title: "Soap case",
+    title: "Bamboo Comb",
     image: "/kitAssets/soap_case.png",
     content:
-      "Travel cases are a must for any jet setter. Our leak-free case ensures your soap stays fresh and clean.",
+      "With a multifunctional tooth design this comb is perfect for detangling and combing gently through your hair.",
   },
 ];
 export const Kit = () => {
