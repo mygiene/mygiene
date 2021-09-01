@@ -59,7 +59,7 @@ const OrderItem = ({
         </div>
         <div className="order__card-content">
           <div className="content-outer">
-            <h3>mygiene grooming kit</h3>
+            <h3>Mygiene Essentials kit</h3>
             <span className="price">${totalAmount} AUD</span>
             <div className="quantity-order">
               <span>

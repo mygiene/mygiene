@@ -48,7 +48,7 @@ const About = () => {
             <div className="banner-image">
               <img
                 src="/aboutAssets/banner_new.jpg"
-                alt="mygiene - Men's Grooming Kit"
+                alt="mygiene - Men's Essentials Kit"
               />
             </div>
           </div>

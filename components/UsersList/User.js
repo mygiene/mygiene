@@ -88,7 +88,7 @@ const User = () => {
                           </div>
                           <div className="order__card-content">
                             <div className="content-outer">
-                              <h3>mygiene grooming kit</h3>
+                              <h3>Mygiene Essentials kit</h3>
                               <div className="quantity-order">
                                 <span className="order-outer">
                                   <strong>Order Id :</strong>{" "}
