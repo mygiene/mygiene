@@ -146,13 +146,15 @@ export const Header = () => {
 
   function getNameInitials() {
     let fullName, fName, lName, initials;
-    if (user) {
-      fullName = user?.displayName || "New User";
+    if (user?.displayName) {
+      fullName = user?.displayName;
       let nameArr = fullName.split(" ").filter(Boolean);
       fName = nameArr[0][0].toUpperCase() || "";
       lName = nameArr?.[1]?.[0]?.toUpperCase?.() || "";
+      initials = fName + lName;
+    } else {
+      initials = "";
     }
-    initials = fName + lName;
     return initials;
   }
   if (RemoveHeader.includes(useRouter().pathname)) {
@@ -195,9 +197,7 @@ export const Header = () => {
                   <li>
                     {user ? (
                       <a onClick={() => setshow((s) => !s)}>
-                        <div className="circle">
-                          {getNameInitials() || "NU"}
-                        </div>
+                        <div className="circle">{getNameInitials()}</div>
                       </a>
                     ) : (
                       <Link href="/login">
