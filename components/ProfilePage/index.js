@@ -8,7 +8,7 @@ import EditProfile from "./EditProfile";
 import ProfileWrapper from "./style.profile";
 
 const ProfilePage = () => {
-  const { authState, setAuthState } = useContext(AuthContext);
+  const { authState } = useContext(AuthContext);
   const [submitting, setsubmitting] = useState(false);
 
   function deleteMyAccount() {

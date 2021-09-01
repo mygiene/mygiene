@@ -126,15 +126,17 @@ const Order = () => {
             <div className="customer-info">
               <p>
                 <strong>User Id </strong>
-                <span>{details?.orderUserId}</span>
+                <span>
+                  {details.user ? details?.orderUserId : "User No Longer Exist"}
+                </span>
               </p>
               <p>
                 <strong>User Name</strong>
-                <span>{details.user?.displayName}</span>
+                <span>{details?.recipientName}</span>
               </p>
               <p>
                 <strong>Email Id</strong>
-                <span>{details.user?.email}</span>
+                <span>{details?.receiptEmail}</span>
               </p>
               <p>
                 <strong>Contact No. </strong>
