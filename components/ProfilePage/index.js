@@ -71,11 +71,11 @@ const ProfilePage = () => {
             <UserNavigation />
 
             <div className="right-side">
-              <div>
+              <div className="head">
                 <h3>Profile Details</h3>
                 <EditProfile {...authState.user} />
                 <button onClick={deleteMyAccount}>
-                  Delete My Account
+                  <span>Delete Account</span>
                   <FaIcon className="fa-trash fa-lg" />
                 </button>
               </div>

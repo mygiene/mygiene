@@ -9,13 +9,13 @@ const kitList = [
   { id: 1, label: "Razor" },
   { id: 2, label: "Razor Case" },
   { id: 3, label: "Bamboo Toothbrush" },
-  { id: 4, label: "Toothbrush Holder" },
-  { id: 5, label: "Soap" },
-  { id: 6, label: "Dental Floss" },
-  { id: 7, label: "Shaving Soap" },
-  { id: 8, label: "Toothpaste & Mouthwash" },
-  { id: 9, label: "Dupont Tyvek Bag" },
-  { id: 10, label: "Soap Case" },
+
+  { id: 4, label: "Soap" },
+  { id: 5, label: "Dental Floss" },
+  { id: 6, label: "Shaving Soap" },
+  { id: 7, label: "Toothpaste & Mouthwash" },
+  { id: 8, label: "Dupont Tyvek Bag" },
+  { id: 9, label: "Soap Case" },
 ];
 
 const testimonials = [

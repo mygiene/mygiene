@@ -33,16 +33,16 @@ export default styled.div`
 
       .right-side {
         margin: 1.5rem 0rem 3rem 0rem;
-        div:nth-child(1) {
+        .head {
           width: 100%;
           display: flex;
           grid-gap: 4rem;
-          align-items: baseline;
+          align-items: center;
+          justify-content: center;
 
           h3 {
             text-transform: uppercase;
 
-            margin-top: 2rem;
             float: left;
           }
           button {
@@ -51,7 +51,8 @@ export default styled.div`
             border: none;
             /* width: 100px; */
             align-items: center;
-            width: 5rem;
+            /* width: 5rem; */
+            min-width: 5rem;
             height: 2.5rem;
             justify-content: center;
             align-items: center;
@@ -62,6 +63,9 @@ export default styled.div`
               margin-left: 0.3rem;
             }
           }
+          button:nth-child(3) {
+            background-color: #f2f2f2;
+          }
           button:hover {
             background-color: #000000;
 
@@ -69,6 +73,9 @@ export default styled.div`
             span {
               color: white;
             }
+          }
+          button:nth-child(3):hover {
+            background-color: red;
           }
         }
         .profile_details {
@@ -96,12 +103,19 @@ export default styled.div`
             div {
               display: flex;
               flex-direction: column;
-              grid-gap: 0.8rem;
+              grid-gap: 0.5rem;
 
               div {
                 display: flex;
-                grid-gap: 1rem;
+                grid-gap: 0.5rem;
                 flex-direction: row;
+                align-items: center;
+
+                span:nth-child(2) {
+                  color: darkslategrey;
+                  font-weight: 700;
+                  font-size: 1.1rem;
+                }
               }
             }
           }
@@ -119,8 +133,8 @@ export default styled.div`
         /* justify-content: center; */
         margin: 2rem auto !important;
         align-items: center !important;
-        div:nth-child(1) {
-          grid-gap: 2rem !important;
+        .head {
+          grid-gap: 1.5rem !important;
           justify-content: center;
         }
         .profile_details {
@@ -136,7 +150,7 @@ export default styled.div`
       /* justify-content: center; */
       margin: 2rem auto !important;
       align-items: center !important;
-      div:nth-child(1) {
+      .head {
         grid-gap: 2rem !important;
         justify-content: center;
       }
