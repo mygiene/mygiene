@@ -24,6 +24,51 @@ export default styled.div`
       justify-content: center;
       flex-direction: column;
       gap: 1rem;
+      div {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        label {
+          font-size: 1.5rem;
+        }
+        select {
+          width: 40%;
+          padding: 0.5rem;
+          border-radius: 7px;
+          border: none;
+        }
+      }
+      button {
+        display: flex;
+        background-color: #d5fafc;
+        border: none;
+        /* width: 100px; */
+        align-items: center;
+        /* width: 5rem; */
+        min-width: 5rem;
+        height: 3rem;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+
+        span {
+          font-size: 1.3rem;
+        }
+        i {
+          color: black;
+          font-size: 1.3rem;
+          margin-left: 1rem;
+        }
+      }
+      button:hover {
+        background-color: black;
+        span {
+          color: white;
+        }
+        i {
+          color: white;
+        }
+      }
     }
 
     .details-1 {
@@ -32,7 +77,7 @@ export default styled.div`
       /* background-color: aqua; */
       display: flex;
       justify-content: space-between;
-      margin-bottom: 2rem;
+      margin: 2rem auto;
       .order-details {
         width: 45%;
         height: max-content;

@@ -65,18 +65,23 @@ const Order = () => {
           <h2>ORDER PAGE #{details?.id}</h2>
         </div>
         <form onSubmit={handleSubmit} className="delivery-dropdown">
-          <label htmlFor="status">Delivery Status</label>
-          <select
-            name="status"
-            id="status"
-            onChange={(e) => setDeliveryStatus(e.target.value)}
-            value={deliveryStatus || details?.status}
-          >
-            {deliveryStatusList.map((m) => (
-              <option value={m.value}>{m.label}</option>
-            ))}
-          </select>
-          <button type="submit">Update Status</button>
+          <div>
+            <label htmlFor="status">Delivery Status</label>
+            <select
+              name="status"
+              id="status"
+              onChange={(e) => setDeliveryStatus(e.target.value)}
+              value={deliveryStatus || details?.status}
+            >
+              {deliveryStatusList.map((m) => (
+                <option value={m.value}>{m.label}</option>
+              ))}
+            </select>
+          </div>
+          <button type="submit">
+            <span>Update Status</span>
+            <FaIcon className="fa fa-pencil" />{" "}
+          </button>
         </form>
         <div className="details-1">
           <div className="order-details">
