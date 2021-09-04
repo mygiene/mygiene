@@ -91,9 +91,14 @@ const HomePage = () => {
               Mygiene delivers a complete, one-stop toiletries package at the
               click of a button.
             </p>
-            <button>
+            {/* <button>
               <Link href="/kit">Buy Now</Link>
-            </button>
+            </button> */}
+            <Link href="/kit">
+              <a>
+                <span> Buy Now</span>
+              </a>
+            </Link>
           </div>
         </div>
         <div className="kit-section">
