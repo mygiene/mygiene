@@ -24,7 +24,7 @@ export default styled.div`
           padding-top: 2rem;
         }
         .banner-buttons {
-          button {
+          a {
             margin: 1rem 0.5rem 1rem 0.5rem;
             background: #d5fafc;
             border: 1px solid #000000;
@@ -33,19 +33,19 @@ export default styled.div`
             width: 150px;
             height: 45px;
             text-align: center;
-            a {
-              color: #000000;
-            }
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+
+            color: #000000;
           }
-          button:hover {
+          a:hover {
             background: #000000;
             border: 1px solid #000000;
             box-sizing: border-box;
             border-radius: 80px;
 
-            a {
-              color: white;
-            }
+            color: white;
           }
         }
         .banner-image {
