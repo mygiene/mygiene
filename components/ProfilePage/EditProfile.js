@@ -6,6 +6,7 @@ import { firestore } from "../../firebase/utils";
 import { AuthContext } from "../auth/auth";
 import EditWrapper from "./style.modal";
 import { Details } from "./addressDetails";
+import { toast } from "react-toastify";
 
 const initialState = {
   newType: "",
@@ -26,6 +27,8 @@ const EditProfile = (props) => {
 
   const [open, setOpen] = useState(false);
   const [modal, setmodal] = useState(false);
+  const [modaldata, setmodaldata] = useState();
+  const [editmodal, setEditModal] = useState(false);
 
   const onOpenModal = () => setOpen(true);
   const onCloseModal = () => setOpen(false);
@@ -69,26 +72,28 @@ const EditProfile = (props) => {
 
   function remove(id, e) {
     e.preventDefault();
-    setform((f) => {
-      let val;
-      return {
-        ...f,
-        address: f.address
-          .map((m) => {
-            if (val != null || val != undefined) {
-              const updatedNxt = { ...m, id: val };
-              val = val + 1;
-              return updatedNxt;
-            }
-            if (m.id !== id) return { ...m };
-            else {
-              val = id;
-              return null;
-            }
-          })
-          .filter(Boolean),
-      };
-    });
+    const proceed = confirm(
+      "Are you sure you want to delete this address permanently?"
+    );
+    if (proceed) {
+      const updatedAddress = user.address.filter((m) => m.id !== id);
+
+      firestore
+        .doc(`users/${user.id}`)
+        .update({
+          address: updatedAddress,
+        })
+        .then(() => {
+          toast.info("Address removed successfully!");
+        })
+        .catch((err) => toast.info(err.message));
+    }
+  }
+
+  function editDetail(data, e) {
+    e.preventDefault();
+    setmodaldata(data);
+    setEditModal((m) => !m);
   }
 
   function handleSubmit(e) {
@@ -99,15 +104,15 @@ const EditProfile = (props) => {
         ...form,
       })
       .then(() => {
-        console.log("success");
         onCloseModal();
       })
       .catch((err) => console.log(err));
   }
 
-  function openModal(e) {
-    e.preventDefault();
-    setmodal((v) => !v);
+  function formattedAddress(add) {
+    const line1 = [add.line1, add.line2].join(", ");
+    const line2 = [add.city, add.state].join(", ");
+    return [line1, line2, add.postal_code].join("\r\n");
   }
 
   const { displayName, email, address, mobile } = form;
@@ -115,7 +120,7 @@ const EditProfile = (props) => {
 
   return (
     <>
-      <button onClick={onOpenModal}>
+      <button onClick={() => setOpen(true)}>
         <span>Edit</span>
         <FaIcon className="fa-edit fa-lg" />
       </button>
@@ -173,7 +178,12 @@ const EditProfile = (props) => {
                 </div>
                 <form>
                   <label>Add / Delete Address Dynamically</label>{" "}
-                  <button onClick={openModal}>
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setmodal(true);
+                    }}
+                  >
                     Add <FaIcon className="fa fa-plus" />
                   </button>
                 </form>
@@ -185,66 +195,26 @@ const EditProfile = (props) => {
                 >
                   <Details isNew onComplete={() => setmodal(false)} />
                 </Modal>
-                {address.length <= 1 && (
-                  <form onSubmitCapture={(e) => updateAddress(null, e)}>
-                    <div className="form-fields-address">
-                      <label>Add / Delete Address Dynamically</label>
-                      <div className="address-fields">
-                        <div>
-                          <input
-                            required
-                            name="newType"
-                            value={newType}
-                            type="text"
-                            onChange={handleFieldAddressChange}
-                            placeholder="Type of Address"
-                          />
-                          <textarea
-                            required
-                            name="newAddress"
-                            onChange={handleFieldAddressChange}
-                            type="text"
-                            value={newAddress}
-                            placeholder="Enter your Address"
-                          />
-                          <div>
-                            <button type="submit">
-                              <FaIcon className="fa fa-plus" />
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </form>
-                )}
 
-                {address.length > 0 && (
+                {user.address && user.address.length > 0 && (
                   <div className="fetch-address">
                     <form>
-                      {address.map((m) => (
+                      {user.address.map((m) => (
                         <div className="address-card">
                           <div className="input-fields">
-                            <input
-                              name="type"
-                              value={m.type}
-                              type="text"
-                              onChange={(e) => updateAddress(m.id, e)}
-                              placeholder="Type of Address"
-                            />
+                            <div>{m.type}</div>
                           </div>
                           <div className="input-fields">
-                            <textarea
-                              name="address"
-                              value={m.address}
-                              onChange={(e) => updateAddress(m.id, e)}
-                              type="text"
-                              rows="3"
-                              placeholder="Your Address"
-                            />
+                            <div>{formattedAddress(m)}</div>
                           </div>
                           <div className="delete-button">
                             <button onClick={(e) => remove(m.id, e)}>
                               <FaIcon className="fa fa-trash" />
+                            </button>
+                          </div>
+                          <div className="edit-button">
+                            <button onClick={(e) => editDetail(m, e)}>
+                              <FaIcon className="fa fa-pencil" />
                             </button>
                           </div>
                         </div>
@@ -252,6 +222,19 @@ const EditProfile = (props) => {
                     </form>
                   </div>
                 )}
+                <Modal
+                  open={editmodal}
+                  center
+                  onClose={() => setEditModal(false)}
+                  styles={{
+                    modal: { background: "#f8e1e1", width: "80%" },
+                  }}
+                >
+                  <Details
+                    data={modaldata}
+                    onComplete={() => setEditModal(false)}
+                  />
+                </Modal>
                 <div className="form-button">
                   <button type="submit">Submit</button>
                 </div>

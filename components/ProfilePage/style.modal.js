@@ -124,15 +124,14 @@ export default styled.div`
               width: 95%;
               margin: auto;
 
-              input {
-                height: 2rem;
+              div {
                 margin: 0.5rem 0rem;
-
+                background-color: white;
                 font-size: 1.1rem;
                 width: 100%;
                 border: none;
                 z-index: 2;
-                padding-left: 1rem;
+                padding: 0.6rem 1rem;
 
                 box-sizing: border-box;
                 max-width: 100%;
@@ -154,6 +153,24 @@ export default styled.div`
               position: absolute;
               top: 0.5rem;
               right: 1rem;
+              button {
+                cursor: pointer;
+
+                width: 2rem;
+                height: 2rem;
+                border-radius: 50%;
+                border: none;
+                color: black;
+                font-weight: 700;
+                i {
+                  font-size: 1.25rem;
+                }
+              }
+            }
+            .edit-button {
+              position: absolute;
+              top: 0.5rem;
+              right: 4rem;
               button {
                 cursor: pointer;
 

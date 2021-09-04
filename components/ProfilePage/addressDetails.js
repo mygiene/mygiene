@@ -2,27 +2,43 @@ import { useState, useContext } from "react";
 import { toast } from "react-toastify";
 
 import { firestore } from "../../firebase/utils";
+import { RandomID } from "../../util/helper";
 import { AuthContext } from "../auth/auth";
 import DetailsModal from "./style.details";
 const initState = {
-  type: "af",
-  line1: "ad",
-  line2: "sd",
-  city: "asdf",
-  state: "sdfa",
-  postal_code: "asdf",
+  type: "",
+  line1: "",
+  line2: "",
+  city: "",
+  state: "",
+  postal_code: "",
 };
 
-export const Details = ({ isNew, onComplete }) => {
+export const Details = ({ isNew, onComplete, data }) => {
+  const initState = {
+    type: "",
+    line1: "",
+    line2: "",
+    city: "",
+    state: "",
+    postal_code: "",
+  };
   const {
     authState: { user },
   } = useContext(AuthContext);
-  const [form, setform] = useState(initState);
+  const [form, setform] = useState(data || initState);
   const [submitting, setsubmitting] = useState(false);
 
   function handleChange(event) {
     const { name, value } = event.target;
     setform((add) => ({ ...add, [name]: value }));
+  }
+
+  function getNewRandomID() {
+    const rand = RandomID();
+    const idArr = user?.address?.length && user.address.filter((f) => f.id);
+    if (idArr.includes(rand)) getNewRandomID();
+    return rand;
   }
 
   function handleSubmit(e) {
@@ -32,19 +48,36 @@ export const Details = ({ isNew, onComplete }) => {
       firestore
         .doc(`users/${user.id}`)
         .update({
-          address: [
-            ...user?.address,
-            { id: user.address?.length || 0, ...form },
-          ],
+          address: user?.address
+            ? [...user?.address, { id: getNewRandomID(), ...form }]
+            : [{ id: getNewRandomID(), ...form }],
         })
         .then(() => {
-          toast.success("Voila! Address added.");
+          toast.success(
+            `Voila! Address added as your ${form.type.toUpperCase()} address.`
+          );
+          onComplete();
+        })
+        .catch((err) => toast.info(err.message));
+    } else {
+      const updatedAddr = user.address.map((addr) => {
+        if (addr.id === data.id) return form;
+        return addr;
+      });
+      firestore
+        .doc(`users/${user.id}`)
+        .update({
+          address: updatedAddr,
+        })
+        .then(() => {
+          toast.success(
+            `Voila! Address updated as your ${form.type.toUpperCase()} address.`
+          );
           onComplete();
         })
         .catch((err) => toast.info(err.message));
     }
   }
-  console.log({ user, isNew });
 
   const { line1, line2, type, city, state, postal_code } = form;
   return (
