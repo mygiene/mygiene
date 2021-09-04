@@ -48,6 +48,7 @@ export const Footer = () => {
               <a
                 href="https://www.instagram.com/mygiene_aus/?hl=en"
                 target="blank"
+                rel="noopener noreferrer"
               >
                 <img
                   src="/footerAssets/insta.png"
@@ -60,6 +61,7 @@ export const Footer = () => {
               <a
                 href="https://www.facebook.com/Mygiene-101946625040573"
                 target="blank"
+                rel="noopener noreferrer"
               >
                 <img
                   src="/footerAssets/fb.png"

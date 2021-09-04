@@ -14,7 +14,7 @@ export default styled.div`
     flex-direction: row;
     -webkit-flex-direction: row;
     margin: auto;
-    margin-top: 5rem;
+    margin: 5rem auto;
 
     div:nth-child(2) {
       width: 72.5%;
@@ -36,7 +36,7 @@ export default styled.div`
       }
       details {
         summary {
-          margin: 1rem 0rem 1.5rem 0rem;
+          margin: 2rem 0rem 2rem 0rem;
           list-style-type: none;
           text-transform: uppercase;
           font-size: 1.1rem;

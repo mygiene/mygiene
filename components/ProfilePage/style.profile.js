@@ -56,7 +56,7 @@ export default styled.div`
             height: 2.5rem;
             justify-content: center;
             align-items: center;
-            border-radius: 10%;
+            border-radius: 10px;
             i {
               color: black;
               /* font-size: 1.8rem; */

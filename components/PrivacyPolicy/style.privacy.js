@@ -13,8 +13,8 @@ export default styled.div`
     flex-grow: 1;
     flex-direction: row;
     -webkit-flex-direction: row;
-    margin: auto;
-    margin-top: 5rem;
+
+    margin: 5rem auto;
 
     div:nth-child(2) {
       width: 72.5%;

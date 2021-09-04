@@ -87,7 +87,14 @@ const ThanksPage = () => {
             </div>
             <span>
               If you have any questions about your order or shipment. Contact Us
-              at : <a href="mailto:info@mygiene.com.au">info@mygiene.com.au</a>
+              at :{" "}
+              <a
+                rel="noopener noreferrer"
+                target="_blank"
+                href="mailto:info@mygiene.com.au"
+              >
+                info@mygiene.com.au
+              </a>
             </span>
           </div>
           <div className="package">

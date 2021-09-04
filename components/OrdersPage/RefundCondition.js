@@ -28,7 +28,13 @@ const RefundCondition = () => {
               At Mygiene we stand behind our product and provide a level of
               quality consistent with industry standards. Please contact Support
               to begin the return and we will walk you through the process at
-              <a href="mailto:info@mygiene.com.au">info@mygiene.com.au</a>
+              <a
+                rel="noopener noreferrer"
+                target="_blank"
+                href="mailto:info@mygiene.com.au"
+              >
+                info@mygiene.com.au
+              </a>
             </span>
             <span>
               FYI : For better reach please add subject as "Refund/Return

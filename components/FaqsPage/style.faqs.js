@@ -2,7 +2,7 @@ import styled from "styled-components";
 export default styled.div`
   .faqs {
     width: 90%;
-    margin: auto;
+    margin: 5rem auto;
     display: flex;
     flex-direction: column;
 

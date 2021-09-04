@@ -64,7 +64,7 @@ export default styled.div`
       }
       .about__content {
         margin-top: 20.5rem;
-        margin-bottom: 4rem;
+        margin-bottom: 7rem;
         width: 100%;
         background: #fff9f9;
         /* position: absolute; */

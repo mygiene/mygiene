@@ -53,17 +53,29 @@ const Page = () => {
             <div className="highlight">GET IN TOUCH TODAY</div>
             <div className="social-icons">
               <div>
-                <a href="mailto: hello@mygiene.com.au">
+                <a
+                  href="mailto: hello@mygiene.com.au"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <FaIcon className="fa-envelope" />
                 </a>
               </div>
               <div>
-                <a href="https://www.instagram.com/mygiene_aus/?hl=en">
+                <a
+                  href="https://www.instagram.com/mygiene_aus/?hl=en"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <FaIcon className="fa-instagram" />
                 </a>
               </div>
               <div>
-                <a href="https://www.facebook.com/Mygiene-101946625040573">
+                <a
+                  href="https://www.facebook.com/Mygiene-101946625040573"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <FaIcon className="fa-facebook" />
                 </a>
               </div>

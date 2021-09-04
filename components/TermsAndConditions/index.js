@@ -210,7 +210,14 @@ const TermsAndConditions = () => {
                 <br />
                 <span>
                   Questions about the Terms of Service should be sent to us at
-                  <a href="mailto:info@mygiene.com.au">info@mygiene.com.au</a>.
+                  <a
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    href="mailto:info@mygiene.com.au"
+                  >
+                    info@mygiene.com.au
+                  </a>
+                  .
                 </span>
               </h4>
             </div>
