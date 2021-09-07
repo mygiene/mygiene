@@ -35,14 +35,24 @@ const About = () => {
               <h2>About Our Company</h2>
 
               <div className="banner-buttons">
-                <button>
+                {/* <button>
                   <Link href="/kit">Buy Kit</Link>
                 </button>
                 <button>
                   <Link href="#about">
                     <a href="#about">Read More</a>
                   </Link>
-                </button>
+                </button> */}
+                <Link href="/kit">
+                  <a>
+                    <span>Buy Kit</span>
+                  </a>
+                </Link>
+                <Link href="#about">
+                  <a>
+                    <span>Read More</span>
+                  </a>
+                </Link>
               </div>
             </div>
             <div className="banner-image">

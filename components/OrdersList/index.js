@@ -62,7 +62,9 @@ const OrdersList = () => {
                         <tr>
                           <td>{index + 1}</td>
                           <td>{item?.id}</td>
-                          <td>{item?.user?.displayName}</td>
+                          <td>
+                            {item?.user?.displayName || "User not exists"}
+                          </td>
                           <td>
                             {new Date(
                               item?.createdAt?.seconds * 1000

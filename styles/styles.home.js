@@ -56,7 +56,7 @@ export default styled.div`
           line-height: 130%;
           color: #18191f;
         }
-        button {
+        a {
           border: none;
           background-color: black;
           width: 150px;
@@ -64,10 +64,12 @@ export default styled.div`
 
           margin-top: 3rem;
           border-radius: 5px;
-          a {
-            color: whitesmoke;
-            font-size: 1.2rem;
-          }
+
+          color: whitesmoke;
+          font-size: 1.2rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
       }
     }
