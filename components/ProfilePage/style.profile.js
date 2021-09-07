@@ -1,4 +1,10 @@
 import styled from "styled-components";
+
+export const FormWrapper = styled.form`
+  display: flex;
+  flex-direction: row;
+`;
+
 export default styled.div`
   .container {
     display: flex;

@@ -37,7 +37,7 @@ export const Details = ({ isNew, onComplete, data }) => {
   function getNewRandomID() {
     const rand = RandomID();
     const idArr = user?.address?.length && user.address.filter((f) => f.id);
-    if (idArr.includes(rand)) getNewRandomID();
+    if (idArr && idArr.includes(rand)) getNewRandomID();
     return rand;
   }
 

@@ -10,11 +10,11 @@ import { getStripe } from "../../stripe/getStripe";
 import { toast } from "react-toastify";
 
 export const StandardDelivery = {
-  price: "0",
+  price: 10,
   id: "shr_1JHrYuEDTtTQNBA8fPmzIEHt",
 };
 export const ExpressDelivery = {
-  price: "0",
+  price: 15,
   id: "shr_1JHrfFEDTtTQNBA85aKOjYpe",
 };
 
@@ -199,7 +199,7 @@ export const CartItem = (props) => {
     // const stripe = await getStripe();
     // await stripe.redirectToCheckout({ sessionId: id });
   }
-  console.log(product, cartItems, total);
+
   return (
     <>
       {product?.name && quantity && (

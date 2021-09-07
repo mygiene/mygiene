@@ -13,10 +13,6 @@ export default styled.div`
       margin: grid-auto-flow;
 
       form {
-        display: flex;
-        flex-direction: column;
-        grid-gap: 1rem;
-
         width: 100%;
         margin: auto;
         .form-fields {

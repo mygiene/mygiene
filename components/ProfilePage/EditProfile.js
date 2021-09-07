@@ -7,6 +7,7 @@ import { AuthContext } from "../auth/auth";
 import EditWrapper from "./style.modal";
 import { Details } from "./addressDetails";
 import { toast } from "react-toastify";
+import { FormWrapper } from "./style.profile";
 
 const initialState = {
   newType: "",
@@ -176,7 +177,7 @@ const EditProfile = (props) => {
                     value={mobile}
                   />
                 </div>
-                <form>
+                <FormWrapper>
                   <label>Add / Delete Address Dynamically</label>{" "}
                   <button
                     onClick={(e) => {
@@ -186,7 +187,7 @@ const EditProfile = (props) => {
                   >
                     Add <FaIcon className="fa fa-plus" />
                   </button>
-                </form>
+                </FormWrapper>
                 <Modal
                   open={modal}
                   center
