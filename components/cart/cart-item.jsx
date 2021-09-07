@@ -8,22 +8,13 @@ import Link from "next/link";
 import axios from "axios";
 import { getStripe } from "../../stripe/getStripe";
 import { toast } from "react-toastify";
-
-export const StandardDelivery = {
-  price: 10,
-  id: "shr_1JHrYuEDTtTQNBA8fPmzIEHt",
-};
-export const ExpressDelivery = {
-  price: 15,
-  id: "shr_1JHrfFEDTtTQNBA85aKOjYpe",
-};
+import { ExpressDelivery, StandardDelivery } from "../../util/helper";
 
 export const CartItem = (props) => {
   const {
     authState: { user },
   } = useContext(AuthContext);
-  const [, , cartItems, setCartItems, cartSubTotal, setCartSubTotal] =
-    useContext(StoreContext);
+  const [, , cartItems, setCartItems] = useContext(StoreContext);
   const delv = cartItems?.delivery || "standard";
   const standardDelv = delv === "standard";
   const [delivery, setDelivery] = useState({

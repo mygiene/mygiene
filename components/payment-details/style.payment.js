@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export default styled.div`
   margin: 4.5rem auto;
+  padding-top: 1rem;
   width: 90%;
   max-width: 1450px;
   form {
