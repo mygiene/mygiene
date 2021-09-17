@@ -4,7 +4,7 @@ import { MetaHead } from "../components/Meta-Head";
 const Page = () => {
   return (
     <>
-      <MetaHead title="Login" />
+      <MetaHead title="Login" url="/login" />
       <LoginPage />
     </>
   );

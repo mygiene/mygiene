@@ -2,6 +2,11 @@
   "name": "mygiene-frontend",
   "version": "0.1.0",
   "private": true,
+  "contributors": [
+    {"name": "Rakshit Maini", "email": "rakshitmaini@gmail.com"},
+    {"name": "Sudhanshu Batra", "email": "batrasudhanshu09@gmail.com"}
+  ],
+  
   "scripts": {
     "dev": "next dev -p 3010",
     "build": "next build",

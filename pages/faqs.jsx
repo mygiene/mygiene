@@ -1,10 +1,10 @@
 import FaqsPage from "../components/FaqsPage/index.js";
-import { MetaHead } from "../components/Meta-Head.jsx";
+import { MetaHead } from "../components/Meta-Head.js";
 
 const Page = () => {
   return (
     <>
-      <MetaHead title="FAQs" />
+      <MetaHead title="FAQs" url="/faqs" />
       <FaqsPage />
     </>
   );

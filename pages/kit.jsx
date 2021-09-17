@@ -1,10 +1,10 @@
 import { Kit } from "../components/kit/index.js";
-import { MetaHead } from "../components/Meta-Head.jsx";
+import { MetaHead } from "../components/Meta-Head.js";
 
 const Page = () => {
   return (
     <>
-      <MetaHead title="Our Kit | Shop" />
+      <MetaHead title="Our Kit | Shop" url="/kit" />
       <Kit />
     </>
   );

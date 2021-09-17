@@ -1,4 +1,4 @@
-import { MetaHead } from "../components/Meta-Head.jsx";
+import { MetaHead } from "../components/Meta-Head.js";
 import { AuthContext } from "../components/auth/auth.js";
 import ThanksPage from "../components/ThanksPage/index.js";
 import { useContext } from "react";
@@ -11,7 +11,7 @@ const Page = () => {
   if (user)
     return (
       <>
-        <MetaHead title="Order Placed" />
+        <MetaHead title="Order Placed" url="/success" />
         <ThanksPage />
       </>
     );

@@ -1,10 +1,10 @@
 import { MetaHead } from "../components/Meta-Head";
 import HomePage from "../components/HomePage";
 
-export default function Home() {
+export default function Page() {
   return (
     <>
-      <MetaHead title="Home" />
+      <MetaHead title="Home" url="/" />
       <HomePage />
     </>
   );

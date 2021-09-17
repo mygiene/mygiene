@@ -2,7 +2,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { useContext } from "react";
 import { AuthContext } from "../components/auth/auth.js";
-import { MetaHead } from "../components/Meta-Head.jsx";
+import { MetaHead } from "../components/Meta-Head.js";
 import { PaymentDetails } from "../components/payment-details/index.jsx";
 import { StoreContext } from "../store/index.js";
 import { stripePublishableKey } from "../stripe/config.js";
@@ -19,7 +19,7 @@ const Page = () => {
   if (user && !product.outOfStock)
     return (
       <>
-        <MetaHead title="Orders" />
+        <MetaHead title="Payment Details" url="/payment-details" />
         {/* <Elements stripe={stripePromise}> */}
         <PaymentDetails />
         {/* </Elements> */}

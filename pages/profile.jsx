@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "../components/auth/auth.js";
-import { MetaHead } from "../components/Meta-Head.jsx";
+import { MetaHead } from "../components/Meta-Head.js";
 import ProfilePage from "../components/ProfilePage/index.js";
 
 const URL = process.env.NEXT_PUBLIC_URL;
@@ -11,7 +11,7 @@ const Page = () => {
   if (user)
     return (
       <>
-        <MetaHead title="Profile" />
+        <MetaHead title="Profile" url="/profile" />
         <ProfilePage />
       </>
     );

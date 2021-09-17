@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Banner from "../components/BaseComponent/Banner";
 import { FaIcon } from "../components/BaseComponent/FaIcon";
-import { MetaHead } from "../components/Meta-Head.jsx";
+import { MetaHead } from "../components/Meta-Head.js";
 import StyledWrapper from "../styles/styles.contact";
 import axios from "axios";
 
@@ -37,7 +37,7 @@ const Page = () => {
 
   return (
     <>
-      <MetaHead title="Contact Us" />
+      <MetaHead title="Contact Us" url="/contact-us" />
       <StyledWrapper>
         <Banner
           Image="/contactAssets/contact-banner.jpg"
