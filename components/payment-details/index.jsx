@@ -8,9 +8,10 @@ import { firestore, fixedByTwoDecimal } from "../../firebase/utils";
 import { StoreContext } from "../../store";
 import { ExpressDelivery, StandardDelivery } from "../../util/helper";
 import { AuthContext } from "../auth/auth";
+import { FaIcon } from "../BaseComponent/FaIcon";
 import { ApplePay } from "./apple-pay";
 import StyledWrapper from "./style.payment";
-
+import Link from "next/dist/client/link";
 const initialState = {
   line1: "",
   line2: "",
@@ -58,7 +59,7 @@ export const PaymentDetails = () => {
       : fixedByTwoDecimal(
           Number(cartSubTotal) + Number(StandardDelivery.price)
         );
-
+  console.log("product", product);
   function handleFieldChangeShipping(event) {
     const { name, value } = event.target;
     setShippingAddress((add) => ({ ...add, [name]: value }));
@@ -202,137 +203,60 @@ export const PaymentDetails = () => {
   return (
     <>
       <StyledWrapper>
-        <div>
-          {user?.address.length > 0 ? (
-            <div>
-              <h3>Pick from Saved Address</h3>
-              <select onChange={handleChangeDropdown}>
-                <option value="none-of-these">None of these</option>
-                {user.address.map((m) => (
-                  <option key={m.id} value={m.id}>
-                    {m.type}
-                  </option>
-                ))}
-              </select>
+        <div className="checkout-page">
+          <div className="navigation">
+            <div className="back">
+              <Link href="/cart">
+                <a>
+                  <FaIcon className="fa fa-long-arrow-left" />
+                  <span>Back</span>
+                </a>
+              </Link>
             </div>
-          ) : (
-            <p>No address saved in profile</p>
-          )}
-
-          <h2>Cart Total : AUD {total}</h2>
-        </div>
-        {/* <ApplePay cartItems={cartItems} cartTotal={total} /> */}
-
-        <form onSubmit={handleSubmit}>
-          <div className="shipping">
-            <div className="shipping-title">Shipping Address</div>
-            <div className="shipping-details">
-              <input
-                required
-                disabled={submitting}
-                type="text"
-                name="line1"
-                value={line1}
-                onChange={handleFieldChangeShipping}
-                placeholder="Address Line 1"
-              />
-              <input
-                required
-                disabled={submitting}
-                type="text"
-                name="line2"
-                value={line2}
-                onChange={handleFieldChangeShipping}
-                placeholder="Address Line 2"
-              />
-              <input
-                required
-                disabled={submitting}
-                type="text"
-                name="city"
-                value={city}
-                onChange={handleFieldChangeShipping}
-                placeholder="City"
-              />
-              <input
-                required
-                disabled={submitting}
-                type="text"
-                name="state"
-                value={state}
-                onChange={handleFieldChangeShipping}
-                placeholder="State"
-              />
-              <input
-                required
-                disabled={submitting}
-                type="text"
-                name="postal_code"
-                value={postal_code}
-                onChange={handleFieldChangeShipping}
-                placeholder="Postal Code"
-              />
-
-              <CountryDropdown
-                required
-                disabled
-                onChange={(val) =>
-                  handleFieldChangeShipping({
-                    target: {
-                      name: "country",
-                      value: "AU",
-                    },
-                  })
-                }
-                value={shippingAddress.country}
-                className="country-dropdown"
-                valueType="short"
-              />
-
-              <input
-                required
-                disabled={submitting}
-                type="text"
-                name="recipientName"
-                value={recipientName}
-                onChange={(e) => setRecipientName(e.target.value)}
-                placeholder="Recipient Name"
-              />
-              <input
-                required
-                disabled={submitting}
-                type="email"
-                name="receiptEmail"
-                value={receiptEmail}
-                onChange={(e) => setReceiptEmail(e.target.value)}
-                placeholder="Email"
-              />
+            <div className="footer__logo">
+              <Link href="/">
+                <a>
+                  <h2>mygiene</h2>
+                </a>
+              </Link>
             </div>
           </div>
-          <div className="billing">
-            <div className="billing-title">Billing Address</div>
-            <div>
-              <input
-                id="billing-address"
-                disabled={submitting}
-                type="checkbox"
-                name="standardDelivery"
-                autoComplete="off"
-                checked={billingAdd}
-                onChange={() => setBillingAdd((b) => !b)}
-              />
-              <label htmlFor="billing-address">Same as Shipping Address</label>
-            </div>{" "}
-            <br />
-            {!billingAdd && (
-              <div className="billing-details">
+          <div className="head__title">
+            <h3>Complete your Order</h3>
+          </div>
+          <div className="product__card">
+            <div className="card">
+              <div className="image-outer">
+                <div className="product-image">
+                  <div className="image">
+                    <img src="/kitAssets/cover.png" />{" "}
+                  </div>
+                </div>
+              </div>
+              <div className="product__name">
+                <span>{product?.name}</span>
+              </div>
+              <div className="quantity">
+                <span>
+                  Qt : <span>{cartItems?.qt}</span>
+                </span>
+              </div>
+              <div className="price">
+                <span>$ {total} AUD</span>
+              </div>
+            </div>
+          </div>
+          <form onSubmit={handleSubmit}>
+            <div className="shipping">
+              <div className="shipping-title">Shipping Address</div>
+              <div className="shipping-details">
                 <input
                   required
                   disabled={submitting}
                   type="text"
                   name="line1"
-                  value={billingAddress.line1}
-                  onChange={handleFieldChangeBilling}
+                  value={line1}
+                  onChange={handleFieldChangeShipping}
                   placeholder="Address Line 1"
                 />
                 <input
@@ -340,8 +264,8 @@ export const PaymentDetails = () => {
                   disabled={submitting}
                   type="text"
                   name="line2"
-                  value={billingAddress.line2}
-                  onChange={handleFieldChangeBilling}
+                  value={line2}
+                  onChange={handleFieldChangeShipping}
                   placeholder="Address Line 2"
                 />
                 <input
@@ -349,8 +273,8 @@ export const PaymentDetails = () => {
                   disabled={submitting}
                   type="text"
                   name="city"
-                  value={billingAddress.city}
-                  onChange={handleFieldChangeBilling}
+                  value={city}
+                  onChange={handleFieldChangeShipping}
                   placeholder="City"
                 />
                 <input
@@ -358,62 +282,164 @@ export const PaymentDetails = () => {
                   disabled={submitting}
                   type="text"
                   name="state"
-                  value={billingAddress.state}
-                  onChange={handleFieldChangeBilling}
+                  value={state}
+                  onChange={handleFieldChangeShipping}
                   placeholder="State"
                 />
                 <input
                   required
-                  type="text"
                   disabled={submitting}
+                  type="text"
                   name="postal_code"
-                  value={billingAddress.postal_code}
-                  onChange={handleFieldChangeBilling}
+                  value={postal_code}
+                  onChange={handleFieldChangeShipping}
                   placeholder="Postal Code"
                 />
+
                 <CountryDropdown
                   required
-                  disabled={submitting}
+                  disabled
                   onChange={(val) =>
-                    handleFieldChangeBilling({
+                    handleFieldChangeShipping({
                       target: {
                         name: "country",
-                        value: val,
+                        value: "AU",
                       },
                     })
                   }
-                  value={billingAddress.country}
+                  value={shippingAddress.country}
                   className="country-dropdown"
                   valueType="short"
                 />
-              </div>
-            )}
-            <div className="card-details">
-              <h3>Card Details</h3>
-              <input
-                required
-                disabled={submitting}
-                type="text"
-                name="nameOnCard"
-                value={nameOnCard}
-                onChange={(e) => setnameOnCard(e.target.value)}
-                placeholder="Name on Card"
-              />
-              <br />
 
-              <CardElement
-                id="card-elem"
-                required
-                disabled={submitting}
-                options={configCardElement}
-              />
-              <div id="card-errors" role="alert"></div>
+                <input
+                  required
+                  disabled={submitting}
+                  type="text"
+                  name="recipientName"
+                  value={recipientName}
+                  onChange={(e) => setRecipientName(e.target.value)}
+                  placeholder="Recipient Name"
+                />
+                <input
+                  required
+                  disabled={submitting}
+                  type="email"
+                  name="receiptEmail"
+                  value={receiptEmail}
+                  onChange={(e) => setReceiptEmail(e.target.value)}
+                  placeholder="Email"
+                />
+              </div>
             </div>
-          </div>
-          <button disabled={submitting} type="submit">
-            Pay Now
-          </button>
-        </form>
+            <div className="billing">
+              <div className="billing-title">Billing Address</div>
+              <div>
+                <input
+                  id="billing-address"
+                  disabled={submitting}
+                  type="checkbox"
+                  name="standardDelivery"
+                  autoComplete="off"
+                  checked={billingAdd}
+                  onChange={() => setBillingAdd((b) => !b)}
+                />
+                <label htmlFor="billing-address">
+                  Same as Shipping Address
+                </label>
+              </div>{" "}
+              <br />
+              {!billingAdd && (
+                <div className="billing-details">
+                  <input
+                    required
+                    disabled={submitting}
+                    type="text"
+                    name="line1"
+                    value={billingAddress.line1}
+                    onChange={handleFieldChangeBilling}
+                    placeholder="Address Line 1"
+                  />
+                  <input
+                    required
+                    disabled={submitting}
+                    type="text"
+                    name="line2"
+                    value={billingAddress.line2}
+                    onChange={handleFieldChangeBilling}
+                    placeholder="Address Line 2"
+                  />
+                  <input
+                    required
+                    disabled={submitting}
+                    type="text"
+                    name="city"
+                    value={billingAddress.city}
+                    onChange={handleFieldChangeBilling}
+                    placeholder="City"
+                  />
+                  <input
+                    required
+                    disabled={submitting}
+                    type="text"
+                    name="state"
+                    value={billingAddress.state}
+                    onChange={handleFieldChangeBilling}
+                    placeholder="State"
+                  />
+                  <input
+                    required
+                    type="text"
+                    disabled={submitting}
+                    name="postal_code"
+                    value={billingAddress.postal_code}
+                    onChange={handleFieldChangeBilling}
+                    placeholder="Postal Code"
+                  />
+                  <CountryDropdown
+                    required
+                    disabled={submitting}
+                    onChange={(val) =>
+                      handleFieldChangeBilling({
+                        target: {
+                          name: "country",
+                          value: val,
+                        },
+                      })
+                    }
+                    value={billingAddress.country}
+                    className="country-dropdown"
+                    valueType="short"
+                  />
+                </div>
+              )}
+              <div className="card-details">
+                <h3>Card Details</h3>
+                <input
+                  required
+                  disabled={submitting}
+                  type="text"
+                  name="nameOnCard"
+                  value={nameOnCard}
+                  onChange={(e) => setnameOnCard(e.target.value)}
+                  placeholder="Name on Card"
+                />
+                <br />
+
+                <CardElement
+                  id="card-elem"
+                  required
+                  disabled={submitting}
+                  options={configCardElement}
+                />
+                <div id="card-errors" role="alert"></div>
+              </div>
+            </div>
+            <button disabled={submitting} type="submit">
+              Pay Now
+            </button>
+          </form>
+        </div>
       </StyledWrapper>
     </>
   );

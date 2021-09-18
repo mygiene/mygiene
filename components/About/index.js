@@ -57,7 +57,7 @@ const About = () => {
             </div>
             <div className="banner-image">
               <img
-                src="/aboutAssets/banner_new.jpg"
+                src="/aboutAssets/About_us_banner_replacement.jpg"
                 alt="mygiene - Men's Essentials Kit"
               />
             </div>
@@ -87,7 +87,8 @@ const About = () => {
                   id="about"
                   className="col col-image"
                   style={{
-                    backgroundImage: 'url("/aboutAssets/about-1.jpg")',
+                    backgroundImage:
+                      'url("/aboutAssets/We_are_on_a_mission_photo_replacment.jpg")',
                   }}
                 ></div>
               </div>

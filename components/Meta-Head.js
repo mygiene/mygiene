@@ -78,7 +78,7 @@ export function MetaHead({
           </>
         )}
 
-        {GoogleIds.map((analyticId) => (
+        {/* {GoogleIds.map((analyticId) => (
           <Fragment key={analyticId}>
             <script
               defer
@@ -96,7 +96,7 @@ export function MetaHead({
               }}
             />
           </Fragment>
-        ))}
+        ))} */}
         {children}
       </Head>
     </>

@@ -4,7 +4,14 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import axios from "axios";
 import { toast } from "react-toastify";
-const RemoveFooter = ["/login", "/signup", "/recovery", "/404", "/success"];
+const RemoveFooter = [
+  "/login",
+  "/signup",
+  "/recovery",
+  "/404",
+  "/success",
+  "/payment-details",
+];
 
 export const Footer = () => {
   if (RemoveFooter.includes(useRouter().pathname)) {

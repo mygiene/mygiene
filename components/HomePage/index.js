@@ -80,7 +80,7 @@ const HomePage = () => {
             <div className="background"></div>
             <div className="banner-image">
               <img
-                src="/homeAssets/home-banner.jpg"
+                src="/homeAssets/Home_page_photo_replacement.jpg"
                 alt="mygiene - Men's Essentials Kit"
               />
             </div>

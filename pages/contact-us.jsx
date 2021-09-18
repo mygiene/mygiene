@@ -40,7 +40,7 @@ const Page = () => {
       <MetaHead title="Contact Us" url="/contact-us" />
       <StyledWrapper>
         <Banner
-          Image="/contactAssets/contact-banner.jpg"
+          Image="/contactAssets/Contact_us_banner_replacement.jpg"
           title="Contact Us"
           quote={contactQuote}
         />
