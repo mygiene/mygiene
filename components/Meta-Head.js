@@ -77,6 +77,26 @@ export function MetaHead({
             <meta property="twitter:card" content="summary_large_image" />
           </>
         )}
+
+        {GoogleIds.map((analyticId) => (
+          <Fragment key={analyticId}>
+            <script
+              defer
+              src={`https://www.googletagmanager.com/gtag/js?id=${analyticId}`}
+            />
+
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${analyticId}');
+              `,
+              }}
+            />
+          </Fragment>
+        ))}
         {children}
       </Head>
     </>
