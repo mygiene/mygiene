@@ -2,6 +2,7 @@ import React from "react";
 import PageNotFoundWrapper from "../styles/styles.404";
 
 import Link from "next/link";
+import { MetaHead } from "../components/Meta-Head";
 const Custom404 = () => {
   return (
     <>

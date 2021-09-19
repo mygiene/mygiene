@@ -53,7 +53,7 @@ const UsersList = () => {
                       <a>
                         <tr>
                           <td>{index + 1}</td>
-                          <td>{item?.displayName || "User not exists"}</td>
+                          <td>{item?.displayName || "User does not exist"}</td>
                           <td>{item?.email}</td>
                           <td>
                             {new Date(

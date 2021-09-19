@@ -63,7 +63,7 @@ const OrdersList = () => {
                           <td>{index + 1}</td>
                           <td>{item?.id}</td>
                           <td>
-                            {item?.user?.displayName || "User not exists"}
+                            {item?.user?.displayName || "User does not exist"}
                           </td>
                           <td>
                             {new Date(
