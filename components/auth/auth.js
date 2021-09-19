@@ -15,7 +15,7 @@ const initialState = {
 };
 
 export const protectedRoutes = ["/profile", "/orders", "/success"];
-export const safeRoutes = ["/login", "/signup"];
+export const safeRoutes = ["/login", "/signup", "/recovery"];
 export const adminRoutes = [
   "/admin",
   "/admin/manage-product",

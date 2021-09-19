@@ -29,6 +29,7 @@ const Recovery = () => {
       toast.error(error.message || "Something went wrong");
     }
   }
+
   return (
     <>
       <MetaHead title="Recover Password" />

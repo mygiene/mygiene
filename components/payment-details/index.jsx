@@ -59,7 +59,7 @@ export const PaymentDetails = () => {
       : fixedByTwoDecimal(
           Number(cartSubTotal) + Number(StandardDelivery.price)
         );
-  console.log("product", product);
+
   function handleFieldChangeShipping(event) {
     const { name, value } = event.target;
     setShippingAddress((add) => ({ ...add, [name]: value }));
@@ -128,7 +128,6 @@ export const PaymentDetails = () => {
                 payment_method: paymentMethod.id,
               })
               .then(async ({ paymentIntent }) => {
-                console.log(paymentIntent);
                 return new Promise((resolve, reject) => {
                   firestore
                     .collection("orders")
@@ -184,7 +183,6 @@ export const PaymentDetails = () => {
   }
 
   function handleChangeDropdown(e) {
-    console.log(e.target.value);
     const addressPicked =
       user.address.filter((f) => f.id === e.target.value).pop() || initialState;
     setShippingAddress(addressPicked);
