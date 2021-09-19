@@ -185,7 +185,7 @@ const EditProfile = (props) => {
                       setmodal(true);
                     }}
                   >
-                    Add <FaIcon className="fa fa-plus" />
+                    <FaIcon className="fa fa-plus" />
                   </button>
                 </FormWrapper>
                 <Modal

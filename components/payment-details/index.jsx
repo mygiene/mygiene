@@ -246,7 +246,25 @@ export const PaymentDetails = () => {
           </div>
           <form onSubmit={handleSubmit}>
             <div className="shipping">
-              <div className="shipping-title">Shipping Address</div>
+              <div className="shipping-title">
+                <span>Shipping Address</span>
+                {user?.address.length > 0 ? (
+                  <div className="dropdown">
+                    <select onChange={handleChangeDropdown}>
+                      <option value="none-of-these">
+                        Pick from Saved Address
+                      </option>
+                      {user.address.map((m) => (
+                        <option key={m.id} value={m.id}>
+                          {m.type}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                ) : (
+                  <p>No address saved in profile</p>
+                )}
+              </div>
               <div className="shipping-details">
                 <input
                   required

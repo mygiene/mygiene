@@ -104,6 +104,20 @@ export default styled.div`
           font-size: 1.5rem;
           font-weight: 700;
           padding: 1rem 0;
+          display: flex;
+          gap: 1rem;
+          justify-content: flex-start;
+          align-items: center;
+
+          .dropdown {
+            select {
+              height: 2rem;
+              border-radius: 10px;
+              background-color: #d5fafc;
+              padding: 0% 4%;
+              border: none;
+            }
+          }
         }
         .shipping-details {
           display: grid;

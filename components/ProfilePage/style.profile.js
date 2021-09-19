@@ -2,7 +2,27 @@ import styled from "styled-components";
 
 export const FormWrapper = styled.form`
   display: flex;
-  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 1.5rem auto;
+  gap: 1rem;
+  button {
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    border: none;
+    background-color: #d5fafc;
+
+    i {
+      font-size: 1.5rem;
+    }
+  }
+  button:hover {
+    background-color: #000000;
+    i {
+      color: white;
+    }
+  }
 `;
 
 export default styled.div`

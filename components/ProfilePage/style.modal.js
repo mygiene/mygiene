@@ -14,7 +14,7 @@ export default styled.div`
 
       form {
         width: 100%;
-        margin: auto;
+        margin: 1rem auto;
         .form-fields {
           display: flex;
           flex-direction: column;
