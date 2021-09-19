@@ -9,6 +9,8 @@ const defaultKeywords = [
   "Mygiene delivers a complete, one-stop toiletries package at the click of a button. You get more time to kick back, relax, and enjoy your holiday.",
 ];
 
+const GoogleIds = ["G-XM6P6FHMHF"];
+
 export function MetaHead({
   desc,
   title = "MYGIENE",
@@ -78,7 +80,7 @@ export function MetaHead({
           </>
         )}
 
-        {/* {GoogleIds.map((analyticId) => (
+        {GoogleIds.map((analyticId) => (
           <Fragment key={analyticId}>
             <script
               defer
@@ -96,7 +98,7 @@ export function MetaHead({
               }}
             />
           </Fragment>
-        ))} */}
+        ))}
         {children}
       </Head>
     </>
