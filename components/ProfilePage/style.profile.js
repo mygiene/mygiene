@@ -91,6 +91,7 @@ export default styled.div`
           }
           button:nth-child(3) {
             background-color: #f2f2f2;
+            min-width: 9rem;
           }
           button:hover {
             background-color: #000000;
@@ -129,15 +130,15 @@ export default styled.div`
             div {
               display: flex;
               flex-direction: column;
-              grid-gap: 0.5rem;
+              grid-gap: 1.5rem;
 
               div {
                 display: flex;
                 grid-gap: 0.5rem;
                 flex-direction: row;
-                align-items: center;
+                align-items: flex-start;
 
-                span:nth-child(2) {
+                span:nth-child(1) {
                   color: darkslategrey;
                   font-weight: 700;
                   font-size: 1.1rem;

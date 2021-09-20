@@ -8,6 +8,7 @@ import EditWrapper from "./style.modal";
 import { Details } from "./addressDetails";
 import { toast } from "react-toastify";
 import { FormWrapper } from "./style.profile";
+import { formattedAddress } from "../../util/helper";
 
 const initialState = {
   newType: "",
@@ -109,12 +110,6 @@ const EditProfile = (props) => {
         onCloseModal();
       })
       .catch((err) => console.log(err));
-  }
-
-  function formattedAddress(add) {
-    const line1 = [add.line1, add.line2].join(", ");
-    const line2 = [add.city, add.state].join(", ");
-    return [line1, line2, add.postal_code].join("\r\n");
   }
 
   const { displayName, email, address, mobile } = form;

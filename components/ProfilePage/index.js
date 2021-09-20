@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { auth, firestore } from "../../firebase/utils";
+import { formattedAddress } from "../../util/helper";
 import { AuthContext } from "../auth/auth";
 import { FaIcon } from "../BaseComponent/FaIcon";
 import UserNavigation from "../BaseComponent/UserNavigation";
@@ -102,8 +103,8 @@ const ProfilePage = () => {
                     {authState.user?.address?.length > 0 &&
                       authState.user?.address.map((m) => (
                         <div>
-                          <span>{m.address}</span>
                           <span>({m.type})</span>
+                          <span>{formattedAddress(m)}</span>
                         </div>
                       ))}
                   </div>
