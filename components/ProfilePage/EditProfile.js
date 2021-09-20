@@ -103,6 +103,7 @@ const EditProfile = (props) => {
       .doc(`users/${user.id}`)
       .update({
         ...form,
+        address: user.address,
       })
       .then(() => {
         onCloseModal();
