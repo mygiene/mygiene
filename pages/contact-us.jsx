@@ -38,10 +38,10 @@ const Page = () => {
 
     emailjs
       .send(
-        "service_9xqton3",
-        "template_u8f3khr",
+        "service_hzrr1ph",
+        "template_qiftzlk",
         templateParams,
-        "user_Opy8NZFO39PC74O0yvTdC"
+        "user_zhmPK0qGb6SQnXNakRw9y"
       )
       .then(
         () => {
