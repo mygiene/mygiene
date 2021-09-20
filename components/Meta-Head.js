@@ -10,7 +10,7 @@ const defaultKeywords = [
   "Mygiene delivers a complete, one-stop toiletries package at the click of a button. You get more time to kick back, relax, and enjoy your holiday.",
 ];
 
-const GoogleIds = ["G-XM6P6FHMHF"];
+const GoogleIds = ["G-9CLMHVRQKG", "G-XM6P6FHMHF"];
 
 export function MetaHead({
   desc,
