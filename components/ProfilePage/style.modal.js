@@ -108,6 +108,7 @@ export default styled.div`
         form {
           display: flex;
           flex-direction: row;
+          gap: 0.8rem;
           .address-card {
             position: relative;
             background: whitesmoke;
