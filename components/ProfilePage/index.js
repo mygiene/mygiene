@@ -93,7 +93,7 @@ const ProfilePage = () => {
                 <div className="profile_details-contact">
                   <span>Contact No</span>
                   <div>
-                    <span>{authState.user?.mobile || ""}</span>
+                    <span>{authState.user?.mobile || "Not added"}</span>
                   </div>
                 </div>
                 <div className="profile_details-address">
