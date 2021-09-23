@@ -145,7 +145,7 @@ export default styled.div`
   }
   @media only screen and (max-width: 870px) and (min-width: 768px) {
     .footer {
-      grid-gap: 10% !important;
+      grid-gap: 6% !important;
       .footer__content {
         display: flex;
         grid-gap: 7% !important;

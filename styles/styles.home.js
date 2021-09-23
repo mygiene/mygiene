@@ -56,7 +56,7 @@ export default styled.div`
           line-height: 130%;
           color: #18191f;
         }
-        button {
+        a {
           border: none;
           background-color: black;
           width: 150px;
@@ -66,13 +66,12 @@ export default styled.div`
           display: flex;
           justify-content: center;
           align-items: center;
-          a {
+          span {
             border: none;
             background-color: black;
             width: 150px;
             height: 50px;
 
-            margin-top: 3rem;
             border-radius: 5px;
 
             color: whitesmoke;

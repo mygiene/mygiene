@@ -176,9 +176,8 @@ export default styled.div`
       }
     }
     .kit__tiles {
-      margin-top: 2rem;
       width: 90%;
-      margin: auto;
+      margin: 4rem auto;
 
       .kit__tiles-title {
         width: 174px;
