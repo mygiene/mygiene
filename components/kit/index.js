@@ -61,7 +61,7 @@ const kitItems = [
 
   {
     title: "Bamboo Comb",
-    image: "/kitAssets/soap_case.png",
+    image: "/kitAssets/comb.png",
     content:
       "With a multifunctional tooth design this comb is perfect for detangling and combing gently through your hair.",
   },
