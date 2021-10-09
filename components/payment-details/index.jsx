@@ -36,6 +36,8 @@ export const deliveryStatus = {
 export const PaymentDetails = () => {
   const stripe = useStripe();
   const elements = useElements();
+  const cardElement = elements?.getElement("card");
+
   const {
     authState: { user },
   } = useContext(AuthContext);
@@ -48,11 +50,26 @@ export const PaymentDetails = () => {
   const [receiptEmail, setReceiptEmail] = useState();
   const [nameOnCard, setnameOnCard] = useState();
   const [submitting, setsubmitting] = useState(false);
+  const [isCompleted, setIsCompleted] = useState(false);
 
   useEffect(() => {
-    if (billingAdd) setBillingAddress(shippingAddress);
+    if (billingAdd) {
+      setBillingAddress(shippingAddress);
+    }
   }, [billingAdd]);
 
+  cardElement?.on("change", function (event) {
+    setIsCompleted(false);
+    var displayError = document.getElementById("card-errors");
+    if (event.error) {
+      displayError.textContent = event.error.message;
+    } else {
+      displayError.textContent = "";
+    }
+    if (event.complete) {
+      setIsCompleted(true);
+    }
+  });
   const total =
     cartItems?.delivery === "express"
       ? fixedByTwoDecimal(Number(cartSubTotal) + Number(ExpressDelivery.price))
@@ -62,7 +79,7 @@ export const PaymentDetails = () => {
 
   function handleFieldChangeShipping(event) {
     const { name, value } = event.target;
-    setShippingAddress((add) => ({ ...add, [name]: value }));
+    setShippingAddress((add) => ({ ...add, [name]: value, country: "AU" }));
   }
 
   function handleFieldChangeBilling(event) {
@@ -72,7 +89,6 @@ export const PaymentDetails = () => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const cardElement = elements.getElement("card");
     if (
       typeof cartItems?.delivery !== "string" ||
       cartItems?.pId !== "grooming_kit" ||
@@ -102,6 +118,11 @@ export const PaymentDetails = () => {
     )
       return;
     setsubmitting(true);
+    delete billingAddress.id;
+    delete billingAddress.type;
+    delete shippingAddress.id;
+    delete shippingAddress.type;
+
     await axios
       .post("/api/payments", {
         amount: Math.ceil(total * 100),
@@ -185,7 +206,7 @@ export const PaymentDetails = () => {
   function handleChangeDropdown(e) {
     const addressPicked =
       user.address.filter((f) => f.id === e.target.value).pop() || initialState;
-    setShippingAddress(addressPicked);
+    setShippingAddress({ ...addressPicked, country: "AU" });
   }
 
   const configCardElement = {
@@ -323,7 +344,7 @@ export const PaymentDetails = () => {
                       },
                     })
                   }
-                  value={shippingAddress.country}
+                  value={"AU"}
                   className="country-dropdown"
                   valueType="short"
                 />
@@ -451,7 +472,7 @@ export const PaymentDetails = () => {
                 <div id="card-errors" role="alert"></div>
               </div>
             </div>
-            <button disabled={submitting} type="submit">
+            <button disabled={submitting || !isCompleted} type="submit">
               Pay Now
             </button>
           </form>

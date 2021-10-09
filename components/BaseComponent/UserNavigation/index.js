@@ -11,7 +11,7 @@ const UserNavigation = () => {
           <li className={activeLink === "/orders" ? "active" : ""}>
             <Link href="/orders">
               <a>
-                <span>Order</span>
+                <span>Orders</span>
               </a>
             </Link>
           </li>
