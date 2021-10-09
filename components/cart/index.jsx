@@ -10,7 +10,7 @@ export const Cart = () => {
     <StyledWrapper>
       <h2>CART ITEMS</h2>
 
-      {cartItems ? (
+      {cartItems?.qt ? (
         <CartItem key={cartItems.pId} {...cartItems} />
       ) : (
         <div className="empty-cart-block">

@@ -184,8 +184,8 @@ export const Header = () => {
                   <li>
                     <Link href={m.link}>
                       <a>
-                        {m.link === "/cart" && cartItems && (
-                          <div className="product-counter">{cartItems.qt}</div>
+                        {m.link === "/cart" && cartItems?.qt && (
+                          <div className="product-counter">{cartItems?.qt}</div>
                         )}
                         <img src={m.icon} alt="cart-counter" />
                       </a>
