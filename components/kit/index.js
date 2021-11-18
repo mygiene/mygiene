@@ -24,7 +24,7 @@ const kitItems = [
   },
   {
     title: "Razor Refills",
-    image: "/kitAssets/razor_cover.png",
+    image: "/kitAssets/razor-refills.png",
     content:
       "These razor blade refills deliver a close shave, while feeling better after 10th shave than a new disposable does on the first. Each razor blade refill features 3 comfortable blades for long-lasting triple action.",
   },
