@@ -35,14 +35,6 @@ const About = () => {
               <h2>About Our Company</h2>
 
               <div className="banner-buttons">
-                {/* <button>
-                  <Link href="/kit">Buy Kit</Link>
-                </button>
-                <button>
-                  <Link href="#about">
-                    <a href="#about">Read More</a>
-                  </Link>
-                </button> */}
                 <Link href="/kit">
                   <a>
                     <span>Buy Kit</span>
@@ -57,7 +49,7 @@ const About = () => {
             </div>
             <div className="banner-image">
               <img
-                src="/aboutAssets/About_us_banner_replacement.jpg"
+                src="/aboutAssets/About_us_banner_replacement_1.jpeg"
                 alt="mygiene - Men's Essentials Kit"
               />
             </div>
@@ -88,7 +80,7 @@ const About = () => {
                   className="col col-image"
                   style={{
                     backgroundImage:
-                      'url("/aboutAssets/We_are_on_a_mission_photo_replacment.jpg")',
+                      'url("/aboutAssets/We_are_on_a_mission_photo_replacment_1.jpeg")',
                   }}
                 ></div>
               </div>
