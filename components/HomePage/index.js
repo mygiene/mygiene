@@ -20,24 +20,24 @@ const kitList = [
 
 const testimonials = [
   {
-    author: "Kim Maynard",
+    author: "Benjamin Fitter",
     content:
-      "I bought this kit for my husband, and at first, he was a bit weary of it and then he came to use it everyday whilst we were on holidays and I could really see an improvement in his overall confidence and hygiene. Thanks so much Mygiene Australia!",
+      "Purchased the kit about a month ago and have been using it everyday. Great kit, easy to apply and have seen good results, the Mrs gives it the tick of approval too!",
   },
   {
-    author: "Ann Nguyen",
+    author: "Lucas Bedford",
     content:
-      "I bought the Mygiene essentials kit for my husband as he wanted to try some products that were natural and effective. He loves the kit! Its easy to use and has everything he needs in order to stay squeaky clean! Nice work team, highly recommend.",
+      "Wasn’t too concerned about my personal hygiene routine, but whilst away on holidays this little number kept me neat and tidy!",
   },
   {
-    author: "Muhammad Ishad ",
+    author: "William Ford ",
     content:
-      "Ever since I started using the astonishingly good Mygiene essentials kit I have had an increase of girls checking me out. The kit has significantly improved my sense of self worth and even gave me the confidence to hit on the girl I really like! ",
+      "Awesome product. Will leave you feeling fresh, clean & looking your best!",
   },
   {
-    author: "Melissa Wapul",
+    author: "Ian Hoffman",
     content:
-      "Hey Mygiene, I purchased your kit for my partner for valentines day. Hes never been into having personal hygiene regime....but now he is! He loves it. And what a difference it has made. So healthy and happy now. Hes a southern bloke who is exposed to the elements with his work, so I'm thrilled to pass on that your kit works wonders for the roughest and toughest conditions!",
+      "My work requires me to travel a lot, Mygiene is so easy to grab and go!",
   },
 ];
 const valuesList = [
